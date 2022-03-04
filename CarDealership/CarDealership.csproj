@@ -117,6 +117,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controllers\ShowCarsController.cs" />
+    <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\People.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

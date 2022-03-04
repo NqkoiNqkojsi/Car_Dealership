@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarDealership.Tests.ModelTEsts
+namespace CarDealership.Tests.ModelTеsts
 {
     internal class CarTest
     {
