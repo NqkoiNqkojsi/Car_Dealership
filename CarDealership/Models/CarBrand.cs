@@ -9,10 +9,10 @@ namespace CarDealership.Models
     public class CarBrand
     {
         private string id { get; set; }
-        public static int lastId = 0;
+        public static int lastId = 0;//save the last id, probably it will be changed later
         private string brand { get; set; }
         private string model { get; set; }
-        public static List<CarBrand> carBrands = new List<CarBrand>();
+        public static List<CarBrand> carBrands = new List<CarBrand>();//list of all the brands with models
         /// <summary>
         /// Register a brand with model
         /// </summary>

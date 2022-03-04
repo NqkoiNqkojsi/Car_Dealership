@@ -8,7 +8,7 @@ namespace CarDealership.Tests.ModelTеsts
     internal class CarBrandTest
     {
         [TestMethod]
-        public void isNewTest()
+        public void isNewTest()//the method checks the method which check if a model is not already saved
         {
             // check for true
             bool result1 = CarBrand.IsNew("Dacia", "Duster");
