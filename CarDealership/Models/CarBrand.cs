@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models
 {
-    internal class CarBrand
+    public class CarBrand
     {
         private string id { get; set; }
+        public static int lastId = 0;
         private string brand { get; set; }
         private string model { get; set; }
         public static List<CarBrand> carBrands = new List<CarBrand>();
@@ -24,6 +25,7 @@ namespace CarDealership.Models
             this.brand = brand;
             this.model = model;
             carBrands.Add(this);
+            lastId++;
         }
         public static void SortBrands()
         {
