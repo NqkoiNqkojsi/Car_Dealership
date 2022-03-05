@@ -14,51 +14,52 @@ namespace CarDealership.Models
         /// </summary>
         
         public string id { get; set; }
+        public static int counter = 0;//save the last id, probably it will be changed later
         public string name { get; set; }
         public DateTime birthDate { get; set; }
         public bool admin { get; set; }
+        public string phoneNum { get; set; }
+        public string imgDir { get; set; }
         private string password;
-        public static int counter = 0;//save the last id, probably it will be changed later
-
+        /// <summary>
+        /// password with hash
+        /// </summary>
         public string Password
         {
             get { return password; }
             set { value=HashString(value); password = value; }
         }
-        private string phoneNum;
-
-        public string PhoneNum
-        {
-            get { return phoneNum; }
-            set { value=value.ToString(); phoneNum = value; }
-        }
-        public string imgDir { get; set; }
-
-        public static string HashString(string input)
-        {
-            var bytes = System.Text.Encoding.UTF8.GetBytes(input);
-            using (var hash = System.Security.Cryptography.SHA512.Create())
-            {
-                var hashedInputBytes = hash.ComputeHash(bytes);
-
-                // Convert to text
-                var hashedInputStringBuilder = new System.Text.StringBuilder(128);
-                foreach (var b in hashedInputBytes)
-                    hashedInputStringBuilder.Append(b.ToString("X2"));
-                return hashedInputStringBuilder.ToString();
-            }
-        }
-
-        public Customer(string id, string name, DateTime birthDate, bool admin, string password, string phoneNum, string imgDir)
+        /// <summary>
+        /// A customer class holding everything about them
+        /// </summary>
+        public Customer(string name, DateTime birthDate, bool admin, string password, string phoneNum, string imgDir)
         {
             this.id = counter.ToString();
             this.name = name;
             this.birthDate = birthDate;
             this.admin = admin;
             Password = password;
-            PhoneNum = phoneNum;
+            this.phoneNum = phoneNum;
             this.imgDir = imgDir;
             counter++;
+        }
+        /// <summary>
+        /// Get a hash of a string
+        /// </summary>
+        /// <param name="input">the password to be hashed</param>
+        public static string HashString(string input)
+        {
+            var bytes = Encoding.UTF8.GetBytes(input);
+            using (var hash = SHA512.Create())
+            {
+                var hashedInputBytes = hash.ComputeHash(bytes);
+
+                // Convert to text
+                var hashedInputStringBuilder = new StringBuilder(128);
+                foreach (var b in hashedInputBytes)
+                    hashedInputStringBuilder.Append(b.ToString("X2"));
+                return hashedInputStringBuilder.ToString();
+            }
         }
     }
 }

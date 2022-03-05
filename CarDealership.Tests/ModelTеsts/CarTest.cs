@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CarDealership.Tests.ModelTеsts
 {
     [TestClass]
-    internal class CarTest
+    public class CarTest
     {
         [TestMethod]
         public void MakeDateTest()
