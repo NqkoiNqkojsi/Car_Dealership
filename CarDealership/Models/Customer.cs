@@ -9,6 +9,9 @@ namespace CarDealership.Models
 {
     public class Customer
     {
+        /// <summary>
+        /// Safely Encrypts the Password
+        /// </summary>
         public static string HashString(string input)
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes(input);
@@ -38,8 +41,5 @@ namespace CarDealership.Models
                 password = value; 
             }
         }
-
-
-
     }
 }
