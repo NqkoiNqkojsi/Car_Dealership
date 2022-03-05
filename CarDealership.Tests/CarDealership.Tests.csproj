@@ -165,12 +165,6 @@
       <Version>2.2.7</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CarDealership\CarDealership.csproj">
-      <Project>{baeb436c-c1fc-4425-a58d-df82c59460a0}</Project>
-      <Name>CarDealership</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
