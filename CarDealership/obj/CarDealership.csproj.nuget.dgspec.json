@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\CarDealership.csproj": {}
+    "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\CarDealership.csproj": {
+    "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\CarDealership.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj",
         "projectName": "CarDealership",
-        "projectPath": "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\CarDealership.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\obj\\",
+        "projectPath": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj",
+        "packagesPath": "C:\\Users\\Стоил Стоилов\\.nuget\\packages\\",
+        "outputPath": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Стоил Стоилов\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -39,6 +39,10 @@
       "frameworks": {
         "uap10.0.17763": {
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
               "version": "[6.2.13, )"
