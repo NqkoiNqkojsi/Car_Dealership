@@ -32,14 +32,17 @@ namespace CarDealership.Models
         public string Password
         {
             get { return password; }
-            set 
-            {   
-                value=HashString(value);
-                password = value; 
-            }
+            set { value=HashString(value); password = value; }
         }
+        public string email { get; set; }
+        private string phonenum;
 
-
+        public string PhoneNum
+        {
+            get { return phonenum; }
+            set { value.ToString(); phonenum = value; }
+        }
+        public string imgDir { get; set; }
 
     }
 }
