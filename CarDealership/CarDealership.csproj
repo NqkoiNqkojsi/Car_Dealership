@@ -116,6 +116,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CarsSortAndFilterController.cs" />
     <Compile Include="Controllers\ShowCarsController.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />

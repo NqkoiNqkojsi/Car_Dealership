@@ -30,6 +30,10 @@ namespace CarDealership.Models
             set { value=HashString(value); password = value; }
         }
         /// <summary>
+        /// A list of all customers
+        /// </summary>
+        public static List<Customer> customers = new List<Customer>();
+        /// <summary>
         /// A customer class holding everything about them
         /// </summary>
         public Customer(string name, DateTime birthDate, bool admin, string password, string phoneNum, string imgDir)
@@ -41,6 +45,7 @@ namespace CarDealership.Models
             Password = password;
             this.phoneNum = phoneNum;
             this.imgDir = imgDir;
+            customers.Add(this);
             counter++;
         }
         /// <summary>

@@ -10,7 +10,7 @@ namespace CarDealership.Tests.ModelTеsts
         [TestMethod]
         public void MakeDateTest()
         {
-            DateTime date = DateTime.Now;
+            DateTime date = DateTime.Parse("13/1/2023", "dd/M/yyy");
             string dateStr = date.ToString("M.yyy");
             DateTime result=Car.MakeDate(dateStr);
             Assert.AreEqual(date, result, "The MakeDate returns a wrong DateTime");

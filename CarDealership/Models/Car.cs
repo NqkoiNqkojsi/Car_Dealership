@@ -93,5 +93,6 @@ namespace CarDealership.Models
                 return DateTime.MinValue;//at error return min value
             }
         }
+        public static List<Car> CarsFilterPrice(double priceStart, double priceEnd)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();  
     }
 }
