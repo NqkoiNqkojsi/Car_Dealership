@@ -12,7 +12,7 @@ namespace CarDealership.Data
         /// <summary>
         /// Cars Table
         /// </summary>
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<Car> cars { get; set; }
 
         /// <summary>
         /// Constructor

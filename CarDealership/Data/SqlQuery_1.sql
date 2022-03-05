@@ -20,7 +20,6 @@ CREATE TABLE car (
   kmDriven FLOAT NULL,
   imgDir VARCHAR(45) NULL,
   engineVolume FLOAT NULL,
-  engineLitres FLOAT NULL,
   additional_info VARCHAR(255) NULL,
   PRIMARY KEY (id)
   );

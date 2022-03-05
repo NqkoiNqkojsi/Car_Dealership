@@ -2,7 +2,7 @@
 using System.Data.Entity;
 namespace CarDealership.Data
 {
-    public class CarBrandContext : DbContext
+    public class CarContext : DbContext
     {
         /// <summary>
         /// Connection String
@@ -10,9 +10,9 @@ namespace CarDealership.Data
         private const string connectionString = null;//pull the connection string after making a connecting the database with sql server
 
         /// <summary>
-        /// CarBrands Table
+        /// Cars Table
         /// </summary>
-        public DbSet<CarBrand> carBrands { get; set; }
+        public DbSet<Customer> customers { get; set; }
 
         /// <summary>
         /// Constructor
