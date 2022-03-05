@@ -45,9 +45,37 @@ namespace CarDealership.Models
         /// Returns the first CarBrand available
         /// </summary>
         public static CarBrand ReturnBrand(string brand, string model)=>carBrands.Where(c => c.brand == brand && c.model==model).First();
-        public static void SortBrands()
+        /// <summary>
+        /// Get all unique brands
+        /// </summary>
+        /// <returns>list of all brands available</returns>
+        public static List<string> GetBrands()
         {
-            //TO DO
+            List<string> brands = new List<string>();
+            foreach (var carBrand in carBrands)
+            {
+                if (!brands.Contains(carBrand.brand))
+                {
+                    brands.Add(carBrand.brand);
+                }
+            }
+            return brands;
+        }
+        /// <summary>
+        /// Get all the models that are in a certain brand
+        /// </summary>
+        /// <returns>all models in a brand</returns>
+        public static List<string> GetModelsByBrand(string brand)
+        {
+            List<string> models = new List<string>();
+            foreach (CarBrand carBrand in carBrands)
+            {
+                if (carBrand.brand == brand)
+                {
+                    models.Add(carBrand.model);
+                }
+            }
+            return models;
         }
         /// <summary>
         /// Check if a certain model is new

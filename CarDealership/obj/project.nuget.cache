@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sn4Dfxo08fNnDiznIYq/fAUBwc2NdSzo9cO9YYdSQxOXQ+HURK8OXcKJpDexcsh6KwG43KaO1umi8rRQxA527Q==",
+  "dgSpecHash": "w4rNHFqRUvagN0hot1k1NcZECrcL9TCIti1JRr4cFogNqIhp4KsSDJVhCubMIKGBhdImxy7tcs2Ys7QOLYg/Og==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\source\\repos\\CarDealership\\CarDealership\\CarDealership.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.native.compiler\\2.2.11-rel-30601-02\\microsoft.net.native.compiler.2.2.11-rel-30601-02.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.uwpcoreruntimesdk\\2.2.13\\microsoft.net.uwpcoreruntimesdk.2.2.13.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
