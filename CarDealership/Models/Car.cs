@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,27 +10,86 @@ namespace CarDealership.Models
     public class Car
     {
         public string id { get; set; }
+        /// <summary>
+        /// holds the model and brand
+        /// </summary>
         public CarBrand carBrand { get; set; }
         public double price { get; set; }
+        /// <summary>
+        /// date of manufacturing
+        /// </summary>
         public DateTime manufDate { get; set; }
+        /// <summary>
+        /// date the offer is made
+        /// </summary>
         public DateTime saleDate { get; set; }
         public double horsePower { get; set; }
         public double kmDriven { get; set; }
         public string imgDir { get; set; }
         public double engineVolume { get; set; }
         public double litres { get; set; }
+        /// <summary>
+        /// Additional info about the car
+        /// </summary>
         public string info { get; set; }
-        public Car(string id, CarBrand carBrand, string manufDateStr, DateTime saleDate, double horsePower, double kmDriven, double engineVolume, double litres, string info)
+        private static ulong counter=0;
+        /// <summary>
+        /// list of all cars
+        /// </summary>
+        public static List<Car> cars = new List<Car>();
+        public Car(CarBrand carBrand, string manufDateStr, DateTime saleDate, double horsePower, double kmDriven, string imgDir, double engineVolume, double litres, string info)
         {
-            this.id = id;
+            this.id = counter.ToString();
             this.carBrand = carBrand;
-            this.manufDate = DateTime.Now;//placeholder
+            this.manufDate = MakeDate(manufDateStr);//placeholder
             this.saleDate = saleDate;
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
+            this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.litres = litres;
             this.info = info;
+            cars.Add(this);
+            counter++;
+        }
+        public Car(string brand, string model, string manufDateStr, DateTime saleDate, double horsePower, double kmDriven, double engineVolume, double litres, string info)
+        {
+            this.id = counter.ToString();
+            this.manufDate = MakeDate(manufDateStr);//placeholder
+            this.saleDate = saleDate;
+            this.horsePower = horsePower;
+            this.kmDriven = kmDriven;
+            this.imgDir = imgDir;
+            this.engineVolume = engineVolume;
+            this.litres = litres;
+            this.info = info;
+            this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
+            if (carBrand == null)
+            {
+                carBrand = new CarBrand(brand, model,false);
+            }
+            cars.Add(this);
+            counter++;
+        }
+
+        /// <summary>
+        /// Make a date from a string with bulgarian annotation
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>DateTime</returns>
+        public static DateTime MakeDate(string date)
+        {
+            CultureInfo culture = new CultureInfo("bg-BG");
+            try
+            {
+                DateTime dateTime = DateTime.ParseExact(date, "D", culture);
+                return dateTime;//return Bulgarian date
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Unable to parse '{0}'", date);
+                return DateTime.MinValue;//at error return min value
+            }
         }
     }
 }

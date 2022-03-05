@@ -8,25 +8,43 @@ namespace CarDealership.Models
 {
     public class CarBrand
     {
-        private string id { get; set; }
-        public static int lastId = 0;//save the last id, probably it will be changed later
-        private string brand { get; set; }
-        private string model { get; set; }
-        public static List<CarBrand> carBrands = new List<CarBrand>();//list of all the brands with models
+        public string id { get; set; }
+        public static int counter = 0;//save the last id, probably it will be changed later
+        public string brand { get; set; }
+        public string model { get; set; }
+        /// <summary>
+        /// list of all the brands with models that are real
+        /// </summary>
+        public static List<CarBrand> carBrands = new List<CarBrand>();
+        /// <summary>
+        /// list of the unverified models
+        /// </summary>
+        public static List<CarBrand> carBrandsUnverified=new List<CarBrand>();
         /// <summary>
         /// Register a brand with model
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="brand">eg. BMW, Audi...</param>
         /// <param name="model">eg. i30, Duster...</param>
-        public CarBrand(string id, string brand, string model)
+        /// <param name="verified">is it sure if it's real model</param>
+        public CarBrand(string brand, string model, bool verified)
         {
-            this.id = id;
+            this.id = counter.ToString();
             this.brand = brand;
             this.model = model;
-            carBrands.Add(this);
-            lastId++;
+            counter++;
+            if (verified)
+            {
+                carBrands.Add(this);
+            }
+            else
+            {
+                carBrandsUnverified.Add(this);
+            }
         }
+        /// <summary>
+        /// Returns the first CarBrand available
+        /// </summary>
+        public static CarBrand ReturnBrand(string brand, string model)=>carBrands.Where(c => c.brand == brand && c.model==model).First();
         public static void SortBrands()
         {
             //TO DO
@@ -34,9 +52,6 @@ namespace CarDealership.Models
         /// <summary>
         /// Check if a certain model is new
         /// </summary>
-        /// <param name="brand"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
         public static bool IsNew(string brand, string model)
         {
             if(carBrands.Any(a=>a.brand == brand || a.model == model))//check if the model is in already in the list
@@ -45,5 +60,7 @@ namespace CarDealership.Models
             }
             return true;
         }
+
+
     }
 }
