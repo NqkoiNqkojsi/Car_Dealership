@@ -1,8 +1,8 @@
 ﻿using CarDealership.Models;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 namespace CarDealership.Data
 {
-    public class CarContext : DbContext
+    public class CustomerContext : DbContext
     {
         /// <summary>
         /// Connection String
@@ -17,7 +17,7 @@ namespace CarDealership.Data
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProductContext()
+        public CustomerContext()
         {
             // Create the database automaticly
             Database.EnsureCreated();
@@ -31,3 +31,5 @@ namespace CarDealership.Data
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
+}
+
