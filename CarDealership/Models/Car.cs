@@ -28,7 +28,7 @@ namespace CarDealership.Models
         /// <summary>
         /// Date the offer is made
         /// </summary>
-        public double horsepower { get; set; }
+        public double horsePower { get; set; }
         public double kmDriven { get; set; }
         /// <summary>
         /// Directory of the image
