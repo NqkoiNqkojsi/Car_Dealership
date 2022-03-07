@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#Git Problems
+.vs/Car_Dealership/
+.vs/CarDealership/
+CarDealership/obj/
