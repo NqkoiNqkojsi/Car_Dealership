@@ -23726,18 +23726,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Стоил Стоилов\\.nuget\\packages\\": {},
+    "C:\\Users\\4o4o\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj",
+      "projectUniqueName": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
       "projectName": "CarDealership",
-      "projectPath": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\CarDealership.csproj",
-      "packagesPath": "C:\\Users\\Стоил Стоилов\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Desktop\\Информатика\\ИТ Кариера\\Module 7 Software development\\ItCareerProject\\CarDealership\\CarDealership\\obj\\",
+      "projectPath": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
+      "packagesPath": "C:\\Users\\4o4o\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -23745,7 +23745,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Стоил Стоилов\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\4o4o\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
