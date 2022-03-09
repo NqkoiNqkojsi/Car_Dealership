@@ -1,1 +1,1 @@
-C:\Users\4o4o\Source\Repos\Car_Dealership\CarDealership\CarDealership.csproj;x86
+E:\IT_Cariera\Piko na folio\CarDealership\CarDealership.csproj;x86

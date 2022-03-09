@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {}
+    "E:\\IT_Cariera\\Piko na folio\\CarDealership\\CarDealership.csproj": {}
   },
   "projects": {
-    "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {
+    "E:\\IT_Cariera\\Piko na folio\\CarDealership\\CarDealership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
+        "projectUniqueName": "E:\\IT_Cariera\\Piko na folio\\CarDealership\\CarDealership.csproj",
         "projectName": "CarDealership",
-        "projectPath": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
-        "packagesPath": "C:\\Users\\4o4o\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\obj\\",
+        "projectPath": "E:\\IT_Cariera\\Piko na folio\\CarDealership\\CarDealership.csproj",
+        "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
+        "outputPath": "E:\\IT_Cariera\\Piko na folio\\CarDealership\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\4o4o\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
