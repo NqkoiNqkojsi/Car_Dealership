@@ -7,24 +7,32 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Car
     {
         public string id { get; set; }
+
         /// <summary>
-        /// holds the model and brand
+        /// Holds the model and brand of the car
         /// </summary>
         public CarBrand carBrand { get; set; }
+
         public double price { get; set; }
         /// <summary>
-        /// date of manufacturing
+        /// Date of manufacturing
         /// </summary>
+
         public DateTime manufDate { get; set; }
         /// <summary>
-        /// date the offer is made
+        /// Date the offer is made
         /// </summary>
-        public DateTime saleDate { get; set; }
         public double horsePower { get; set; }
         public double kmDriven { get; set; }
+        /// <summary>
+        /// Directory of the image
+        /// </summary>
         public string imgDir { get; set; }
         public double engineVolume { get; set; }
         public double litres { get; set; }
@@ -34,29 +42,28 @@ namespace CarDealership.Models
         public string info { get; set; }
         private static ulong counter=0;
         /// <summary>
-        /// list of all cars
+        /// List of all cars
         /// </summary>
-        public static List<Car> cars = new List<Car>();
-        public Car(CarBrand carBrand, string manufDateStr, DateTime saleDate, double horsePower, double kmDriven, string imgDir, double engineVolume, double litres, string info)
+         public static List<Car> quarantinedCars = new List<Car>();
+         public static List<Car> approvedCars = new List<Car>();
+        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume, double litres, string info)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
-            this.manufDate = MakeDate(manufDateStr);//placeholder
-            this.saleDate = saleDate;
+            this.manufDate = MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.litres = litres;
             this.info = info;
-            cars.Add(this);
+            quarantinedCars.Add(this);
             counter++;
         }
-        public Car(string brand, string model, string manufDateStr, DateTime saleDate, double horsePower, double kmDriven, double engineVolume, double litres, string info)
+        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume, double litres, string info)
         {
             this.id = counter.ToString();
             this.manufDate = MakeDate(manufDateStr);//placeholder
-            this.saleDate = saleDate;
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
@@ -68,7 +75,7 @@ namespace CarDealership.Models
             {
                 carBrand = new CarBrand(brand, model,false);
             }
-            cars.Add(this);
+            quarantinedCars.Add(this);
             counter++;
         }
 

@@ -116,8 +116,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CarsSortAndFilterController.cs" />
-    <Compile Include="Controllers\ShowCarsController.cs" />
+	  <Compile Include="Controllers\CarsSortAndFilterController.cs" />
+	  <Compile Include="Controllers\ShowCarsController.cs" />
+	  <Compile Include="Controllers\CustomerController.cs" />
+	  <Compile Include="Data\CarBrandContext.cs" />
+	  <Compile Include="Data\CarContext.cs" />
+	  <Compile Include="Data\CustomerContext.cs" />
+	  <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Views\App.xaml.cs">
@@ -138,8 +143,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\githubLogo.png" />
-    <Content Include="Properties\Default.rd.xml" />
+	  <Content Include="Data\CarDealership.sql" />
+	  <Content Include="Properties\Default.rd.xml" />
+	  <Content Include="Assets\githubLogo.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
@@ -167,8 +173,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework">
-      <Version>6.4.4</Version>
+    <PackageReference Include="Microsoft.EntityFrameworkCore">
+      <Version>3.1.22</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>3.1.22</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
