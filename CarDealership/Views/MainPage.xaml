@@ -83,8 +83,5 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <Button Style="{StaticResource ButtonStyle1}" x:Name="button" Content="Button" Margin="212,331,0,0" VerticalAlignment="Top" Height="327" Width="907" Click="ChangeText" Background="#FF0035D6"/>
-
-    </Grid>
+    <Grid/>
 </Page>

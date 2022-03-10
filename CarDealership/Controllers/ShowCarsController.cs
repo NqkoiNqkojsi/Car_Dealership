@@ -7,7 +7,7 @@ using CarDealership.Models;
 
 namespace CarDealership.Controllers
 {
-    internal class ShowCarsController
+    public class ShowCarsController
     {
     }
 }

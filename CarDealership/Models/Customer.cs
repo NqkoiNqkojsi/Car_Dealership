@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarDealership.Controllers;
 
 namespace CarDealership.Models
 {
@@ -18,15 +19,10 @@ namespace CarDealership.Models
         public string Password
         {
             get { return password; }
-            set { password = value; }
+            set { password = CustomerController.HashString(value); }
         }
-        private string phoneNum;
+        public string phoneNum;
 
-        public string PhoneNum
-        {
-            get { return phoneNum; }
-            set { phoneNum = value; }
-        }
         public string imgDir { get; set; }
 
         
@@ -36,7 +32,7 @@ namespace CarDealership.Models
             this.name = name;
             this.birthDate = birthDate;
             Password = password;
-            PhoneNum = phoneNum;
+            this.phoneNum = phoneNum;
             //this.imgDir = TO DO;
             counter++;
         }
