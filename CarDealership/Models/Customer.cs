@@ -15,6 +15,7 @@ namespace CarDealership.Models
         public DateTime birthDate { get; set; }
         private string password;
         public static int counter = 0;//save the last id, probably it will be changed later
+        public List<Car> carsOwned = new List<Car>();
 
         public string Password
         {

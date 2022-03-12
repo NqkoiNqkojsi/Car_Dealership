@@ -18,6 +18,7 @@ namespace CarDealership.Models
         /// Holds the model and brand of the car
         /// </summary>
         public CarBrand carBrand { get; set; }
+        public Car owner { get; set; }
 
         public double price { get; set; }
         /// <summary>
@@ -100,6 +101,6 @@ namespace CarDealership.Models
                 return DateTime.MinValue;//at error return min value
             }
         }
-        public static List<Car> CarsFilterPrice(double priceStart, double priceEnd)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();  
+        public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();  
     }
 }

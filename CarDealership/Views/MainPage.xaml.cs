@@ -26,12 +26,7 @@ namespace CarDealership
         {
             this.InitializeComponent();
         }
-        public void ChangeText(object sender, RoutedEventArgs e)
-        {
-            button.Margin = new Thickness(220, 360, 0, 0);
-           
-            button.Content = "PRessed";
-        }
+        
 
     }
 }

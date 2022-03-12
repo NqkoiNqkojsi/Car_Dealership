@@ -3,17 +3,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CarDealership">
 
-    <Style TargetType="local2:CustomControl" xmlns:local2="using:CarDealership.Views">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local2:CustomControl">
-                    <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    
 </ResourceDictionary>

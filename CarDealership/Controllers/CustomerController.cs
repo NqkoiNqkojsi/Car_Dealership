@@ -54,7 +54,5 @@ namespace CarDealership.Controllers
                 Console.WriteLine("Username or password is incorrect");
             }
         }
-
-        public
     }
 }
