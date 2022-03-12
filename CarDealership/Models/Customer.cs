@@ -16,6 +16,7 @@ namespace CarDealership.Models
         private string password;
         public static int counter = 0;//save the last id, probably it will be changed later
         public string email;
+        public bool isLoggedIn = false;
 
         public string Email
         {

@@ -1,9 +1,10 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Models;
+using CarDealership.Controllers;
 
 namespace CarDealership.Controllers
 {
@@ -57,6 +58,11 @@ namespace CarDealership.Controllers
         public void RemoveCarBrand(CarBrand carBrand)
         {
             CarBrand.carBrands.Remove(carBrand);
+        }
+
+        public void RemoveCustomerAccount(Customer customer)
+        {
+            CustomerController.customers.Remove(customer);
         }
 
     }

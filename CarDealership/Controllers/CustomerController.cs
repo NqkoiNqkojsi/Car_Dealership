@@ -10,7 +10,9 @@ using System.Net.Mail;
 namespace CarDealership.Controllers
 {
     public class CustomerController
-    {
+    { 
+
+        public static List<Customer> customers = new List<Customer>();
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
@@ -47,15 +49,15 @@ namespace CarDealership.Controllers
             }
         }
 
-        static List<Customer> customers = new List<Customer>();
 
         /// <summary>
         /// Registers a customer
         /// </summary>
         public static void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {
+            bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
-            customers.Add(customer);
+            if (!CustomerExists) customers.Add(customer);
         }
 
         /// <summary>
@@ -63,15 +65,18 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-            if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
+            if (customers.Where(x => x.id == id).FirstOrDefault().isLoggedIn == true)
             {
-                try
+                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
-                    customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Username or password is incorrect");
+                    try
+                    {
+                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Username or password is incorrect");
+                    }
                 }
             }
         }
@@ -82,7 +87,7 @@ namespace CarDealership.Controllers
         public static void SendEmail(string receiver, string subject, string message)
         {
 
-            string sender = "CarDealer@gmail.com";
+            string sender = "CarDealerITCareer@gmail.com";
             MailMessage mail = new MailMessage();
             SmtpClient Smtp = new SmtpClient("smtp.gmail.com");
             mail.From = new MailAddress(sender);
@@ -114,10 +119,16 @@ namespace CarDealership.Controllers
             customer.favoritedCars.Add(car);
         }
 
-        
-
-
-
+        /// <summary>
+        /// Logs a customer into their account
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        public static void Login(string userName, string password)
+        {
+            bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
+            if (ValidInfo) customers.Where(c => c.name == userName && c.Password == password).FirstOrDefault().isLoggedIn=true;
+        }
 
     }
 }
