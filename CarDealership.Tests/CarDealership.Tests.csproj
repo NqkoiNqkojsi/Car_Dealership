@@ -119,7 +119,8 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerTests\AdminControllerTest.cs" />
+    <Compile Include="ControllerTests\CarControllerTest.cs" />
+    <Compile Include="ControllerTests\CustomerControllerTest.cs" />
     <Compile Include="ModelTеsts\CarBrandTest.cs" />
     <Compile Include="ModelTеsts\CarTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

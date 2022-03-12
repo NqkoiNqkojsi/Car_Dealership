@@ -38,7 +38,7 @@ namespace CarDealership.Controllers
         {
             try
             {
-                var addr = new System.Net.Mail.MailAddress(email);
+                var addr = new MailAddress(email);
                 return addr.Address == email;
             }
             catch
@@ -103,6 +103,29 @@ namespace CarDealership.Controllers
                     ex.ToString());
             }
         }
+
+        /// <summary>
+        /// Adds a car to your wishlist/favorite cars
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="car"></param>
+        public static void AddToFavorite(Customer customer, Car car)
+        {
+            customer.favoritedCars.Add(car);
+        }
+
+        public static void ShowFavoriteCars(Customer customer)
+        {
+            foreach (Car car in faveCars)
+            {
+                foreach (Car in customer.favoritedCars)
+                {
+
+                }
+            }
+        }
+
+
 
 
     }

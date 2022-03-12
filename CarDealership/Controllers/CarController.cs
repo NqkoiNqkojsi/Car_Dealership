@@ -33,8 +33,5 @@ namespace CarDealership.Controllers
             }
         }
 
-        public static 
-
-
     }
 }

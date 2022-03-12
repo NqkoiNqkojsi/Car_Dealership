@@ -28,6 +28,7 @@ namespace CarDealership.Models
         }
 
         public List<Car> carsOwned = new List<Car>();
+        public List<Car> favoritedCars = new List<Car>();
 
         public string Password
         {
