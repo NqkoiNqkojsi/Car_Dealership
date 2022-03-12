@@ -28,24 +28,31 @@ namespace CarDealership.Models
         /// <summary>
         /// Date the offer is made
         /// </summary>
+        /// 
         public double horsePower { get; set; }
+
         public double kmDriven { get; set; }
         /// <summary>
         /// Directory of the image
         /// </summary>
+        /// 
         public string imgDir { get; set; }
+
         public double engineVolume { get; set; }
-        public double litres { get; set; }
+
         /// <summary>
         /// Additional info about the car
         /// </summary>
         public string info { get; set; }
-        private static ulong counter=0;
+
+        private static ulong counter = 0;
         /// <summary>
         /// List of all cars
         /// </summary>
         public static List<Car> cars = new List<Car>();
-        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume, double litres, string info)
+
+        public Customer owner { get; set; }//TO DO...
+        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume, string info,Customer owner)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
@@ -54,12 +61,12 @@ namespace CarDealership.Models
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
             this.engineVolume = engineVolume;
-            this.litres = litres;
             this.info = info;
             cars.Add(this);
             counter++;
+            this.owner = owner;
         }
-        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume, double litres, string info)
+        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info, Customer owner)
         {
             this.id = counter.ToString();
             this.manufDate = MakeDate(manufDateStr);//placeholder
@@ -67,7 +74,6 @@ namespace CarDealership.Models
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
             this.engineVolume = engineVolume;
-            this.litres = litres;
             this.info = info;
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
             if (carBrand == null)
@@ -76,6 +82,7 @@ namespace CarDealership.Models
             }
             cars.Add(this);
             counter++;
+            this.owner = owner;
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿CREATE DATABASE cardealership;
-
+GO
 USE cardealership;
-
+GO
 CREATE TABLE carbrand 
 (
   idcar_brand INT NOT NULL IDENTITY,
@@ -9,7 +9,6 @@ CREATE TABLE carbrand
   model VARCHAR(45) NOT NULL,
   PRIMARY KEY (idcar_brand)
   );
-
 CREATE TABLE car (
   id INT NOT NULL IDENTITY,
   idcar_brand INT NOT NULL,

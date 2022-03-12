@@ -48,6 +48,10 @@ namespace CarDealership.Models
                 return hashedInputStringBuilder.ToString();
             }
         }
+        /// <summary>
+        /// List of cars owned by a single person.
+        /// </summary>
+        public List<Car> carsOwned = new List<Car>();
 
         public Customer(string id, string name, DateTime birthDate, bool admin, string password, string phoneNum, string imgDir)
         {
