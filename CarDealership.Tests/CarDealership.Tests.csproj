@@ -119,10 +119,10 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerTests\CarsSortAndFilterControllerTest.cs" />
     <Compile Include="ControllerTests\AdminControllerTest.cs" />
     <Compile Include="ModelTеsts\CarBrandTest.cs" />
     <Compile Include="ModelTеsts\CarTest.cs" />
-    <Compile Include="ControllerTests\CustomerControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
@@ -151,11 +151,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>3.1.22</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
-      <Version>3.1.22</Version>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
@@ -169,12 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarDealership\CarDealership.csproj">
-      <Project>{BAEB436C-C1FC-4425-A58D-DF82C59460A0}</Project>
+      <Project>{baeb436c-c1fc-4425-a58d-df82c59460a0}</Project>
       <Name>CarDealership</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewsTests\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -14,21 +14,16 @@ namespace CarDealership.Models
         public string name { get; set; }
         public DateTime birthDate { get; set; }
         private string password;
-        private string phoneNum;
         public static int counter = 0;//save the last id, probably it will be changed later
+        public List<Car> carsOwned = new List<Car>();
 
         public string Password
         {
             get { return password; }
             set { password = CustomerController.HashString(value); }
         }
-        
+        public string phoneNum;
 
-        public string PhoneNum
-        {
-            get { return phoneNum; }
-            set { phoneNum = value; }
-        }
         public string imgDir { get; set; }
 
         
@@ -38,7 +33,7 @@ namespace CarDealership.Models
             this.name = name;
             this.birthDate = birthDate;
             Password = password;
-            PhoneNum = phoneNum;
+            this.phoneNum = phoneNum;
             //this.imgDir = TO DO;
             counter++;
         }

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CarDealership.Tests.ModelTеsts
 {
     [TestClass]
-    internal class CarBrandTest
+    public class CarBrandTest
     {
         [TestMethod]
         public void isNewTest()//the method checks the method which check if a model is not already saved

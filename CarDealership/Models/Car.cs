@@ -18,6 +18,7 @@ namespace CarDealership.Models
         /// Holds the model and brand of the car
         /// </summary>
         public CarBrand carBrand { get; set; }
+        public Car owner { get; set; }
 
         public double price { get; set; }
         /// <summary>
@@ -35,6 +36,7 @@ namespace CarDealership.Models
         /// </summary>
         public string imgDir { get; set; }
         public double engineVolume { get; set; }
+        public double litres { get; set; }
         /// <summary>
         /// Additional info about the car
         /// </summary>
@@ -45,7 +47,7 @@ namespace CarDealership.Models
         /// </summary>
          public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
-        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume, string info)
+        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume, double litres, string info)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
@@ -54,11 +56,12 @@ namespace CarDealership.Models
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
             this.engineVolume = engineVolume;
+            this.litres = litres;
             this.info = info;
             quarantinedCars.Add(this);
             counter++;
         }
-        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume, double litres, string info)
         {
             this.id = counter.ToString();
             this.manufDate = MakeDate(manufDateStr);//placeholder
@@ -66,6 +69,7 @@ namespace CarDealership.Models
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
             this.engineVolume = engineVolume;
+            this.litres = litres;
             this.info = info;
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
             if (carBrand == null)
@@ -97,19 +101,6 @@ namespace CarDealership.Models
                 return DateTime.MinValue;//at error return min value
             }
         }
-
-        //Prints out the car's information
-        public override string ToString()
-        {
-            StringBuilder carInfo = new StringBuilder();
-            carInfo.Append($"ID: {this.id}" + Environment.NewLine);
-            carInfo.Append($"Brand: {this.carBrand}" + Environment.NewLine);
-            carInfo.Append($"Manufacturing Date: {this.manufDate}" + Environment.NewLine);
-            carInfo.Append($"Horsepower: {this.horsePower}" + Environment.NewLine);
-            carInfo.Append($"Kilometers: {this.kmDriven}" + Environment.NewLine);
-            carInfo.Append($"Engine Volume: {this.engineVolume}" + Environment.NewLine);
-            carInfo.Append($"Additional Info: {this.info}");
-            return carInfo.ToString();
-        }
+        public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();  
     }
 }

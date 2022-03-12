@@ -33,16 +33,16 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Registers a customer
         /// </summary>
-        public void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum)
+        public static void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum)
         {
             Customer customer = new Customer(name, birthDate, password, phoneNum);
             customers.Add(customer);
         }
 
         /// <summary>
-        /// New Password
+        /// Redo Password
         /// </summary>
-        public void UpdatePassword(string id, string oldPass, string newPass)
+        public static void UpdatePassword(string id, string oldPass, string newPass)
         {
             if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
             {
