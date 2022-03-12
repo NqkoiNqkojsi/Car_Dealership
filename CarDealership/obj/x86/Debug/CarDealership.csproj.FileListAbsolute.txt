@@ -132,3 +132,6 @@ E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\MultipleQualifiersPerDim
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\ProjectArchitectures.txt
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_637424743200000000.json
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\CarDealership.csproj.AssemblyReference.cache
+E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CSS\ToggleButtonNav.xbf
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CSS\ToggleButtonNav.xaml
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CSS\ToggleButtonNav.xbf
