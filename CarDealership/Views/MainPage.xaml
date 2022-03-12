@@ -12,14 +12,11 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="DictionaryStyles.xaml"/>
+                <ResourceDictionary Source="CSS/NavButtonsTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <x:String x:Key="greeting">Hello world</x:String>
-
         </ResourceDictionary>
     </Page.Resources>
-    <Border Background="#272537" CornerRadius="">
+    <Border Background="#272537">
         <Grid Margin="10,0,-10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200">
@@ -37,7 +34,7 @@
 
                 </RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" Grid.Column="0">
                 <ToggleButton x:Name="toggleButton" Content="ToggleButton" Height="72" Width="200"/>
 
             </StackPanel>
