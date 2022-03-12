@@ -36,7 +36,6 @@ namespace CarDealership.Models
         /// </summary>
         public string imgDir { get; set; }
         public double engineVolume { get; set; }
-        public double litres { get; set; }
         /// <summary>
         /// Additional info about the car
         /// </summary>
