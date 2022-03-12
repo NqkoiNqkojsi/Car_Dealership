@@ -83,17 +83,17 @@ namespace CarDealership.Models
         /// Returns Car's Information
         /// </summary>
         /// <returns></returns>
-        public StringBuilder ReturnCarInfo()
+        public Dictionary<string, string> PrintCarInfo(Car car)
         {
-            StringBuilder carInfo = new StringBuilder();
-            carInfo.AppendLine($"ID: {this.id}");
-            carInfo.AppendLine($"Brand: {this.carBrand}");
-            carInfo.AppendLine($"Date of Manufacture: {this.manufDate}");
-            carInfo.AppendLine($"Horsepower: {this.horsePower}");
-            carInfo.AppendLine($"Kilometers: {this.kmDriven}");
-            carInfo.AppendLine($"Engine Volume: {this.engineVolume}");
-            carInfo.AppendLine($"Additional Info: {this.info}");
-            return carInfo;
+            Dictionary<string, string> info = new Dictionary<string,string>();
+            info.Add("ID", car.id);
+            info.Add("Brand", car.carBrand.ToString());
+            info.Add("Date of Manufacture", car.manufDate.ToString());
+            info.Add("Horsepower", car.horsePower.ToString());
+            info.Add("Kilometers", car.kmDriven.ToString());
+            info.Add("Engine Volume", car.engineVolume.ToString());
+            info.Add("Additional Info", car.info);
+            return info;
         }
     }
 }
