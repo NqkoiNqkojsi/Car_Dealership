@@ -45,5 +45,18 @@ namespace CarDealership.Controllers
         /// <returns></returns>
         public static List<Car> CarFilterBrandModel(List<Car> cars, CarBrand carBrand) => cars.Where(x => x.carBrand == carBrand).ToList();
 
+
+        public static List<Car> CompleteFilter(double price, string brand, int year, string model)
+        {
+            List<Car> cars = Car.approvedCars;
+            if(price!=0) cars = CarsFilterPrice(cars, price);
+            if(brand != null) cars = CarFilterBrand(cars, brand);
+            if(brand != null && model != null)
+            {
+                CarBrand carBrand = CarBrand.carBrands.Where(cb => cb.model==model && cb.brand==brand).FirstOrDefault();
+                cars = CarFilterBrandModel(cars, carBrand);
+            }
+            return cars;
+        }
     }
 }

@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarDealership.Controllers;
 
 namespace CarDealership.Models
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    
     public class Car
     {
         public string id { get; set; }
@@ -18,7 +17,7 @@ namespace CarDealership.Models
         /// Holds the model and brand of the car
         /// </summary>
         public CarBrand carBrand { get; set; }
-        public Car owner { get; set; }
+        public Customer owner { get; set; }
 
         public double price { get; set; }
         /// <summary>
@@ -46,11 +45,12 @@ namespace CarDealership.Models
         /// </summary>
          public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
-        public Car(CarBrand carBrand, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume,  string info)
+        public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume,  string info)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
-            this.manufDate = MakeDate(manufDateStr);
+            this.price= price;
+            this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
@@ -59,10 +59,11 @@ namespace CarDealership.Models
             quarantinedCars.Add(this);
             counter++;
         }
-        public Car(string brand, string model, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
+        public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter.ToString();
-            this.manufDate = MakeDate(manufDateStr);//placeholder
+            this.price = price;
+            this.manufDate = CarController.MakeDate(manufDateStr);//placeholder
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
@@ -76,30 +77,13 @@ namespace CarDealership.Models
             quarantinedCars.Add(this);
             counter++;
         }
-
-        /// <summary>
-        /// Make a date from a string with only month and year
-        /// </summary>
-        /// <param name="date">format=M.yyy :"10.2003"</param>
-        /// <returns>DateTime with only moth and year</returns>
-        public static DateTime MakeDate(string date)
-        {
-            try
-            {
-                string[] dateArray = date.Split('.');//split the month and year
-                DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
-                dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
-                dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
-                return dateTime;
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine("Unable to parse '{0}'", date);
-                return DateTime.MinValue;//at error return min value
-            }
-        }
         public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();
-        public override string ToString()
+       
+        /// <summary>
+        /// Returns Car's Information
+        /// </summary>
+        /// <returns></returns>
+        public StringBuilder ReturnCarInfo()
         {
             StringBuilder carInfo = new StringBuilder();
             carInfo.AppendLine($"ID: {this.id}");
@@ -107,9 +91,9 @@ namespace CarDealership.Models
             carInfo.AppendLine($"Date of Manufacture: {this.manufDate}");
             carInfo.AppendLine($"Horsepower: {this.horsePower}");
             carInfo.AppendLine($"Kilometers: {this.kmDriven}");
-            carInfo.AppendLine($"ID: {this.id}");
-            carInfo.AppendLine($"ID: {this.id}");
-            carInfo.AppendLine($"ID: {this.id}");
+            carInfo.AppendLine($"Engine Volume: {this.engineVolume}");
+            carInfo.AppendLine($"Additional Info: {this.info}");
+            return carInfo;
         }
     }
 }
