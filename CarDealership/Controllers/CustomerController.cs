@@ -114,16 +114,7 @@ namespace CarDealership.Controllers
             customer.favoritedCars.Add(car);
         }
 
-        public static void ShowFavoriteCars(Customer customer)
-        {
-            foreach (Car car in faveCars)
-            {
-                foreach (Car in customer.favoritedCars)
-                {
-
-                }
-            }
-        }
+        
 
 
 

@@ -21,11 +21,6 @@ namespace CarDealership.Models
 
         public double price { get; set; }
 
-        public static DateTime MakeDate(string dateStr)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Date of manufacturing
         /// </summary>
@@ -89,17 +84,17 @@ namespace CarDealership.Models
         /// Returns Car's Information
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, string> PrintCarInfo(Car car)
+        public Dictionary<string, string> PrintCarInfo()
         {
-            Dictionary<string, string> info = new Dictionary<string,string>();
-            info.Add("ID", car.id);
-            info.Add("Brand", car.carBrand.ToString());
-            info.Add("Date of Manufacture", car.manufDate.ToString());
-            info.Add("Horsepower", car.horsePower.ToString());
-            info.Add("Kilometers", car.kmDriven.ToString());
-            info.Add("Engine Volume", car.engineVolume.ToString());
-            info.Add("Additional Info", car.info);
-            return info;
+            Dictionary<string, string> carinfo = new Dictionary<string,string>();
+            carinfo.Add("ID", id);
+            carinfo.Add("Brand", carBrand.ToString());
+            carinfo.Add("ManufDate", manufDate.ToString());
+            carinfo.Add("Horsepower", horsePower.ToString());
+            carinfo.Add("Kilometers", kmDriven.ToString());
+            carinfo.Add("Engine Volume", engineVolume.ToString());
+            carinfo.Add("Additional Info", info);
+            return carinfo;
         }
     }
 }
