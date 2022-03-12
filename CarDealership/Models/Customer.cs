@@ -14,6 +14,7 @@ namespace CarDealership.Models
         public string name { get; set; }
         public DateTime birthDate { get; set; }
         private string password;
+        private string phoneNum;
         public static int counter = 0;//save the last id, probably it will be changed later
 
         public string Password
@@ -21,7 +22,7 @@ namespace CarDealership.Models
             get { return password; }
             set { password = CustomerController.HashString(value); }
         }
-        private string phoneNum;
+        
 
         public string PhoneNum
         {

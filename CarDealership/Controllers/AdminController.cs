@@ -7,7 +7,7 @@ using CarDealership.Models;
 
 namespace CarDealership.Controllers
 {
-    internal class AdminController
+    public class AdminController
     {
         /// <summary>
         /// Adds a car to the list of cars visible to customers
