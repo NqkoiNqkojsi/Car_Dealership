@@ -112,20 +112,21 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-            if (customers.Where(x => x.id == id).FirstOrDefault().isLoggedIn == true)
+
+
+            if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
             {
-                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
+                try
                 {
-                    try
-                    {
-                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Username or password is incorrect");
-                    }
+                    customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Username or password is incorrect");
                 }
             }
+           
+            
         }
 
         /// <summary>
@@ -170,17 +171,7 @@ namespace CarDealership.Controllers
             customer.favoritedCars.Add(car);
         }
 
-        /// <summary>
-        /// Logs a customer into their account
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        public static void Login(string userName, string password)
-        {
-            bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
-            if (ValidInfo) customers.Where(c => c.name == userName && c.Password == password).FirstOrDefault().isLoggedIn=true;
-            Console.WriteLine("You are logged in!");
-        }
+      
 
         /// <summary>
         /// Sends you an email to recover your password
@@ -213,10 +204,18 @@ namespace CarDealership.Controllers
             CarBrand carBrand = CarBrand.carBrands.Where(c =>c.brand==brand && c.model==model).FirstOrDefault();
             Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
             Customer customer = customers.Where(c => c.name==name).FirstOrDefault();
-            customer.publicOffers.Add(car);
-            
+            customer.publicOffers.Add(car);  
         }
 
+        public static string Login(string email, string password)
+        {
+            if(IsValidEmail(email)
+            {
+                return CustomerController.customers.Where(c => c.email==email && c.Password==password).FirstOrDefault().id;
+            }
+            else Console.WriteLine("Invalid email or password");
+            return ("Invalid email or password");
+        }
 
 
     }
