@@ -13,10 +13,14 @@ namespace CarDealership.Models
         public string id { get; set; }
         public string name { get; set; }
         public DateTime birthDate { get; set; }
-        private string password;
+
         public static int counter = 0;//save the last id, probably it will be changed later
-        public string email;
+        
         public bool isLoggedIn = false;
+
+        private string password;
+
+        public string email;
 
         public string Email
         {
@@ -28,19 +32,20 @@ namespace CarDealership.Models
             }
         }
 
-        public List<Car> carsOwned = new List<Car>();
-        public List<Car> favoritedCars = new List<Car>();
-
         public string Password
         {
             get { return password; }
             set { password = CustomerController.HashString(value); }
         }
+
         public string phoneNum;
 
         public string imgDir { get; set; }
 
-        
+        public List<Car> carsOwned = new List<Car>();
+        public List<Car> favoritedCars = new List<Car>();
+
+
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {
             this.id = counter.ToString();
