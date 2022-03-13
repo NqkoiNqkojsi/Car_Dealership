@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="100" Width="540">
 
-    <Grid Background="#FF4682B4" Name="ShowCase" PointerPressed="OpenCarPage()" >
+    <Grid Background="#FF4682B4" Name="ShowCase" >
         
         <Image x:Name="Image" Source="../Assets/default_img.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="150" RenderTransformOrigin="0.32,0.5"/>
         <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="155,10,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" FontSize="18" Width="220" MaxWidth="220" Height="19" MaxHeight="24" MinWidth="220" MinHeight="24" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>

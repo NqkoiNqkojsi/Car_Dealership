@@ -34,11 +34,17 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
+        /// Adds cars to customer's wish list
+        /// </summary>
+        /// <param name="customerId"> </param>
+        /// <param name="carId">id of liked car</param>
+        public static void AddFavoriteCar(string customerId, string carId) => Customer.customers.First(x => x.id == customerId).carsFavourite.Add(Car.approvedCars.First(x => x.id == carId));
+        /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
-        /// <param name="customer">the user using the app</param>
+        /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
-        public static List<string> ShowFavoriteCars(Customer customer)=>customer.carsFavourite.Select(x=>x.id).ToList();
+        public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).carsFavourite.Select(x=>x.id).ToList();
         /// <summary>
         /// Returns info of car
         /// </summary>

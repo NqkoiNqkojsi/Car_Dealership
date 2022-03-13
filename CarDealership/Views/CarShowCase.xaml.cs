@@ -36,13 +36,13 @@ namespace CarDealership.Views
             this.id = id;
             MakeContent(id);
         }
-        private void OpenCarPage()
+        private EventHandler OpenCarPage(object sender, EventArgs args)
         {
             
         }
         private async void WishCar(object sender, RoutedEventArgs e)
         {
-            //have to be pulled controller method
+            CarController.AddFavoriteCar()
         }
     }
 }

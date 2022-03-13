@@ -16,8 +16,18 @@ namespace CarDealership.Models
         private string password;
         public static int counter = 0;//save the last id, probably it will be changed later
         public string email;
+        /// <summary>
+        /// the cars(offers) that are owned by the user
+        /// </summary>
         public List<Car> carsOwned = new List<Car>();
+        /// <summary>
+        /// the cars(offers) that are wished by the user
+        /// </summary>
         public List<Car> carsFavourite=new List<Car>();
+        /// <summary>
+        /// all customers available
+        /// </summary>
+        public static List<Customer> customers = new List<Customer>();
 
         public string Email
         {

@@ -9,7 +9,9 @@
     d:DesignHeight="520"
     d:DesignWidth="720">
 
-    <Grid>
-        
+    <Grid Name="ListCar">
+        <Button x:Name="Next" Content="Button" Margin="648,478,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Prev" Content="Button" Margin="562,478,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </UserControl>
