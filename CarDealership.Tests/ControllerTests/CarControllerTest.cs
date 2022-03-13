@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarDealership.Controllers;
 
 namespace CarDealership.Tests.ControllerTests
 {
@@ -18,7 +19,7 @@ namespace CarDealership.Tests.ControllerTests
             date.AddYears(2020);
             date.AddMonths(3);
             string dateStr = date.ToString("M.yyy");
-            DateTime result = Car.MakeDate(dateStr);
+            DateTime result = CarController.MakeDate(dateStr);
             Assert.AreEqual(date, result, "The MakeDate returns a wrong DateTime");
         }
     }
