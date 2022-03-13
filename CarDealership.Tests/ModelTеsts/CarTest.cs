@@ -1,6 +1,7 @@
 ﻿using System;
 using CarDealership.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CarDealership.Controllers;
 
 namespace CarDealership.Tests.ModelTеsts
 {
@@ -14,7 +15,7 @@ namespace CarDealership.Tests.ModelTеsts
             date.AddYears(2020);
             date.AddMonths(3);
             string dateStr = date.ToString("M.yyy");
-            DateTime result=Car.MakeDate(dateStr);
+            DateTime result=CarController.MakeDate(dateStr);
             Assert.AreEqual(date, result, "The MakeDate returns a wrong DateTime");
         }
     }

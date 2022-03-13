@@ -28,5 +28,11 @@ namespace CarDealership.Tests.ControllerTests
             Assert.AreEqual(false, CustomerController.IsValidEmail(emailWrong), "The email is correct but shouldn't be");
         }
 
+        [TestMethod]
+        public void SendMailTest()
+        {
+            CustomerController.SendEmail("accountbox@abv.bg", "Test", "Success!");
+        }
+
     }
 }
