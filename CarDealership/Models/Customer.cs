@@ -17,6 +17,7 @@ namespace CarDealership.Models
         public static int counter = 0;//save the last id, probably it will be changed later
         public string email;
         public bool isLoggedIn = false;
+        public List<Car> publicOffers = new List<Car>();
 
         public string Email
         {

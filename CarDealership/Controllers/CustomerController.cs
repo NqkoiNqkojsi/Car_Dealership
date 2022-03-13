@@ -196,5 +196,28 @@ namespace CarDealership.Controllers
                 SendEmail(email, "Password Recovery", $"Your new password is {newPass}, log in to your account and update it to whatever you want.");
             }
         }
+
+        /// <summary>
+        /// Creates an offer for a car
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <param name="model"></param>
+        /// <param name="price"></param>
+        /// <param name="manufDateStr"></param>
+        /// <param name="horsePower"></param>
+        /// <param name="kmDriven"></param>
+        /// <param name="engineVolume"></param>
+        /// <param name="info"></param>
+        public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        {
+            CarBrand carBrand = CarBrand.carBrands.Where(c =>c.brand==brand && c.model==model).FirstOrDefault();
+            Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
+            Customer customer = customers.Where(c => c.name==name).FirstOrDefault();
+            customer.publicOffers.Add(car);
+            
+        }
+
+
+
     }
 }

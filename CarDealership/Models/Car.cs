@@ -46,7 +46,7 @@ namespace CarDealership.Models
         /// </summary>
          public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
-        public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume,  string info)
+        public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
@@ -54,7 +54,6 @@ namespace CarDealership.Models
             this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
-            this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.info = info;
             quarantinedCars.Add(this);
@@ -67,7 +66,6 @@ namespace CarDealership.Models
             this.manufDate = CarController.MakeDate(manufDateStr);//placeholder
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
-            this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.info = info;
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
