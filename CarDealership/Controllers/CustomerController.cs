@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarDealership.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
+using System.Net;
 
 namespace CarDealership.Controllers
 {
@@ -96,7 +97,6 @@ namespace CarDealership.Controllers
             }
         }
 
-
         /// <summary>
         /// Registers a customer
         /// </summary>
@@ -133,26 +133,30 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void SendEmail(string receiver, string subject, string message)
         {
-
-            string sender = "CarDealerITCareer@gmail.com";
-            MailMessage mail = new MailMessage();
-            SmtpClient Smtp = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress(sender);
-            mail.To.Add(receiver);
-            mail.Subject = subject;
-            mail.Body = message;
-
-            Smtp.Port = 587;
-            Smtp.UseDefaultCredentials = true;
-
-            try
+            if (IsValidEmail(receiver))
             {
-                Smtp.Send(mail);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to send message: {0}",
-                    ex.ToString());
+                var sender = new MailAddress("cardealeritcareer@gmail.com");
+                var recipient = new MailAddress($"{receiver}");
+                const string fromPassword = "ugtjyktoeiphmvsv";
+                string subj = subject;
+                string body = message;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(sender.Address, fromPassword)
+                };
+                using (var mail = new MailMessage(sender, recipient)
+                {
+                    Subject = subj,
+                    Body = body
+                })
+                {
+                    smtp.Send(mail);
+                }
             }
         }
 
