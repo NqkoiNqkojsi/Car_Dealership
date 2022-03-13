@@ -21,16 +21,16 @@ namespace CarDealership.Views
     public sealed partial class CarShowCase : UserControl
     {
         public string id { get; set; }
-        private void MakeContent()
+        private void MakeContent(string id)
         {
             List<string> components=new List<string>();
-
+            
         }
         public CarShowCase(string id)
         {
             this.InitializeComponent();
             this.id = id;
-            MakeContent();
+            MakeContent(id);
         }
         private void OpenCarPage()
         {

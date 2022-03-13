@@ -45,5 +45,40 @@ namespace CarDealership.Controllers
         /// <returns></returns>
         public static List<Car> CarFilterBrandModel(List<Car> cars, CarBrand carBrand) => cars.Where(x => x.carBrand == carBrand).ToList();
 
+
+        /// <summary>
+        /// Utilizes all the other filters
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="brand"></param>
+        /// <param name="year"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static List<string> CompleteFilter(double price, string brand, int year, string model)
+        {
+            List<Car> cars = Car.approvedCars;
+            if(price!=0) cars = CarsFilterPrice(cars, price);
+            if (brand != null && model != null)
+            {
+                CarBrand carBrand = CarBrand.carBrands.Where(cb => cb.model == model && cb.brand == brand).FirstOrDefault();
+                cars = CarFilterBrandModel(cars, carBrand);
+            }
+            else if (brand != null) cars = CarFilterBrand(cars, brand);
+            if(year>1930) cars = CarsFilterYear(cars, year);
+            return cars.Select(x=>x.id).ToList();
+        }
+        
+        /// <summary>
+        /// Utilizes the other sorts
+        /// </summary>
+        /// <param name="choice"></param>
+        /// <returns></returns>
+        public static List<Car> CompleteSort(string choice)
+        {
+            List<Car> cars = Car.approvedCars;
+            if (choice == "Price") cars = CarsSortPrice(cars);
+            else if (choice == "Year") cars = CarsSortYear(cars);
+            return cars;
+        }
     }
 }
