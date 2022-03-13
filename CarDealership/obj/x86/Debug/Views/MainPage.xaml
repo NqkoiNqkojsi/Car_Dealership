@@ -9,10 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Margin="0,0,1594,0" Background="#FF0F3A7F"/>
-        <StackPanel Margin="0,0,0,976">
-            <StackPanel Height="100"/>
-        </StackPanel>
+        <StackPanel Margin="0,0,1594,0" Background="#FF0F3A7F" Height="1080" VerticalAlignment="Top"/>
+        <StackPanel Margin="0,0,0,976"/>
+        <ToggleButton Content="Sign in/Sign up" Margin="10,165,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+        <ToggleButton Content="Make an offer" Margin="10,255,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+        <ToggleButton Content="Logo" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="305" Foreground="White" CornerRadius="20" RenderTransformOrigin="0.5,0.5"/>
+        <ToggleButton Content="Admin menu" Margin="10,525,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" Visibility="Visible" IsEnabled="False" CornerRadius="20"/>
+        <ToggleButton Content="My favorites" Margin="10,345,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+        <ToggleButton Content="My offers" Margin="10,435,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+        <ToggleSwitch x:ConnectionId='2' Header="Light mode" Margin="10,939,0,0" VerticalAlignment="Top" Foreground="White" FocusVisualPrimaryBrush="White" BorderBrush="White" FocusVisualSecondaryBrush="#99FFFFFF"                                RequestedTheme="Dark" Visibility="Visible"/>
     </Grid>
 </Page>
 

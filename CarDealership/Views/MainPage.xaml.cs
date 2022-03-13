@@ -29,5 +29,10 @@ namespace CarDealership
         {
             this.InitializeComponent();
         }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
