@@ -10,7 +10,7 @@ namespace CarDealership.Tests.ControllerTests
     [TestClass]
     public class AdminControllerTest
     {
-        [TestMethod]
+        
 
     }
 }

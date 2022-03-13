@@ -6,9 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#566175">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="249*"/>
+            <RowDefinition Height="251*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,1200,0" Background="#272C36" Grid.RowSpan="2">
+            <Button Content="LOG IN" Height="60" Width="170" CornerRadius="5" Margin=",10,10,10"/>
 
+        </StackPanel>
     </Grid>
 </Page>
