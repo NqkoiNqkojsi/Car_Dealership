@@ -38,6 +38,10 @@
                 <ToggleButton x:Name="toggleButton" Content="ToggleButton" Height="72" Width="200"/>
 
             </StackPanel>
+            <StackPanel xmlns:src="using:Car" Grid.Column="1" Grid.RowSpan="2">
+                <UserControl Height="100"/>
+
+            </StackPanel>
         </Grid>
     </Border>
 </Page>

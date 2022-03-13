@@ -54,7 +54,7 @@ namespace CarDealership.Controllers
         /// <param name="year"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static List<string> CompleteFilter(double price, string brand, int year, string model)
+        public static List<Car> CompleteFilter(double price, string brand, int year, string model)
         {
             List<Car> cars = Car.approvedCars;
             if(price!=0) cars = CarsFilterPrice(cars, price);
@@ -65,7 +65,7 @@ namespace CarDealership.Controllers
             }
             else if (brand != null) cars = CarFilterBrand(cars, brand);
             if(year>1930) cars = CarsFilterYear(cars, year);
-            return cars.Select(x=>x.id).ToList();
+            return cars;
         }
         
         /// <summary>

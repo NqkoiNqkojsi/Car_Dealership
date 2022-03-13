@@ -16,6 +16,8 @@ namespace CarDealership.Models
         private string password;
         public static int counter = 0;//save the last id, probably it will be changed later
         public string email;
+        public List<Car> carsOwned = new List<Car>();
+        public List<Car> carsFavourite=new List<Car>();
 
         public string Email
         {
@@ -26,8 +28,6 @@ namespace CarDealership.Models
                 else throw new Exception("Invalid email address!");
             }
         }
-
-        public List<Car> carsOwned = new List<Car>();
 
         public string Password
         {

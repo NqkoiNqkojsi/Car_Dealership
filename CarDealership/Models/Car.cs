@@ -63,7 +63,7 @@ namespace CarDealership.Models
         {
             this.id = counter.ToString();
             this.price = price;
-            this.manufDate = CarController.MakeDate(manufDateStr);//placeholder
+            this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
             this.imgDir = imgDir;
@@ -78,22 +78,26 @@ namespace CarDealership.Models
             counter++;
         }
         public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();
-       
+
         /// <summary>
         /// Returns Car's Information
         /// </summary>
-        /// <returns></returns>
-        public Dictionary<string, string> ReturnCarInfo()
+        /// <returns>brand, model, date, year, price, seller, imgDir, horsePower, km, engineVolume, addInfo</returns>
+        public Dictionary<string, string> PrintCarInfo()
         {
-            Dictionary<string, string> carInfo = new Dictionary<string, string>();
-            carInfo.Add("id", id);
-            carInfo.Add("Brand", carBrand.brand);
-            /*carInfo.AppendLine($"Date of Manufacture: {this.manufDate}");
-            carInfo.AppendLine($"Horsepower: {this.horsePower}");
-            carInfo.AppendLine($"Kilometers: {this.kmDriven}");
-            carInfo.AppendLine($"Engine Volume: {this.engineVolume}");
-            carInfo.AppendLine($"Additional Info: {this.info}");*/
-            return carInfo;
+            Dictionary<string, string> carinfo = new Dictionary<string, string>();
+            carinfo.Add("brand", carBrand.brand.ToString());
+            carinfo.Add("model", carBrand.model.ToString());
+            carinfo.Add("date", manufDate.ToString("M.yyy"));
+            carinfo.Add("year", manufDate.Year.ToString());
+            carinfo.Add("price", price.ToString());
+            carinfo.Add("seller", owner.name);
+            carinfo.Add("imgDir", imgDir);
+            carinfo.Add("horsePower", horsePower.ToString());
+            carinfo.Add("km", kmDriven.ToString());
+            carinfo.Add("engineVolume", engineVolume.ToString());
+            carinfo.Add("addInfo", info);
+            return carinfo;
         }
     }
 }

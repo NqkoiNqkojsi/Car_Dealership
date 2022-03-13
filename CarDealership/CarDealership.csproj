@@ -128,8 +128,14 @@
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CarPage.xaml.cs">
+      <DependentUpon>CarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CarShowCase.xaml.cs">
       <DependentUpon>CarShowCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListOfCars.xaml.cs">
+      <DependentUpon>ListOfCars.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -163,7 +169,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CarShowCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListOfCars.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

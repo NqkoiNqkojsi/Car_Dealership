@@ -33,6 +33,18 @@ namespace CarDealership.Controllers
             }
         }
 
+        /// <summary>
+        /// Show Cars in the Customer's Wishlist
+        /// </summary>
+        /// <param name="customer">the user using the app</param>
+        /// <returns>list of ids</returns>
+        public static List<string> ShowFavoriteCars(Customer customer)=>customer.carsFavourite.Select(x=>x.id).ToList();
+        /// <summary>
+        /// Returns info of car
+        /// </summary>
+        /// <param name="id">id of needed car</param>
+        /// <returns>dictionary of necessary info</returns>
+        public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
 
     }
