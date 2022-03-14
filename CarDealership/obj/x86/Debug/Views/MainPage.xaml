@@ -14,10 +14,10 @@
         <ToggleButton Content="Sign in/Sign up" Margin="10,165,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
         <ToggleButton Content="Make an offer" Margin="10,255,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
         <ToggleButton Content="Logo" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="305" Foreground="White" CornerRadius="20" RenderTransformOrigin="0.5,0.5"/>
-        <ToggleButton Content="Admin menu" Margin="10,525,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" Visibility="Visible" IsEnabled="False" CornerRadius="20"/>
+        <ToggleButton Content="Admin menu" Margin="10,525,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" Visibility="Collapsed" IsEnabled="False" CornerRadius="20"/>
         <ToggleButton Content="My favorites" Margin="10,345,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
         <ToggleButton Content="My offers" Margin="10,435,0,0" VerticalAlignment="Top" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
-        <ToggleSwitch x:ConnectionId='2' Header="Light mode" Margin="10,939,0,0" VerticalAlignment="Top" Foreground="White" FocusVisualPrimaryBrush="White" BorderBrush="White" FocusVisualSecondaryBrush="#99FFFFFF"                                RequestedTheme="Dark" Visibility="Visible"/>
+        <ToggleSwitch x:ConnectionId='2' Header="Dark mode" Margin="10,960,0,0" VerticalAlignment="Top" Foreground="White" FocusVisualPrimaryBrush="White" BorderBrush="White" FocusVisualSecondaryBrush="#99FFFFFF"                                RequestedTheme="Dark" Visibility="Visible"/>
     </Grid>
 </Page>
 

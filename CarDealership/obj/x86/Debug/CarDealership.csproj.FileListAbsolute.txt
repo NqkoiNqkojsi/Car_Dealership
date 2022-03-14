@@ -135,3 +135,8 @@ E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\CarDealership.csproj.Ass
 E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CSS\ToggleButtonNav.xbf
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CSS\ToggleButtonNav.xaml
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CSS\ToggleButtonNav.xbf
+E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPanel.xbf
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.g.i.cs
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.g.cs
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.xaml
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.xbf

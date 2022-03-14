@@ -76,6 +76,9 @@
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPanel.xbf">
+      <PackagePath>Views\MainPanel.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
     </AppxPackagedFile>
