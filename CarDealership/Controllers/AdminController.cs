@@ -13,8 +13,9 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds a car to the list of cars visible to customers
         /// </summary>
-        public void ApproveCar(Car car)
+        public static void ApproveCar(Car car)
         {
+
             try
             {
                 Car.approvedCars.Add(car);
@@ -30,7 +31,7 @@ namespace CarDealership.Controllers
         /// Removes car from the list of cars customers can see
         /// </summary>
        
-        public void RemoveCar(Car car)
+        public static void RemoveCar(Car car)
         {
             Car.approvedCars.Remove(car);
         }
@@ -39,7 +40,7 @@ namespace CarDealership.Controllers
         /// Adds a car brand to the list of legitimate car brands
         /// </summary>
 
-        public void ApproveCarBrand(CarBrand carBrand)
+        public static void ApproveCarBrand(CarBrand carBrand)
         {
             try
             {
@@ -55,12 +56,12 @@ namespace CarDealership.Controllers
         /// Removes a car brand from the list of legitimate car brands
         /// </summary>
 
-        public void RemoveCarBrand(CarBrand carBrand)
+        public static void RemoveCarBrand(CarBrand carBrand)
         {
             CarBrand.carBrands.Remove(carBrand);
         }
 
-        public void RemoveCustomerAccount(Customer customer)
+        public static void RemoveCustomerAccount(Customer customer)
         {
             CustomerController.customers.Remove(customer);
         }

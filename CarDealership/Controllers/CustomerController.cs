@@ -11,9 +11,10 @@ using System.Net;
 namespace CarDealership.Controllers
 {
     public class CustomerController
-    { 
+    {
 
         public static List<Customer> customers = new List<Customer>();
+
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
@@ -125,8 +126,8 @@ namespace CarDealership.Controllers
                     Console.WriteLine("Username or password is incorrect");
                 }
             }
-           
-            
+
+
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace CarDealership.Controllers
             customer.favoritedCars.Add(car);
         }
 
-      
+
 
         /// <summary>
         /// Sends you an email to recover your password
@@ -201,21 +202,21 @@ namespace CarDealership.Controllers
         /// <param name="info"></param>
         public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
-            CarBrand carBrand = CarBrand.carBrands.Where(c =>c.brand==brand && c.model==model).FirstOrDefault();
+            CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
             Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
-            Customer customer = customers.Where(c => c.name==name).FirstOrDefault();
-            customer.publicOffers.Add(car);  
+            Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
+            customer.publicOffers.Add(car);
         }
 
         public static string Login(string email, string password)
         {
-            if(IsValidEmail(email)
+            if (IsValidEmail(email))
             {
-                return CustomerController.customers.Where(c => c.email==email && c.Password==password).FirstOrDefault().id;
+                return CustomerController.customers.Where(c => c.email == email && c.Password == password).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        }
+        } 
 
 
     }

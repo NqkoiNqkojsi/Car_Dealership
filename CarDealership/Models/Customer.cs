@@ -14,6 +14,7 @@ namespace CarDealership.Models
         public string name { get; set; }
         public DateTime birthDate { get; set; }
 
+        public bool isAdmin {get; set; }
         public static int counter = 0;//save the last id, probably it will be changed later
         
         public bool isLoggedIn = false;
@@ -41,7 +42,6 @@ namespace CarDealership.Models
 
         public string phoneNum;
 
-        public string imgDir { get; set; }
 
         public List<Car> carsOwned = new List<Car>();
         public List<Car> favoritedCars = new List<Car>();
@@ -56,6 +56,7 @@ namespace CarDealership.Models
             this.phoneNum = phoneNum;
             this.email=email;
             counter++;
+            isAdmin = false;
         }
     }
 }
