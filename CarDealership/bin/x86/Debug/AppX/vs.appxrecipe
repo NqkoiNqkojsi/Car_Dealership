@@ -30,13 +30,13 @@
     <AppXManifest Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-09T22:02:38.097</Modified>
+      <Modified>2022-03-14T14:56:27.473</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\CarDealership.exe">
       <PackagePath>entrypoint\CarDealership.exe</PackagePath>
-      <Modified>2022-03-09T22:02:37.485</Modified>
+      <Modified>2022-03-14T14:56:26.940</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -86,15 +86,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\CarDealership.xr.xml">
       <PackagePath>CarDealership.xr.xml</PackagePath>
-      <Modified>2022-03-09T21:42:17.201</Modified>
+      <Modified>2022-03-14T14:53:43.589</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\App.xbf">
       <PackagePath>Views\App.xbf</PackagePath>
-      <Modified>2022-03-09T22:02:37.382</Modified>
+      <Modified>2022-03-14T14:56:26.881</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CSS\ToggleButtonNav.xbf">
+      <PackagePath>Views\CSS\ToggleButtonNav.xbf</PackagePath>
+      <Modified>2022-03-14T14:56:26.882</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-03-09T22:02:37.382</Modified>
+      <Modified>2022-03-14T14:56:26.884</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPanel.xbf">
+      <PackagePath>Views\MainPanel.xbf</PackagePath>
+      <Modified>2022-03-14T14:56:26.884</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -102,11 +110,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-03-09T20:17:06.468</Modified>
+      <Modified>2022-03-13T14:46:04.235</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Core\CarDealership.exe">
       <PackagePath>CarDealership.exe</PackagePath>
-      <Modified>2022-03-09T22:02:38.092</Modified>
+      <Modified>2022-03-14T14:56:27.469</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
