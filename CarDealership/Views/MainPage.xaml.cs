@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Drawing;
 using System.Threading.Tasks;
-
+using CarDealership.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,6 +28,8 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
+            MainPanel mainPanel = new MainPanel();
+            MainView.Children.Add(mainPanel);   
         }
 
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)

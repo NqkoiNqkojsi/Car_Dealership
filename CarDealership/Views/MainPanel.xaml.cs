@@ -24,6 +24,47 @@ namespace CarDealership.Views
             this.InitializeComponent();
         }
 
+        private void GenerateMonths()
+        {
+            Month.Items.Add("January");
+            Month.Items.Add("February");
+            Month.Items.Add("March");
+            Month.Items.Add("April");
+            Month.Items.Add("May");
+            Month.Items.Add("June");
+            Month.Items.Add("July");
+            Month.Items.Add("August");
+            Month.Items.Add("September");
+            Month.Items.Add("October");
+            Month.Items.Add("November");
+            Month.Items.Add("December");
+        }
+
+        private void GenerateDays(int month)
+        { 
+            if (month == 2)
+            {
+                for (int i = 1; i <= 28; i++)
+                {
+                    Day.Items.Add(i);
+                }
+            }
+            else if(month % 2 != 0 || month == 7)
+            {
+                for (int i = 1; i <= 31; i++)
+                {
+                    Day.Items.Add(i);
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= 30; i++)
+                {
+                    Day.Items.Add(i);
+                }
+            }
+
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -32,6 +73,23 @@ namespace CarDealership.Views
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if(sender == Month)
+                {  
+                    GenerateDays(Month.SelectedIndex+1);  
+                }
+            }
+            catch(Exception err)
+            {
+                Console.WriteLine(err);
+            }
+            
+          
         }
     }
 }
