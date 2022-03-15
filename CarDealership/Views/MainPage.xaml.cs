@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using CarDealership.Views;
+using CarDealership.Controllers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,11 +24,36 @@ namespace CarDealership
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public List<string> carIds=new List<string>();
         public MainPage()
         {
             this.InitializeComponent();
+            Search search = new Search();
+            MainView.Children.Add(search);
+            carIds = CarsSortAndFilterController.CompleteSort("");
         }
-        
+        private void DeactivateButtons()
+        {
+            toggleButtonCarPage.IsChecked = false;
+            toggleButtonListCars.IsChecked = false;
+            toggleButtonSearch.IsChecked = false;
+            MainView.Children.Clear();
+        }
 
+        private void toggleButtonListCars_Checked(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+            ListOfCars listOfCars = new ListOfCars(carIds);
+        }
+
+        private void toggleButtonCarPage_Checked(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+        }
+
+        private void toggleButtonSearch_Checked(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+        }
     }
 }
