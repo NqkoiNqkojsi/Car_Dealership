@@ -28,6 +28,8 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
+            MockUpListsController.GenerateMockUpCarBrand(10);
+            MockUpListsController.GenerateMockUpCar(10);
             Search search = new Search();
             MainView.Children.Add(search);
             carIds = CarsSortAndFilterController.CompleteSort("");
@@ -44,16 +46,22 @@ namespace CarDealership
         {
             DeactivateButtons();
             ListOfCars listOfCars = new ListOfCars(carIds);
+            MainView.Children.Add(listOfCars);
+            toggleButtonListCars.Background=
         }
 
         private void toggleButtonCarPage_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
+            CarPage carPage = new CarPage();
+            MainView.Children.Add(carPage);
         }
 
         private void toggleButtonSearch_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
+            Search search = new Search();
+            MainView.Children.Add(search);
         }
     }
 }
