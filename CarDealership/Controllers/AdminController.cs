@@ -15,7 +15,6 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void ApproveCar(Car car)
         {
-
             try
             {
                 Car.approvedCars.Add(car);

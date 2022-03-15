@@ -7,6 +7,8 @@ namespace CarDealership.Tests.ModelTеsts
     [TestClass]
     public class CarTest
     {
+        [TestMethod]
+        public void 
         
     }
 }
