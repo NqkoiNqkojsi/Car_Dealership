@@ -35,14 +35,17 @@ namespace CarDealership.Views
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
+            OpenCarPage = c_OpenCarPage;
         }
-        private EventHandler OpenCarPage(object sender, EventArgs args)
+        public event EventHandler OpenCarPage;
+        public static void c_OpenCarPage(object sender, EventArgs e)
         {
-            
+
         }
+
         private async void WishCar(object sender, RoutedEventArgs e)
         {
-            CarController.AddFavoriteCar()
+            //CarController.AddFavoriteCar();
         }
     }
 }
