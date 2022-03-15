@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {}
+    "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {
+    "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
+        "projectUniqueName": "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
         "projectName": "CarDealership",
-        "projectPath": "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
+        "projectPath": "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
         "packagesPath": "C:\\Users\\mirko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\obj\\",
+        "outputPath": "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

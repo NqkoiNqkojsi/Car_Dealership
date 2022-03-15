@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ttxb2lkhA1lbsnpEHvsD7cJAkq6CpBfS9WSGAVHpx5BY8Hb8H/hxlQWcs6RUNC2KUEwJqgddXeliGhZA/6R44Q==",
+  "dgSpecHash": "jyLqUFJHV42FAT7jkeqBCqtRHQA/8zFiJZkd8Ha5SoQiUZQb+EpFAUvQ6bNFLLTjbZ4oeKQu6cWQrU5ZkV92SA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mirko\\source\\repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
+  "projectFilePath": "C:\\Users\\mirko\\Source\\Repos\\Car_Dealership\\CarDealership\\CarDealership.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mirko\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\mirko\\.nuget\\packages\\microsoft.net.native.compiler\\2.2.11-rel-30601-02\\microsoft.net.native.compiler.2.2.11-rel-30601-02.nupkg.sha512",
