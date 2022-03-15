@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Controllers;
+using CarDealership.Data;
 
 namespace CarDealership.Models
 {
@@ -44,7 +45,6 @@ namespace CarDealership.Models
 
         public List<Car> carsOwned = new List<Car>();
         public List<Car> favoritedCars = new List<Car>();
-
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {

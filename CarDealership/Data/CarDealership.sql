@@ -1,7 +1,7 @@
-﻿CREATE DATABASE cardealership;
-
+CREATE DATABASE cardealership;
+GO
 USE cardealership;
-
+GO
 CREATE TABLE carbrand 
 (
   idcar_brand INT NOT NULL IDENTITY,
@@ -57,5 +57,5 @@ CREATE TABLE picture
 	id INT NOT NULL IDENTITY PRIMARY KEY,
     carId INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES car(id),
-    picDir BLOB
+    picDir varbinary(MAX)
 );

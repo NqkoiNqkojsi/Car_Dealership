@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Models;
 using CarDealership.Controllers;
+using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
@@ -33,6 +34,10 @@ namespace CarDealership.Controllers
         public void RemoveCar(Car car)
         {
             Car.approvedCars.Remove(car);
+            using (CarContext carContext = new CarContext())
+            {
+                carContext.cars.Remove(car);
+            }
         }
 
         /// <summary>
@@ -58,11 +63,19 @@ namespace CarDealership.Controllers
         public void RemoveCarBrand(CarBrand carBrand)
         {
             CarBrand.carBrands.Remove(carBrand);
+            using (CarBrandContext carBrandContext = new CarBrandContext())
+            {
+                carBrandContext.carBrands.Remove(carBrand);
+            }
         }
 
         public void RemoveCustomerAccount(Customer customer)
         {
             CustomerController.customers.Remove(customer);
+            using (CustomerContext customerContext = new CustomerContext())
+            {
+                customerContext.customers.Remove(customer);
+            }
         }
 
     }
