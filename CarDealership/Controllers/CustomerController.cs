@@ -119,7 +119,7 @@ namespace CarDealership.Controllers
             {
                 try
                 {
-                    customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+                    customers.Where(x => x.id == id).FirstOrDefault().Password = HashString(newPass);
                 }
                 catch (Exception ex)
                 {
@@ -212,7 +212,7 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                return CustomerController.customers.Where(c => c.email == email && c.Password == password).FirstOrDefault().id;
+                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
