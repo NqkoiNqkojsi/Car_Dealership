@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using CarDealership.Models;
 using System.IO;
 using System.Web;
+using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
     public class CarController
     {
+        private static CarContext carContext = null;
+        
         /// <summary>
         /// Make a date from a string with only month and year
         /// </summary>
@@ -24,12 +27,19 @@ namespace CarDealership.Controllers
                 DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
+                //adding manufacture date to the table 
+                using (carContext = new CarContext())
+                {
+                    carContext.cars.Select(u => u.manufDate).Append(dateTime);
+                    carContext.SaveChanges();
+                }
                 return dateTime;
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 Console.WriteLine("Unable to parse '{0}'", date);
                 return DateTime.MinValue;//at error return min value
+                
             }
         }
 

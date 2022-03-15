@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarDealership.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net;
+using CarDealership.Models;
+using CarDealership.Data;
+using Microsoft.Data.SqlClient;
 
 namespace CarDealership.Controllers
 {
     public class CustomerController
     {
-
+        private static CustomerContext customerContext = null;
+      
+      
         public static List<Customer> customers = new List<Customer>();
 
         /// <summary>
@@ -105,7 +109,15 @@ namespace CarDealership.Controllers
         {
             bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
-            if (!CustomerExists) customers.Add(customer);
+            if (!CustomerExists)
+            {
+                customers.Add(customer);
+                using (customerContext = new CustomerContext())
+                {
+                    customerContext.customers.Add(customer);
+                    customerContext.SaveChanges();
+                }
+            }
         }
 
         /// <summary>
@@ -170,6 +182,37 @@ namespace CarDealership.Controllers
         public static void AddToFavorite(Customer customer, Car car)
         {
             customer.favoritedCars.Add(car);
+            
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    if (conn.State == System.Data.ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
+                                                "values (" + customer.id + ", " + car.id + ")";
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var carId = car.id;
+                                    var customerId = customer.id;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception eSql)
+            {
+                Console.WriteLine($"Exception: {eSql.Message}");
+            }
         }
 
 
