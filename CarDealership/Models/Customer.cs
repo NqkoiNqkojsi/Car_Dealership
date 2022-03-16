@@ -10,13 +10,15 @@ namespace CarDealership.Models
 {
     public class Customer
     {
-       
+
         public string id { get; set; }
         public string name { get; set; }
         public DateTime birthDate { get; set; }
 
-        public bool isAdmin {get; set; }
+        public bool isAdmin { get; set; }
+
         public static int counter = 0;//save the last id, probably it will be changed later
+
         public List<Car> publicOffers = new List<Car>();
 
         private string password;
@@ -29,7 +31,7 @@ namespace CarDealership.Models
         /// <summary>
         /// the cars(offers) that are wished by the user
         /// </summary>
-        public List<Car> favoritedCars=new List<Car>();
+        public List<Car> favoritedCars = new List<Car>();
         /// <summary>
         /// all customers available
         /// </summary>
@@ -38,8 +40,9 @@ namespace CarDealership.Models
         public string Email
         {
             get { return email; }
-            set 
-            {   if (CustomerController.IsValidEmail(value))
+            set
+            {
+                if (CustomerController.IsValidEmail(value))
                     email = value;
                 else throw new Exception("Invalid email address!");
             }
@@ -60,7 +63,7 @@ namespace CarDealership.Models
             this.birthDate = birthDate;
             Password = password;
             this.phoneNum = phoneNum;
-            this.email=email;
+            this.email = email;
             counter++;
             isAdmin = false;
         }

@@ -14,10 +14,10 @@ namespace CarDealership.Controllers
 {
     public class CustomerController
     {
-        internal static string sessionID="";
-
         private static CustomerContext customerContext = null;
-     
+        private static string sessionID = null;
+
+
         public static List<Customer> customers = new List<Customer>();
 
         /// <summary>
@@ -126,17 +126,26 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-            if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
-            {
-                try
+                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
-                    customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+                    try
+                    {
+                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+
+                        using (customerContext = new CustomerContext())
+                        {
+                            if (oldPass != null)
+                            {
+                                customerContext.Entry(oldPass).CurrentValues.SetValues(newPass);
+                                customerContext.SaveChanges();
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Username or password is incorrect");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Username or password is incorrect");
-                }
-            }
         }
 
         /// <summary>
@@ -212,8 +221,6 @@ namespace CarDealership.Controllers
             }
         }
 
-  
-
         /// <summary>
         /// Sends you an email to recover your password
         /// </summary>
@@ -251,14 +258,12 @@ namespace CarDealership.Controllers
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
-            { 
-               sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
-               return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+            {
+                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        } 
-        
-
+        }
     }
 }

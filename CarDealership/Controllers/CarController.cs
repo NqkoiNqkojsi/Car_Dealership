@@ -13,7 +13,6 @@ namespace CarDealership.Controllers
     public class CarController
     {
         private static CarContext carContext = null;
-
         /// <summary>
         /// Make a date from a string with only month and year
         /// </summary>
@@ -49,11 +48,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customerId"> </param>
         /// <param name="carId">id of liked car</param>
-        public static void AddFavoriteCar(string customerId, string carId)
-        {
-            if (CustomerController.sessionID != null)
-                Customer.customers.First(x => x.id == customerId).favoritedCars.Add((Car.approvedCars.First(x => x.id == carId)));
-        }
+        public static void AddFavoriteCar(string customerId, string carId) => Customer.customers.First(x => x.id == customerId).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
         /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
