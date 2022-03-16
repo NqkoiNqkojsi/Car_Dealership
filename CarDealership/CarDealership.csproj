@@ -133,6 +133,24 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CarSearchMenue.xaml.cs">
+      <DependentUpon>CarSearchMenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CarShowCase.xaml.cs">
+      <DependentUpon>CarShowCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListOfCars.xaml.cs">
+      <DependentUpon>ListOfCars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPanel.xaml.cs">
+      <DependentUpon>MainPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CarPage.xaml.cs">
+      <DependentUpon>CarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Car.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
