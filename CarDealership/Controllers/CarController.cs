@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using CarDealership.Models;
 using System.IO;
 using System.Web;
+using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
     public class CarController
     {
+        private static CarContext carContext = null;
         /// <summary>
         /// Make a date from a string with only month and year
         /// </summary>
@@ -46,13 +48,13 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customerId"> </param>
         /// <param name="carId">id of liked car</param>
-        public static void AddFavoriteCar(string customerId, string carId) => Customer.customers.First(x => x.id == customerId).carsFavourite.Add(Car.approvedCars.First(x => x.id == carId));
+        public static void AddFavoriteCar(string customerId, string carId) => Customer.customers.First(x => x.id == customerId).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
         /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
         /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
-        public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).carsFavourite.Select(x=>x.id).ToList();
+        public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).favoritedCars.Select(x=>x.id).ToList();
         /// <summary>
         /// Returns info of car
         /// </summary>

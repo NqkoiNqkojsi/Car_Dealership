@@ -15,8 +15,9 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
-      
-      
+        private static string sessionID = null;
+
+
         public static List<Customer> customers = new List<Customer>();
 
         /// <summary>
@@ -125,8 +126,6 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-            if (customers.Where(x => x.id == id).FirstOrDefault().isLoggedIn == true)
-            {
                 if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
                     try
@@ -147,7 +146,6 @@ namespace CarDealership.Controllers
                         Console.WriteLine("Username or password is incorrect");
                     }
                 }
-            }
         }
 
         /// <summary>
@@ -224,18 +222,6 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Logs a customer into their account
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        public static void Login(string userName, string password)
-        {
-            bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
-            if (ValidInfo) customers.Where(c => c.name == userName && c.Password == password).FirstOrDefault().isLoggedIn=true;
-            Console.WriteLine("You are logged in!");
-        }
-
-        /// <summary>
         /// Sends you an email to recover your password
         /// </summary>
         /// <param name="email"></param>
@@ -273,12 +259,11 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
+                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
                 return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        } 
-
-
+        }
     }
 }
