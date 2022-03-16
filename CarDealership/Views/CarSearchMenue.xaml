@@ -1,0 +1,17 @@
+﻿<UserControl
+    x:Class="CarDealership.Views.CarSearchMenue"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CarDealership.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="1594" Height="1080">
+
+    <Grid Width="1594" Height="1080">
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Search for cars" VerticalAlignment="Top" Height="87" Width="328" FontSize="48" Margin="10,0,0,0" TextDecorations="None" FontStyle="Normal" FontWeight="Normal"/>
+        <ComboBox Margin="10,100,0,0" Width="290" Height="86" Header="Brand" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <ComboBox Margin="332,100,0,0" Width="290" Height="86" Header="Model" FontSize="30" SelectionChanged="ComboBox_SelectionChanged" />
+        <ComboBox Margin="0,100,0,0" Width="290" Height="86" Header="Year" FontSize="30" HorizontalAlignment="Center" />
+        <ComboBox Margin="972,100,0,0" Width="290" Height="86" Header="Year" FontSize="30" />
+    </Grid>
+</UserControl>

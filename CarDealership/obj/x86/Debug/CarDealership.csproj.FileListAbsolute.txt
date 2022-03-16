@@ -140,3 +140,8 @@ E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.g.i.cs
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.g.cs
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.xaml
 E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\MainPanel.xbf
+E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarSearchMenue.xbf
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CarSearchMenue.g.i.cs
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CarSearchMenue.g.cs
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CarSearchMenue.xaml
+E:\IT_Cariera\Piko na folio\CarDealership\obj\x86\Debug\Views\CarSearchMenue.xbf

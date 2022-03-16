@@ -70,6 +70,9 @@
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\App.xbf">
       <PackagePath>Views\App.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarSearchMenue.xbf">
+      <PackagePath>Views\CarSearchMenue.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CSS\ToggleButtonNav.xbf">
       <PackagePath>Views\CSS\ToggleButtonNav.xbf</PackagePath>
     </AppxPackagedFile>
