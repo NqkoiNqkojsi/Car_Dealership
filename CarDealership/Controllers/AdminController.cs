@@ -25,18 +25,25 @@ namespace CarDealership.Controllers
             { 
                 Console.WriteLine(ex.Message);
             }
+            //TO DO...
         }
 
         /// <summary>
         /// Removes car from the list of cars customers can see
         /// </summary>
        
-        public void RemoveCar(Car car)
+        public void RemoveCar(int id)
         {
-            Car.approvedCars.Remove(car);
+            //po dobre da se podava parametur za id
+            //Car.approvedCars.Remove(car);
             using (CarContext carContext = new CarContext())
             {
-                carContext.cars.Remove(car);
+                var car = carContext.cars.Find(id);
+                if (car != null)
+                {
+                    carContext.cars.Remove(car);
+                    carContext.SaveChanges();
+                }
             }
         }
 
@@ -55,26 +62,39 @@ namespace CarDealership.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
+            //TO DO...
         }
+
         /// <summary>
         /// Removes a car brand from the list of legitimate car brands
         /// </summary>
 
-        public void RemoveCarBrand(CarBrand carBrand)
+        public void RemoveCarBrand(int id)
         {
-            CarBrand.carBrands.Remove(carBrand);
+            //CarBrand.carBrands.Remove(carBrand);
+            //po dobre da se podava parametur za id
             using (CarBrandContext carBrandContext = new CarBrandContext())
             {
-                carBrandContext.carBrands.Remove(carBrand);
+                var carBrand = carBrandContext.carBrands.Find(id);
+                if(carBrand != null)
+                {
+                    carBrandContext.carBrands.Remove(carBrand);
+                    carBrandContext.SaveChanges();
+                }
             }
         }
 
-        public void RemoveCustomerAccount(Customer customer)
+        public void RemoveCustomerAccount(int id)
         {
-            CustomerController.customers.Remove(customer);
+            //CustomerController.customers.Remove(customer);
             using (CustomerContext customerContext = new CustomerContext())
             {
-                customerContext.customers.Remove(customer);
+                var customer = customerContext.customers.Find(id);
+                if(customer != null)
+                {
+                    customerContext.customers.Remove(customer);
+                    customerContext.SaveChanges();
+                }
             }
         }
 

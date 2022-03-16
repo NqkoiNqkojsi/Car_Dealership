@@ -130,9 +130,14 @@ namespace CarDealership.Controllers
                     try
                     {
                         customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+
                         using (customerContext = new CustomerContext())
                         {
-                            
+                            if (oldPass != null)
+                            {
+                                customerContext.Entry(oldPass).CurrentValues.SetValues(newPass);
+                                customerContext.SaveChanges();
+                            }
                         }
                     }
                     catch (Exception)
@@ -221,6 +226,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
+        
         public static void Login(string userName, string password)
         {
             bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
