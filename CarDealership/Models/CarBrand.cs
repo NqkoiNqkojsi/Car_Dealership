@@ -82,7 +82,7 @@ namespace CarDealership.Models
         /// </summary>
         public static bool IsNew(string brand, string model)
         {
-            if(carBrands.Any(a=>a.brand == brand || a.model == model))//check if the model is in already in the list
+            if(carBrandsUnverified.Any(a=>a.brand == brand || a.model == model) || carBrands.Any(a => a.brand == brand || a.model == model))//check if the model is in already in the list
             {
                 return false;
             }
