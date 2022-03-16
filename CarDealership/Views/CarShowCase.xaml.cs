@@ -21,6 +21,7 @@ namespace CarDealership.Views
     public sealed partial class CarShowCase : UserControl
     {
         public string id { get; set; }
+        public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
@@ -38,15 +39,15 @@ namespace CarDealership.Views
             Seller.Text = "From:" + info["seller"];
             //Image.Source=;
         }
-        public CarShowCase(string id)
+        public CarShowCase(string id, EventHandler<OpenCarPageEventArgs> OpenCarPage)
         {
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
-            OpenCarPage = c_OpenCarPage;
+            this.OpenCarPage = OpenCarPage;
+            OpenCarPage += c_OpenCarPage;
         }
-        public event EventHandler OpenCarPage;
-        public static void c_OpenCarPage(object sender, EventArgs e)
+        public void c_OpenCarPage(object sender, EventArgs e)
         {
 
         }

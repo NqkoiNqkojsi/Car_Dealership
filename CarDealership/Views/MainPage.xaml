@@ -38,6 +38,7 @@
                 <ToggleButton x:Name="toggleButtonListCars" Content="ListCars" Height="72" Width="200" Checked="toggleButtonListCars_Checked" Background="#33000000"/>
                 <ToggleButton x:Name="toggleButtonCarPage" Content="CarPage&#xD;&#xA;" Height="72" Width="200" Checked="toggleButtonCarPage_Checked"/>
                 <ToggleButton x:Name="toggleButtonSearch" Content="Search" Height="72" Width="200" Checked="toggleButtonSearch_Checked"/>
+                <TextBlock x:Name="DebugMessage" TextWrapping="Wrap" Text="TextBlock" Height="304"/>
 
             </StackPanel>
             <StackPanel Name="MainView"  Grid.Column="1" Grid.RowSpan="2" >
