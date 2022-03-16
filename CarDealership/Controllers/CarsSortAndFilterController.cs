@@ -47,14 +47,14 @@ namespace CarDealership.Controllers
 
 
         /// <summary>
-        /// Utilizes all the other filters and sorts afterwards
+        /// Utilizes all of the filters
         /// </summary>
         /// <param name="price"></param>
         /// <param name="brand"></param>
         /// <param name="year"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static List<Car> CompleteFilterAndSort(double price, string brand, int year, string model, string choice)
+        public static List<string> CompleteFilter(double price, string brand, int year, string model)
         {
             List<Car> cars = Car.approvedCars;
             if(price!=0) cars = CarsFilterPrice(cars, price);
@@ -65,10 +65,21 @@ namespace CarDealership.Controllers
             }
             else if (brand != null) cars = CarFilterBrand(cars, brand);
             if(year>1930) cars = CarsFilterYear(cars, year);
+            return cars.Select(x=>x.id).ToList();
+        }
+        
+        /// <summary>
+        /// Utilizes the other sorts
+        /// </summary>
+        /// <param name="choice">can be "Price", "Year" or "Price and Year"</param>
+        /// <returns></returns>
+        public static List<string> CompleteSort(string choice)
+        {
+            List<Car> cars = Car.approvedCars;
             if (choice == "Price") cars = CarsSortPrice(cars);
             else if (choice == "Year") cars = CarsSortYear(cars);
-            return cars;
+            else if (choice =="Price and Year") cars = CarsSortPrice(CarsSortYear(cars));
+            return cars.Select(x => x.id).ToList();
         }
-
     }
 }

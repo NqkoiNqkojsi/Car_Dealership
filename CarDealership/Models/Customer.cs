@@ -24,6 +24,18 @@ namespace CarDealership.Models
         private string password;
 
         public string email;
+        /// <summary>
+        /// the cars(offers) that are owned by the user
+        /// </summary>
+        public List<Car> carsOwned = new List<Car>();
+        /// <summary>
+        /// the cars(offers) that are wished by the user
+        /// </summary>
+        public List<Car> carsFavourite=new List<Car>();
+        /// <summary>
+        /// all customers available
+        /// </summary>
+        public static List<Customer> customers = new List<Customer>();
 
         public string Email
         {
