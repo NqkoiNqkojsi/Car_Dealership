@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarDealership.Models;
 using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Net;
+using CarDealership.Models;
+using CarDealership.Data;
+using Microsoft.Data.SqlClient;
 
 namespace CarDealership.Controllers
 {
     public class CustomerController
     {
-        public static string sessionID="";
-
-
+        private static CustomerContext customerContext = null;
+      
+      
         public static List<Customer> customers = new List<Customer>();
 
         /// <summary>
@@ -107,7 +109,15 @@ namespace CarDealership.Controllers
         {
             bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
-            if (!CustomerExists) customers.Add(customer);
+            if (!CustomerExists)
+            {
+                customers.Add(customer);
+                using (customerContext = new CustomerContext())
+                {
+                    customerContext.customers.Add(customer);
+                    customerContext.SaveChanges();
+                }
+            }
         }
 
         /// <summary>
@@ -115,21 +125,29 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-
-
-            if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
+            if (customers.Where(x => x.id == id).FirstOrDefault().isLoggedIn == true)
             {
-                try
+                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
-                    customers.Where(x => x.id == id).FirstOrDefault().Password = HashString(newPass);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Username or password is incorrect");
+                    try
+                    {
+                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+
+                        using (customerContext = new CustomerContext())
+                        {
+                            if (oldPass != null)
+                            {
+                                customerContext.Entry(oldPass).CurrentValues.SetValues(newPass);
+                                customerContext.SaveChanges();
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Username or password is incorrect");
+                    }
                 }
             }
-
-
         }
 
         /// <summary>
@@ -172,9 +190,50 @@ namespace CarDealership.Controllers
         public static void AddToFavorite(Customer customer, Car car)
         {
             customer.favoritedCars.Add(car);
+            
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    if (conn.State == System.Data.ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
+                                                "values (" + customer.id + ", " + car.id + ")";
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var carId = car.id;
+                                    var customerId = customer.id;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception eSql)
+            {
+                Console.WriteLine($"Exception: {eSql.Message}");
+            }
         }
 
-
+        /// <summary>
+        /// Logs a customer into their account
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        public static void Login(string userName, string password)
+        {
+            bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
+            if (ValidInfo) customers.Where(c => c.name == userName && c.Password == password).FirstOrDefault().isLoggedIn=true;
+            Console.WriteLine("You are logged in!");
+        }
 
         /// <summary>
         /// Sends you an email to recover your password
@@ -214,12 +273,12 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-               sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
         } 
-        
+
 
     }
 }

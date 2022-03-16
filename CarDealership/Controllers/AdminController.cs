@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Models;
 using CarDealership.Controllers;
+using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
@@ -13,7 +14,7 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds a car to the list of cars visible to customers
         /// </summary>
-        public static void ApproveCar(Car car)
+        public void ApproveCar(Car car)
         {
             try
             {
@@ -24,22 +25,33 @@ namespace CarDealership.Controllers
             { 
                 Console.WriteLine(ex.Message);
             }
+            //TO DO...
         }
 
         /// <summary>
         /// Removes car from the list of cars customers can see
         /// </summary>
        
-        public static void RemoveCar(Car car)
+        public void RemoveCar(int id)
         {
-            Car.approvedCars.Remove(car);
+            //po dobre da se podava parametur za id
+            //Car.approvedCars.Remove(car);
+            using (CarContext carContext = new CarContext())
+            {
+                var car = carContext.cars.Find(id);
+                if (car != null)
+                {
+                    carContext.cars.Remove(car);
+                    carContext.SaveChanges();
+                }
+            }
         }
 
         /// <summary>
         /// Adds a car brand to the list of legitimate car brands
         /// </summary>
 
-        public static void ApproveCarBrand(CarBrand carBrand)
+        public void ApproveCarBrand(CarBrand carBrand)
         {
             try
             {
@@ -50,19 +62,40 @@ namespace CarDealership.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
+            //TO DO...
         }
+
         /// <summary>
         /// Removes a car brand from the list of legitimate car brands
         /// </summary>
 
-        public static void RemoveCarBrand(CarBrand carBrand)
+        public void RemoveCarBrand(int id)
         {
-            CarBrand.carBrands.Remove(carBrand);
+            //CarBrand.carBrands.Remove(carBrand);
+            //po dobre da se podava parametur za id
+            using (CarBrandContext carBrandContext = new CarBrandContext())
+            {
+                var carBrand = carBrandContext.carBrands.Find(id);
+                if(carBrand != null)
+                {
+                    carBrandContext.carBrands.Remove(carBrand);
+                    carBrandContext.SaveChanges();
+                }
+            }
         }
 
-        public static void RemoveCustomerAccount(Customer customer)
+        public void RemoveCustomerAccount(int id)
         {
-            CustomerController.customers.Remove(customer);
+            //CustomerController.customers.Remove(customer);
+            using (CustomerContext customerContext = new CustomerContext())
+            {
+                var customer = customerContext.customers.Find(id);
+                if(customer != null)
+                {
+                    customerContext.customers.Remove(customer);
+                    customerContext.SaveChanges();
+                }
+            }
         }
 
     }
