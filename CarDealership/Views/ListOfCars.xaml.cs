@@ -28,6 +28,7 @@ namespace CarDealership.Views
         }
         public void ShowCars()
         {
+            ListCar.Children.Clear();
             foreach(string id in usedId)
             {
                 CarShowCase carShowCase = new CarShowCase(id);

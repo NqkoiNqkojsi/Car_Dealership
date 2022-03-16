@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" FocusVisualSecondaryBrush="Transparent" Foreground="Transparent" FocusVisualPrimaryBrush="Transparent"
     Height="600" Width="920"
+    Background="Transparent"
     >
     <Page.Resources>
         <ResourceDictionary>
@@ -16,7 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Border Background="#272537">
+    <Border Background="#272537" CornerRadius="20">
         <Grid Margin="10,0,-10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200">
@@ -35,7 +35,7 @@
                 </RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel x:Name="TogglePanel" Grid.Row="1" Grid.Column="0">
-                <ToggleButton x:Name="toggleButtonListCars" Content="ListCars" Height="72" Width="200" Checked="toggleButtonListCars_Checked"/>
+                <ToggleButton x:Name="toggleButtonListCars" Content="ListCars" Height="72" Width="200" Checked="toggleButtonListCars_Checked" Background="#33000000"/>
                 <ToggleButton x:Name="toggleButtonCarPage" Content="CarPage&#xD;&#xA;" Height="72" Width="200" Checked="toggleButtonCarPage_Checked"/>
                 <ToggleButton x:Name="toggleButtonSearch" Content="Search" Height="72" Width="200" Checked="toggleButtonSearch_Checked"/>
 
