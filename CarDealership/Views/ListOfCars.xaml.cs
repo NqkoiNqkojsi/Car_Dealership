@@ -22,6 +22,7 @@ namespace CarDealership.Views
         List<string> prevId=new List<string>();
         List<string> nextId=new List<string>();
         List<string> usedId=new List<string>();
+        public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
         public void ManageImages()
         {
             //TO DO
@@ -31,7 +32,7 @@ namespace CarDealership.Views
             ListCar.Children.Clear();
             foreach(string id in usedId)
             {
-                CarShowCase carShowCase = new CarShowCase(id);
+                CarShowCase carShowCase = new CarShowCase(id, OpenCarPage);
                 carShowCase.Name = id;
                 ListCar.Children.Add(carShowCase);
             }
@@ -90,5 +91,9 @@ namespace CarDealership.Views
             }
             ShowCars();
         }
+    }
+    public class OpenCarPageEventArgs : EventArgs
+    {
+        public string id { get; set; }
     }
 }
