@@ -15,8 +15,10 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
-
+      
+      
         public static List<Customer> customers = new List<Customer>();
+
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
@@ -226,7 +228,6 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
-        
         public static void Login(string userName, string password)
         {
             bool ValidInfo = customers.Any(c => c.name== userName && c.Password==password);
@@ -248,5 +249,36 @@ namespace CarDealership.Controllers
                 SendEmail(email, "Password Recovery", $"Your new password is {newPass}, log in to your account and update it to whatever you want.");
             }
         }
+
+        /// <summary>
+        /// Creates an offer for a car
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <param name="model"></param>
+        /// <param name="price"></param>
+        /// <param name="manufDateStr"></param>
+        /// <param name="horsePower"></param>
+        /// <param name="kmDriven"></param>
+        /// <param name="engineVolume"></param>
+        /// <param name="info"></param>
+        public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        {
+            CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+            Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
+            Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
+            customer.publicOffers.Add(car);
+        }
+
+        public static string Login(string email, string password)
+        {
+            if (IsValidEmail(email))
+            {
+                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+            }
+            else Console.WriteLine("Invalid email or password");
+            return ("Invalid email or password");
+        } 
+
+
     }
 }
