@@ -14,8 +14,9 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds a car to the list of cars visible to customers
         /// </summary>
-        public void ApproveCar(Car car)
+        public static void ApproveCar(Car car)
         {
+
             try
             {
                 Car.approvedCars.Add(car);
@@ -51,7 +52,7 @@ namespace CarDealership.Controllers
         /// Adds a car brand to the list of legitimate car brands
         /// </summary>
 
-        public void ApproveCarBrand(CarBrand carBrand)
+        public static void ApproveCarBrand(CarBrand carBrand)
         {
             try
             {
