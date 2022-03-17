@@ -13,7 +13,7 @@ namespace CarDealership.Controllers
         {
             Random random = new Random();
             for (int i = 0; i < count; i++) {
-                Car car = new Car(CarBrand.carBrands.ElementAt(random.Next(CarBrand.carBrands.Count - 1)), random.NextDouble() * 10000, "3.2022", random.NextDouble() * 1000, random.NextDouble() * 1000, "", random.NextDouble() * 1000, "info");
+                Car car = new Car(CarBrand.carBrands.ElementAt(random.Next(CarBrand.carBrands.Count - 1)), random.NextDouble() * 10000, "3.2022", random.NextDouble() * 1000, random.NextDouble() * 1000, random.NextDouble() * 1000, "info");
             }
         }
         static List<string> brandsReal = new List<string> { "","BMW", "Mercedes", "Audi", "VW", "Tesla", "Toyota", "Ford"};
