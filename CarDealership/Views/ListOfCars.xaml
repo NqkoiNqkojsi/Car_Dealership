@@ -6,13 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="520"
+    d:DesignHeight="600"
     d:DesignWidth="720">
 
-    <Grid Name="ListCar">
-        <Button x:Name="Next" Content="Button" Margin="648,478,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Prev" Content="Button" Margin="562,478,0,0" VerticalAlignment="Top"/>
-        <StackPanel x:Name="ListCarPanel" Margin="0,0,0,63"></StackPanel>
-
+    <Grid>
+        <Button x:Name="Next" Content="Button" Margin="648,550,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Prev" Content="Button" Margin="565,550,0,0" VerticalAlignment="Top"/>
+        <StackPanel x:Name="ListCarPanel" Margin="0,0,0,63" Height="520"></StackPanel>
+        <TextBlock x:Name="Debug" HorizontalAlignment="Left" Margin="0,547,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="0.613,0.579" Height="36" Width="541"/>
     </Grid>
 </UserControl>
