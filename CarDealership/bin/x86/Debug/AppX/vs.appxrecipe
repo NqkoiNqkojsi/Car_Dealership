@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>789ECE568FFF9866061E2245BBC9DF67E17A1244630F7621E7DD03C22CFF4E6A</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>7A1D3B47483E650BE97DAE8CD16405D7A7529AECF49E6CA42F090C6B88CA29F2</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>e78d8c91-8362-42e2-afa6-16e819b99102_1.0.0.0_x86__6ekdg42zp5p5j</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>e78d8c91-8362-42e2-afa6-16e819b99102_6ekdg42zp5p5j!App</RegisteredUserModeAppID>
     <RegisteredPackageID>e78d8c91-8362-42e2-afa6-16e819b99102</RegisteredPackageID>
@@ -30,25 +30,157 @@
     <AppXManifest Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-03-16T18:33:28.552</Modified>
+      <Modified>2022-03-17T18:47:52.779</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\CarDealership.exe">
       <PackagePath>entrypoint\CarDealership.exe</PackagePath>
-      <Modified>2022-03-16T18:33:27.803</Modified>
+      <Modified>2022-03-17T18:47:51.969</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.aspnetcore.http.abstractions\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll">
+      <PackagePath>Microsoft.AspNetCore.Http.Abstractions.dll</PackagePath>
+      <Modified>2018-11-12T17:29:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.aspnetcore.http.features\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll">
+      <PackagePath>Microsoft.AspNetCore.Http.Features.dll</PackagePath>
+      <Modified>2018-11-12T17:28:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.1\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
+      <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
+      <Modified>2020-04-14T22:38:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.bcl.hashcode\1.1.1\lib\netstandard2.0\Microsoft.Bcl.HashCode.dll">
+      <PackagePath>Microsoft.Bcl.HashCode.dll</PackagePath>
+      <Modified>2020-11-16T21:14:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.data.sqlclient\1.1.3\runtimes\win\lib\netstandard2.0\Microsoft.Data.SqlClient.dll">
+      <PackagePath>Microsoft.Data.SqlClient.dll</PackagePath>
+      <Modified>2020-05-15T23:07:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.entityframeworkcore\3.1.22\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.dll</PackagePath>
+      <Modified>2021-11-22T18:28:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.entityframeworkcore.abstractions\3.1.22\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.Abstractions.dll</PackagePath>
+      <Modified>2021-11-22T18:27:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.entityframeworkcore.relational\3.1.22\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.Relational.dll</PackagePath>
+      <Modified>2021-11-22T18:28:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.entityframeworkcore.sqlserver\3.1.22\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.SqlServer.dll</PackagePath>
+      <Modified>2021-11-22T18:28:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.caching.abstractions\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Abstractions.dll</PackagePath>
+      <Modified>2021-11-22T03:01:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.caching.memory\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Memory.dll</PackagePath>
+      <Modified>2021-11-22T03:01:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.configuration\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
+      <Modified>2021-11-22T03:01:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.configuration.abstractions\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Abstractions.dll</PackagePath>
+      <Modified>2021-11-22T03:01:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.configuration.binder\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Binder.dll</PackagePath>
+      <Modified>2021-11-22T03:02:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.dependencyinjection\3.1.22\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.dll</PackagePath>
+      <Modified>2021-11-22T03:07:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\3.1.22\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
+      <Modified>2021-11-22T03:02:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.logging\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Logging.dll">
+      <PackagePath>Microsoft.Extensions.Logging.dll</PackagePath>
+      <Modified>2021-11-22T03:02:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.logging.abstractions\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Logging.Abstractions.dll</PackagePath>
+      <Modified>2021-11-22T03:02:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.options\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Options.dll">
+      <PackagePath>Microsoft.Extensions.Options.dll</PackagePath>
+      <Modified>2021-11-22T03:01:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.extensions.primitives\3.1.22\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
+      <PackagePath>Microsoft.Extensions.Primitives.dll</PackagePath>
+      <Modified>2021-11-22T03:02:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.identity.client\3.0.8\lib\uap10.0\Microsoft.Identity.Client.dll">
+      <PackagePath>Microsoft.Identity.Client.dll</PackagePath>
+      <Modified>2019-04-29T22:04:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.win32.registry\4.5.0\runtimes\win\lib\netstandard2.0\Microsoft.Win32.Registry.dll">
+      <PackagePath>Microsoft.Win32.Registry.dll</PackagePath>
+      <Modified>2018-05-15T13:29:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.xaml.behaviors.uwp.managed\2.0.1\lib\uap10.0\Microsoft.Xaml.Interactions.dll">
+      <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
+      <Modified>2019-04-27T01:06:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.xaml.behaviors.uwp.managed\2.0.1\lib\uap10.0\Microsoft.Xaml.Interactivity.dll">
+      <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
+      <Modified>2019-04-27T01:06:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\runtime.win-x86.runtime.native.system.data.sqlclient.sni\4.4.0\runtimes\win-x86\native\sni.dll">
+      <PackagePath>sni.dll</PackagePath>
+      <Modified>2017-07-12T11:24:22.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
       <Modified>2021-10-10T06:49:52.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.collections.immutable\1.7.1\lib\netstandard2.0\System.Collections.Immutable.dll">
+      <PackagePath>System.Collections.Immutable.dll</PackagePath>
+      <Modified>2020-04-14T22:38:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.configuration.configurationmanager\4.5.0\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll">
+      <PackagePath>System.Configuration.ConfigurationManager.dll</PackagePath>
+      <Modified>2018-05-15T13:29:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.diagnostics.diagnosticsource\4.7.1\lib\netstandard1.3\System.Diagnostics.DiagnosticSource.dll">
+      <PackagePath>System.Diagnostics.DiagnosticSource.dll</PackagePath>
+      <Modified>2020-04-14T22:48:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.runtime.compilerservices.unsafe\4.7.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+      <Modified>2020-02-21T03:57:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.security.cryptography.protecteddata\4.5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll">
+      <PackagePath>System.Security.Cryptography.ProtectedData.dll</PackagePath>
+      <Modified>2018-05-15T13:29:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\system.text.encodings.web\4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
+      <Modified>2018-05-15T13:29:52.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.19041.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2020-12-02T02:52:00.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\Data\CarDealership.sql">
+      <PackagePath>Data\CarDealership.sql</PackagePath>
+      <Modified>2022-03-16T19:13:52.755</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2022-03-05T11:42:27.775</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\Assets\githubLogo.png">
+      <PackagePath>Assets\githubLogo.png</PackagePath>
+      <Modified>2022-03-16T19:13:52.710</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -86,27 +218,47 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\CarDealership.xr.xml">
       <PackagePath>CarDealership.xr.xml</PackagePath>
-      <Modified>2022-03-16T18:33:27.654</Modified>
+      <Modified>2022-03-17T16:39:11.589</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\App.xbf">
       <PackagePath>Views\App.xbf</PackagePath>
-      <Modified>2022-03-16T18:33:27.674</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarSearchMenue.xbf">
-      <PackagePath>Views\CarSearchMenue.xbf</PackagePath>
-      <Modified>2022-03-16T18:33:27.678</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CSS\ToggleButtonNav.xbf">
-      <PackagePath>Views\CSS\ToggleButtonNav.xbf</PackagePath>
-      <Modified>2022-03-16T18:33:27.676</Modified>
+      <Modified>2022-03-17T18:47:51.841</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2022-03-16T18:33:27.679</Modified>
+      <Modified>2022-03-17T18:47:51.890</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarPage.xbf">
+      <PackagePath>Views\CarPage.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.891</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarSearchMenue.xbf">
+      <PackagePath>Views\CarSearchMenue.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.892</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\CarShowCase.xbf">
+      <PackagePath>Views\CarShowCase.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.892</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\ListOfCars.xbf">
+      <PackagePath>Views\ListOfCars.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.893</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\MainPanel.xbf">
       <PackagePath>Views\MainPanel.xbf</PackagePath>
-      <Modified>2022-03-16T18:33:27.680</Modified>
+      <Modified>2022-03-17T18:47:51.894</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\Search.xbf">
+      <PackagePath>Views\Search.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.894</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Views\Styles\NavButtonsTemplate.xbf">
+      <PackagePath>Views\Styles\NavButtonsTemplate.xbf</PackagePath>
+      <Modified>2022-03-17T18:47:51.845</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.19041.0\\redist\Debug\x86\ucrtbased.dll">
+      <PackagePath>ucrtbased.dll</PackagePath>
+      <Modified>2020-12-02T02:59:30.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -114,14 +266,63 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-03-16T18:33:28.219</Modified>
+      <Modified>2022-03-16T20:41:38.495</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\IT_Cariera\Piko na folio\CarDealership\bin\x86\Debug\Core\CarDealership.exe">
       <PackagePath>CarDealership.exe</PackagePath>
-      <Modified>2022-03-16T18:33:28.547</Modified>
+      <Modified>2022-03-17T18:47:52.775</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
+      <PackagePath>Microsoft.UI.Xaml.winmd</PackagePath>
+      <Modified>2021-09-14T09:06:08.000</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
+    <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
+      <Name>Microsoft.UI.Xaml.2.7</Name>
+      <Version>7.2109.13004.0</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2109.13004.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx">
+      <Name>Microsoft.UI.Xaml.2.7</Name>
+      <Version>7.2109.13004.0</Version>
+      <Architecture>Win32</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2109.13004.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx">
+      <Name>Microsoft.UI.Xaml.2.7</Name>
+      <Version>7.2109.13004.0</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2109.13004.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx">
+      <Name>Microsoft.UI.Xaml.2.7</Name>
+      <Version>7.2109.13004.0</Version>
+      <Architecture>arm</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2109.13004.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx">
+      <Name>Microsoft.UI.Xaml.2.7</Name>
+      <Version>7.2109.13004.0</Version>
+      <Architecture>arm64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.7, MinVersion = 7.2109.13004.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\Alex\.nuget\packages\microsoft.ui.xaml\2.7.0\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.7.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Users\Alex\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.13\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.30527.2</Version>
