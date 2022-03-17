@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using CarDealership.Controllers;
+using CarDealership;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -21,11 +23,12 @@ namespace CarDealership.Views
     public sealed partial class CarShowCase : UserControl
     {
         public string id { get; set; }
+        public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
             uniformToFillBrush.ImageSource =
-                new BitmapImage(new Uri("sampleImages\\square.jpg", UriKind.Relative));
+                new BitmapImage(new Uri("Assets/githubLogo.png", UriKind.Relative));
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
@@ -43,10 +46,9 @@ namespace CarDealership.Views
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
-            OpenCarPage = c_OpenCarPage;
+            //GenerateImg();
         }
-        public event EventHandler OpenCarPage;
-        public static void c_OpenCarPage(object sender, EventArgs e)
+        public void c_OpenCarPage(object sender, EventArgs e)
         {
 
         }
