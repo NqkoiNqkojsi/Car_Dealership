@@ -18,7 +18,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="date">format=M.yyy :"10.2003"</param>
         /// <returns>DateTime with only moth and year</returns>
-        public static DateTime MakeDate(string date, string id)
+        public static DateTime MakeDate(string date)
         {
             try
             {
@@ -26,13 +26,6 @@ namespace CarDealership.Controllers
                 DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
-                
-                //add manufacture date to the car table 
-                using (carContext = new CarContext())
-                {
-                    var newDate = carContext.cars.Where(d => d.id == id).Select(d=> d.manufDate == dateTime);
-                    carContext.SaveChanges();
-                }
                 return dateTime;
             }
             catch (FormatException e)
@@ -40,7 +33,7 @@ namespace CarDealership.Controllers
                 Console.WriteLine("Unable to parse '{0}'", date);
                 return DateTime.MinValue;//at error return min value
             }
-        }
+        } 
 
         /// <summary>
         /// Adds cars to customer's wish list
