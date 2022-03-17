@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,18 +24,27 @@ namespace CarDealership.Views
         List<string> prevId=new List<string>();
         List<string> nextId=new List<string>();
         List<string> usedId=new List<string>();
+        public event PointerEventHandler OpenCarPage;
         public void ManageImages()
         {
             //TO DO
         }
-        public void ShowCars()
+        public async void ShowCars()
         {
-            ListCar.Children.Clear();
-            foreach(string id in usedId)
+            try
             {
-                CarShowCase carShowCase = new CarShowCase(id);
-                carShowCase.Name = id;
-                ListCar.Children.Add(carShowCase);
+                ListCarPanel.Children.Clear();
+                foreach (string id in usedId)
+                {
+                    CarShowCase carShowCase = new CarShowCase(id);
+                    carShowCase.Name = id;
+                    await Task.Delay(100);
+                    carShowCase.PointerPressed += OpenCarPage;
+                    ListCarPanel.Children.Add(carShowCase);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
         public ListOfCars(List<string> ids)
@@ -54,41 +65,49 @@ namespace CarDealership.Views
             }
             ShowCars();
         }
-        public void GoPrev()
+        public void GoPrev(object sender, RoutedEventArgs e)
         {
             Next.IsEnabled = true;
             if (prevId.Count > 5)
             {
                 nextId.AddRange(usedId);
+                usedId.Clear();
                 usedId.AddRange(prevId.Take(5));
                 prevId.RemoveRange(0, 5);
             }
             else
             {
                 nextId.AddRange(usedId);
+                usedId.Clear();
                 usedId.AddRange(prevId);
                 prevId.Clear();
                 Prev.IsEnabled = false;
             }
             ShowCars();    
         }
-        public void GoNext()
+        public void GoNext(object sender, RoutedEventArgs e)
         {
             Prev.IsEnabled = true;
             if (nextId.Count > 5)
             {
                 prevId.AddRange(usedId);
+                usedId.Clear();
                 usedId.AddRange(nextId.Take(5));
                 nextId.RemoveRange(0, 5);
             }
             else
             {
                 prevId.AddRange(usedId);
+                usedId.Clear();
                 usedId.AddRange(nextId);
                 nextId.Clear();
                 Next.IsEnabled = false;
             }
             ShowCars();
         }
+    }
+    public class OpenCarPageEventArgs : EventArgs
+    {
+        public string id { get; set; }
     }
 }

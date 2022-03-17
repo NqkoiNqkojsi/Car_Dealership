@@ -30,13 +30,53 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            CarSearchMenue carSearchMenue = new CarSearchMenue();
-            MainView.Children.Add(carSearchMenue);
+            DebugMessage.Text= MockUpListsController.GenerateMockUpCarBrand(20);
+            DebugMessage.Text =DebugMessage.Text+ MockUpListsController.GenerateMockUpCar(20);
+            Search search = new Search();
+            MainView.Children.Add(search);
+            carIds = CarsSortAndFilterController.CompleteSort("");
+        }
+        public void DeactivateButtons()
+        {
+            toggleButtonCarPage.IsChecked = false;
+            toggleButtonCarPage.Background = toggleOffBrush;
+            toggleButtonListCars.IsChecked = false;
+            toggleButtonListCars.Background = toggleOffBrush;
+            toggleButtonSearch.IsChecked = false;
+            toggleButtonSearch.Background = toggleOffBrush;
+            MainView.Children.Clear();
+        }
+        public void AddToMainView(object sender, PointerRoutedEventArgs e)
+        {
+            DeactivateButtons();
+            CarShowCase carShowCase = (CarShowCase)sender;
+            CarPage carPage = new CarPage(carShowCase.id);
+            MainView.Children.Add(carPage);
         }
 
         public void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            DeactivateButtons();
+            ListOfCars listOfCars = new ListOfCars(CarsSortAndFilterController.CompleteSort(""));
+            listOfCars.OpenCarPage += AddToMainView;
+            MainView.Children.Add(listOfCars);
+            toggleButtonListCars.Background = toggleOnBrush;
+        }
 
+        private void toggleButtonCarPage_Checked(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+            CarPage carPage = new CarPage("0");
+            MainView.Children.Add(carPage);
+            toggleButtonCarPage.Background = toggleOnBrush;
+        }
+
+        private void toggleButtonSearch_Checked(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+            Search search = new Search();
+            MainView.Children.Add(search);
+            toggleButtonSearch.Background = toggleOnBrush;
         }
     }
 }
