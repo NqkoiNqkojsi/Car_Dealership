@@ -16,15 +16,17 @@ namespace CarDealership.Controllers
         /// </summary>
         public void ApproveCar(Car car)
         {
-
-            try
+            if (CustomerController.sessionID != null)
             {
-                Car.approvedCars.Add(car);
-                Car.quarantinedCars.Remove(car);
-            }
-            catch (Exception ex)
-            { 
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    Car.approvedCars.Add(car);
+                    Car.quarantinedCars.Remove(car);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -34,15 +36,17 @@ namespace CarDealership.Controllers
        
         public void RemoveCar(int id)
         {
-            //po dobre da se podava parametur za id
-            //Car.approvedCars.Remove(car);
-            using (CarContext carContext = new CarContext())
+            if (CustomerController.sessionID != null)
             {
-                var car = carContext.cars.Find(id);
-                if (car != null)
+                using (CarContext carContext = new CarContext())
                 {
-                    carContext.cars.Remove(car);
-                    carContext.SaveChanges();
+                    var car = carContext.cars.Find(id);
+                    if (car != null)
+                    {
+                        Car.approvedCars.Remove(car);
+                        carContext.cars.Remove(car);
+                        carContext.SaveChanges();
+                    }
                 }
             }
         }
@@ -53,14 +57,18 @@ namespace CarDealership.Controllers
 
         public void ApproveCarBrand(CarBrand carBrand)
         {
-            try
+            if (CustomerController.sessionID != null)
             {
-                CarBrand.carBrands.Add(carBrand);
-                CarBrand.carBrandsUnverified.Remove(carBrand);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+
+                try
+                {
+                    CarBrand.carBrands.Add(carBrand);
+                    CarBrand.carBrandsUnverified.Remove(carBrand);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -70,29 +78,34 @@ namespace CarDealership.Controllers
 
         public void RemoveCarBrand(int id)
         {
-            //CarBrand.carBrands.Remove(carBrand);
-            //po dobre da se podava parametur za id
-            using (CarBrandContext carBrandContext = new CarBrandContext())
+            if (CustomerController.sessionID != null)
             {
-                var carBrand = carBrandContext.carBrands.Find(id);
-                if(carBrand != null)
+                using (CarBrandContext carBrandContext = new CarBrandContext())
                 {
-                    carBrandContext.carBrands.Remove(carBrand);
-                    carBrandContext.SaveChanges();
+                    var carBrand = carBrandContext.carBrands.Find(id);
+                    if (carBrand != null)
+                    {
+                        CarBrand.carBrands.Remove(carBrand);
+                        carBrandContext.carBrands.Remove(carBrand);
+                        carBrandContext.SaveChanges();
+                    }
                 }
             }
         }
 
         public void RemoveCustomerAccount(int id)
         {
-            //CustomerController.customers.Remove(customer);
-            using (CustomerContext customerContext = new CustomerContext())
+            if (CustomerController.sessionID != null)
             {
-                var customer = customerContext.customers.Find(id);
-                if(customer != null)
+                using (CustomerContext customerContext = new CustomerContext())
                 {
-                    customerContext.customers.Remove(customer);
-                    customerContext.SaveChanges();
+                    var customer = customerContext.customers.Find(id);
+                    if (customer != null)
+                    {
+                        CustomerController.customers.Remove(customer);
+                        customerContext.customers.Remove(customer);
+                        customerContext.SaveChanges();
+                    }
                 }
             }
         }
