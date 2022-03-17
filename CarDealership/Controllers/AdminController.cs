@@ -28,7 +28,6 @@ namespace CarDealership.Controllers
                     Console.WriteLine(ex.Message);
                 }
             }
-           
         }
 
         /// <summary>

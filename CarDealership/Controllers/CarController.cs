@@ -18,7 +18,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="date">format=M.yyy :"10.2003"</param>
         /// <returns>DateTime with only moth and year</returns>
-        public static DateTime MakeDate(string date)
+        public static DateTime MakeDate(string date, string id)
         {
             try
             {
@@ -30,9 +30,8 @@ namespace CarDealership.Controllers
                 //add manufacture date to the car table 
                 using (carContext = new CarContext())
                 {
-                    carContext.cars.Select(u => u.manufDate).Append(dateTime);
+                    var newDate = carContext.cars.Where(d => d.id == id).Select(d=> d.manufDate == dateTime);
                     carContext.SaveChanges();
-                    //TO DO...
                 }
                 return dateTime;
             }
@@ -48,18 +47,35 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customerId"> </param>
         /// <param name="carId">id of liked car</param>
-        public static void AddFavoriteCar(string customerId, string carId) => Customer.customers.First(x => x.id == customerId).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+
+        public static void AddFavoriteCar(string customerId, string carId)
+        {
+            Customer.customers.First(x => x.id == customerId).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+
+            FavoriteCarContext favoriteCarContext = null;
+
+            FavoriteCar favoriteCar = new FavoriteCar(customerId, carId);
+
+            using(favoriteCarContext = new FavoriteCarContext())
+            {
+                favoriteCarContext.relaionFavourite.Add(favoriteCar);
+                favoriteCarContext.SaveChanges();
+            }
+        }
+
         /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
         /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
+        
         public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).favoritedCars.Select(x=>x.id).ToList();
         /// <summary>
         /// Returns info of car
         /// </summary>
         /// <param name="id">id of needed car</param>
         /// <returns>dictionary of necessary info</returns>
+        
         public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
 
