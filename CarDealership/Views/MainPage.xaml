@@ -1,50 +1,27 @@
-﻿<Page
+﻿<Page Height="1080" Width="1920 "
     x:Class="CarDealership.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CarDealership.Views"
+    xmlns:local="using:CarDealership"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Height="600" Width="920"
-    Background="Transparent"
-    >
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/NavButtonsTemplate.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-    <Border Background="#272537" CornerRadius="20">
-        <Grid Margin="10,0,-10,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200">
-
-                </ColumnDefinition>
-                <ColumnDefinition>
-
-                </ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80">
-
-                </RowDefinition>
-                <RowDefinition>
-
-                </RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel x:Name="TogglePanel" Grid.Row="1" Grid.Column="0">
-                <ToggleButton Style="{StaticResource ToggleButtonBetter}" x:Name="toggleButtonListCars" Content="ListCars" Height="72" Width="200" Checked="toggleButtonListCars_Checked" Background="#33000000"/>
-                <ToggleButton Style="{StaticResource ToggleButtonBetter}" x:Name="toggleButtonCarPage" Content="CarPage&#xD;&#xA;" Height="72" Width="200" Checked="toggleButtonCarPage_Checked"/>
-                <ToggleButton Style="{StaticResource ToggleButtonBetter}" x:Name="toggleButtonSearch" Content="Search" Height="72" Width="200" Checked="toggleButtonSearch_Checked"/>
-                <TextBlock x:Name="DebugMessage" TextWrapping="Wrap" Text="TextBlock" Height="304"/>
-
-            </StackPanel>
-            <StackPanel Name="MainView"  Grid.Column="1" Grid.RowSpan="2" >
+    Background="#A6BBE3">
 
 
-            </StackPanel>
-        </Grid>
-    </Border>
+    <Grid>
+        <StackPanel Margin="0,0,1594,0" Background="#8495B5" Height="1080" VerticalAlignment="Bottom">
+            <ToggleButton Content="Logo" Background ="#5B677D" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="73" Width="305" Foreground="White" CornerRadius="20" RenderTransformOrigin="0.5,0.5"/>
+            <ToggleButton Content="Sign in/Sign up" Background ="#5B677D" Margin="0,165,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+            <ToggleButton Content="Make an offer" Background ="#5B677D" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+            <ToggleButton Content="My favorites" Background ="#5B677D" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+            <ToggleButton Content="My offers" Background ="#5B677D" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" CornerRadius="20"/>
+            <ToggleButton Content="Admin menu" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" Visibility="Collapsed" IsEnabled="False" CornerRadius="20"/>
+
+        </StackPanel>
+        <ToggleSwitch Header="Dark mode" Margin ="10.5,0,0,122" Foreground="White" FocusVisualPrimaryBrush="White" BorderBrush="White" FocusVisualSecondaryBrush="#99FFFFFF" Toggled="ToggleSwitch_Toggled" RequestedTheme="Dark" Visibility="Visible" VerticalAlignment="Bottom"/>
+        <StackPanel Margin="0,0,0,976"/>
+        <StackPanel x:Name="MainView" HorizontalAlignment="Right" Height="1080" Width ="1594"  VerticalAlignment="Top">
+        </StackPanel>
+    </Grid>
 </Page>

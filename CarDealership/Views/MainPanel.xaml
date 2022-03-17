@@ -1,0 +1,25 @@
+﻿<UserControl 
+    x:Class="CarDealership.Views.MainPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CarDealership.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Height="1080" Width="1594">
+
+    <Grid Width="1594" Height="1080" Background="#A6BBE3">
+        <TextBox Header="First Name" CornerRadius="8" Margin="0,380,0,640" HorizontalAlignment="Center" TextWrapping="Wrap" Height="60" Width="456" TextChanged="TextBox_TextChanged_1" />
+        <TextBox Header="Telephone Number" CornerRadius="8" Margin="0,601,0,419" HorizontalAlignment="Center" TextWrapping="Wrap" Height="60" Width="456"/>
+        <TextBox Header="E-mail" CornerRadius="8" Margin="0,445,0,575" HorizontalAlignment="Center" TextWrapping="Wrap" Height="60" Width="456"/>
+        <DatePicker CornerRadius="8" Margin="0,564,0,0" HorizontalAlignment="Center" Width="456" VerticalAlignment="Top" />
+        <PasswordBox Header="Password" CornerRadius="8"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="457"/>
+        <ComboBox x:Name="Day" Header="Day" PlaceholderText="Pick a day" Margin="569,689,0,0" Width="113" Height="56">
+            
+        </ComboBox>
+        <ComboBox x:Name="Month" Header="Month" PlaceholderText="Pick a month" Margin="710,689,0,0" Width="113" SelectionChanged="ComboBox_SelectionChanged">
+
+        </ComboBox>
+
+    </Grid>
+</UserControl> 
+ 
