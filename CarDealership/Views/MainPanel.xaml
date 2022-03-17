@@ -7,15 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="1080" Width="1594">
 
-    <Grid Width="1594" Height="1080" Background="#A6BBE3" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid Width="1354" Height="970" Background="#A6BBE3" Margin="0,0,240,110" >
+    <Grid Width="1594" Height="1080"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Width="1354" Height="970" Margin="0,0,240,110" >
 
             <Border Height="Auto" Margin="136,271,758,270" Width="Auto">
                 <Grid>
 
                     <PasswordBox x:Name="passwordSignin" Header="Password" Margin="0,150,0,203" CornerRadius="8" Width="460" Height="76"/>
                     <TextBox x:Name="usernameSignin" Header="Username" CornerRadius="8" TextWrapping="Wrap" Margin="0,0,0,353" Width="460" Height="76"/>
-                    <TextBox x:Name="emailSignin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Margin="0,74,0,279" Width="460" Height="76"/>
+                    <TextBox x:Name="emailSignin" Header="E-mail" CornerRadius=                "8" TextWrapping="Wrap" Margin="0,74,0,279" Width="460" Height="76"/>
                     <TextBox x:Name="telnumberSignin" Header="Telephone Number" CornerRadius="8" TextWrapping="Wrap" Margin="0,228,0,125" Width="460" Height="76"/>
                     <ComboBox x:Name="Day" CornerRadius="8" Header="Day" PlaceholderText="Pick a day" Width="148" Height="76" Margin="0,304,0,0"/>
                     <ComboBox x:Name="Month" CornerRadius="8" Header="Month" PlaceholderText="Pick a month" Width="148" Height="78" Margin="0,304,0,0" HorizontalAlignment="Center" />
