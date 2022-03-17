@@ -6,10 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="600"
+    d:DesignWidth="720">
 
     <Grid>
-        <DatePicker x:Name="datePicker" Margin="50,111,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="58,40,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="407" FontSize="32"/>
+        <TextBlock x:Name="IdText" HorizontalAlignment="Left" Margin="58,238,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="236" FontSize="32"/>
     </Grid>
 </UserControl>

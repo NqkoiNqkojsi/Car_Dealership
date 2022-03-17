@@ -154,6 +154,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\default_img.png" />
     <Content Include="Data\CarDealership.sql" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\githubLogo.png" />
