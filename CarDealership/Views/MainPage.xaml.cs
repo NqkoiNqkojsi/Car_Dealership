@@ -31,8 +31,8 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            MockUpListsController.GenerateMockUpCarBrand(10);
-            MockUpListsController.GenerateMockUpCar(10);
+            DebugMessage.Text= MockUpListsController.GenerateMockUpCarBrand(20);
+            DebugMessage.Text =DebugMessage.Text+ MockUpListsController.GenerateMockUpCar(20);
             Search search = new Search();
             MainView.Children.Add(search);
             carIds = CarsSortAndFilterController.CompleteSort("");
@@ -47,7 +47,7 @@ namespace CarDealership
             toggleButtonSearch.Background = toggleOffBrush;
             MainView.Children.Clear();
         }
-        public void AddToMainView(object sender, OpenCarPageEventArgs e)
+        public void AddToMainView(object sender, PointerRoutedEventArgs e)
         {
             DeactivateButtons();
             CarShowCase carShowCase = (CarShowCase)sender;
@@ -58,7 +58,7 @@ namespace CarDealership
         private void toggleButtonListCars_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            ListOfCars listOfCars = new ListOfCars(carIds);
+            ListOfCars listOfCars = new ListOfCars(CarsSortAndFilterController.CompleteSort(""));
             listOfCars.OpenCarPage += AddToMainView;
             MainView.Children.Add(listOfCars);
             toggleButtonListCars.Background = toggleOnBrush;

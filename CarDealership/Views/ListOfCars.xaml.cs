@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -29,7 +30,7 @@ namespace CarDealership.Views
         }
         public void ShowCars()
         {
-            ListCar.Children.Clear();
+            ListCarPanel.Children.Clear();
             foreach(string id in usedId)
             {
                 CarShowCase carShowCase = new CarShowCase(id);
