@@ -31,20 +31,26 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            DebugMessage.Text= MockUpListsController.GenerateMockUpCarBrand(20);
-            DebugMessage.Text =DebugMessage.Text+ MockUpListsController.GenerateMockUpCar(20);
-            Search search = new Search();
+            DebugText.Text= MockUpListsController.GenerateMockUpCarBrand(20);
+            DebugText.Text =DebugText.Text+ MockUpListsController.GenerateMockUpCar(20);
+            CarSearchMenue search = new CarSearchMenue();
             MainView.Children.Add(search);
             carIds = CarsSortAndFilterController.CompleteSort("");
+            toggleButtonMain.IsChecked = true;
+            toggleButtonMain.Background = toggleOnBrush;
         }
         public void DeactivateButtons()
         {
-            toggleButtonCarPage.IsChecked = false;
-            toggleButtonCarPage.Background = toggleOffBrush;
-            toggleButtonListCars.IsChecked = false;
-            toggleButtonListCars.Background = toggleOffBrush;
-            toggleButtonSearch.IsChecked = false;
-            toggleButtonSearch.Background = toggleOffBrush;
+            toggleButtonMain.IsChecked = false;
+            toggleButtonMain.Background = toggleOffBrush;
+            toggleButtonMakeOffer.IsChecked = false;
+            toggleButtonMakeOffer.Background = toggleOffBrush;
+            toggleButtonOwnOffers.IsChecked = false;
+            toggleButtonOwnOffers.Background = toggleOffBrush;
+            toggleButtonRegister.IsChecked = false;
+            toggleButtonRegister.Background = toggleOffBrush;
+            toggleButtonWished.IsChecked = false;
+            toggleButtonWished.Background = toggleOffBrush;
             MainView.Children.Clear();
         }
         public void AddToMainView(object sender, PointerRoutedEventArgs e)
@@ -55,29 +61,38 @@ namespace CarDealership
             MainView.Children.Add(carPage);
         }
 
-        private void toggleButtonListCars_Checked(object sender, RoutedEventArgs e)
-        {
-            DeactivateButtons();
-            ListOfCars listOfCars = new ListOfCars(CarsSortAndFilterController.CompleteSort(""));
-            listOfCars.OpenCarPage += AddToMainView;
-            MainView.Children.Add(listOfCars);
-            toggleButtonListCars.Background = toggleOnBrush;
-        }
 
-        private void toggleButtonCarPage_Checked(object sender, RoutedEventArgs e)
+        private void toggleButtonMain_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            CarPage carPage = new CarPage("0");
-            MainView.Children.Add(carPage);
-            toggleButtonCarPage.Background = toggleOnBrush;
-        }
-
-        private void toggleButtonSearch_Checked(object sender, RoutedEventArgs e)
-        {
-            DeactivateButtons();
-            Search search = new Search();
+            CarSearchMenue search = new CarSearchMenue();
             MainView.Children.Add(search);
-            toggleButtonSearch.Background = toggleOnBrush;
+            toggleButtonMain.Background = toggleOnBrush;
+        }
+
+        private void toggleButtonRegister_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toggleButtonMakeOffer_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toggleButtonWished_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void toggleButtonOwnOffers_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

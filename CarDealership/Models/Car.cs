@@ -45,7 +45,7 @@ namespace CarDealership.Models
         /// </summary>
          public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
-        public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, string imgDir, double engineVolume,  string info)
+        public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter.ToString();
             this.carBrand = carBrand;
