@@ -9,23 +9,31 @@ namespace CarDealership.Models
     public class CarBrand
     {
         public string id { get; set; }
+
         public static int counter = 0;//save the last id, probably it will be changed later
+
         public string brand { get; set; }
+
         public string model { get; set; }
         /// <summary>
         /// list of all the brands with models that are real
         /// </summary>
+        
         public static List<CarBrand> carBrands = new List<CarBrand>();
+        
         /// <summary>
         /// list of the unverified models
         /// </summary>
+       
         public static List<CarBrand> carBrandsUnverified=new List<CarBrand>();
+        
         /// <summary>
         /// Register a brand with model
         /// </summary>
         /// <param name="brand">eg. BMW, Audi...</param>
         /// <param name="model">eg. i30, Duster...</param>
         /// <param name="verified">is it sure if it's real model</param>
+        
         public CarBrand(string brand, string model, bool verified)
         {
             this.id = counter.ToString();
@@ -41,10 +49,12 @@ namespace CarDealership.Models
                 carBrandsUnverified.Add(this);
             }
         }
+
         /// <summary>
         /// Returns the first CarBrand available
         /// </summary>
         public static CarBrand ReturnBrand(string brand, string model)=>carBrands.Where(c => c.brand == brand && c.model==model).First();
+
         /// <summary>
         /// Get all unique brands
         /// </summary>
@@ -61,6 +71,7 @@ namespace CarDealership.Models
             }
             return brands;
         }
+
         /// <summary>
         /// Get all the models that are in a certain brand
         /// </summary>
@@ -77,6 +88,7 @@ namespace CarDealership.Models
             }
             return models;
         }
+
         /// <summary>
         /// Check if a certain model is new
         /// </summary>

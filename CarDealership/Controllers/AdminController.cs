@@ -26,7 +26,6 @@ namespace CarDealership.Controllers
             { 
                 Console.WriteLine(ex.Message);
             }
-            //TO DO...
         }
 
         /// <summary>
@@ -63,7 +62,6 @@ namespace CarDealership.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            //TO DO...
         }
 
         /// <summary>
