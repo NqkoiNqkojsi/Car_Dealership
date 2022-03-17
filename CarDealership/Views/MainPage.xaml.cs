@@ -30,12 +30,6 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            MainPanel mainPanel = new MainPanel();
-            MainView.Children.Add(mainPanel);
-        }
-        public void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
