@@ -13,11 +13,11 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
       <RootProperty Name="Orientation" />
-      <RootProperty Name="CornerRadius" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="CornerRadius" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
-      <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="IsTabStop" />
@@ -28,8 +28,6 @@
       <RootProperty Name="Template" />
       <RootProperty Name="HorizontalContentAlignment" />
       <RootProperty Name="ElementSoundMode" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="BorderThickness" />
       <RootMethod Name="GetIsTemplateFocusTarget" />
       <RootMethod Name="SetIsTemplateFocusTarget" />
     </RootType>
@@ -78,6 +76,7 @@
       <RootProperty Name="Width" />
       <RootProperty Name="RenderTransform" />
       <RootProperty Name="Resources" />
+      <RootProperty Name="Name" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumnSpan" />
@@ -176,6 +175,8 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="RenderTransformOrigin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Thumb">
       <RootProperty Name="Template" />
@@ -199,6 +200,12 @@
       <RootProperty Name="UseSystemFocusVisuals" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Content" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontSize" />
+      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="FontFamily" />
@@ -208,36 +215,17 @@
       <RootProperty Name="TextAlignment" />
       <RootProperty Name="Text" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Content" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
-      <RootProperty Name="Margin" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Header" />
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Height" />
-      <RootEvent Name="SelectionChanged" />
-    </RootType>
-    <RootType FullName="CarDealership.Views.CarSearchMenue" />
-    <RootType FullName="Windows.UI.Xaml.ResourceDictionary" />
-    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
-      <RootProperty Name="Content" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="CornerRadius" />
-      <RootProperty Name="RenderTransformOrigin" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="TextDecorations" />
+      <RootProperty Name="FontStyle" />
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="MaxHeight" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MinHeight" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Height" />
@@ -254,17 +242,56 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Width" />
     </RootType>
-    <RootType FullName="CarDealership.MainPage" />
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
-      <RootProperty Name="Header" />
-      <RootProperty Name="CornerRadius" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Background" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="TextWrapping" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="IsEnabled" />
+    </RootType>
+    <RootType FullName="CarDealership.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="CarDealership.Views.CarPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="PlaceholderText" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="CornerRadius" />
       <RootEvent Name="TextChanged" />
     </RootType>
+    <RootType FullName="CarDealership.Views.CarSearchMenue" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootMethod Name="GetVerticalScrollBarVisibility" />
+      <RootMethod Name="SetVerticalScrollBarVisibility" />
+    </RootType>
+    <RootType FullName="CarDealership.Views.CarShowCase" />
+    <RootType FullName="CarDealership.Views.ListOfCars" />
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="Header" />
       <RootProperty Name="CornerRadius" />
@@ -274,5 +301,7 @@
       <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="CarDealership.Views.MainPanel" />
+    <RootType FullName="CarDealership.Views.Search" />
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary" />
   </Roots.RootTypes>
 </Roots>
