@@ -39,13 +39,11 @@ namespace CarDealership.Views
             Seller.Text = "From:" + info["seller"];
             //Image.Source=;
         }
-        public CarShowCase(string id, EventHandler<OpenCarPageEventArgs> OpenCarPage)
+        public CarShowCase(string id)
         {
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
-            this.OpenCarPage = OpenCarPage;
-            OpenCarPage += c_OpenCarPage;
         }
         public void c_OpenCarPage(object sender, EventArgs e)
         {
