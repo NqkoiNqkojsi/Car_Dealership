@@ -7,6 +7,8 @@ using CarDealership.Models;
 using System.IO;
 using System.Web;
 using CarDealership.Data;
+using Windows.Storage;
+using System.Diagnostics;
 
 namespace CarDealership.Controllers
 {
@@ -18,7 +20,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="date">format=M.yyy :"10.2003"</param>
         /// <returns>DateTime with only moth and year</returns>
-        public static DateTime MakeDate(string date, string id)
+        public static DateTime MakeDate(string date)
         {
             try
             {
@@ -30,7 +32,7 @@ namespace CarDealership.Controllers
                 //add manufacture date to the car table 
                 using (carContext = new CarContext())
                 {
-                    var newDate = carContext.cars.Where(d => d.id == id).Select(d=> d.manufDate == dateTime);
+                    var newDate = carContext.cars.Select(d=> d.manufDate == dateTime);
                     carContext.SaveChanges();
                 }
                 return dateTime;
@@ -78,6 +80,23 @@ namespace CarDealership.Controllers
         
         public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
+        /// <summary>
+        /// Creates a directory that contains a car's photos
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static void MakeImgDir(string id)
+        {
+            string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
+            string AssetsDir = Directory.GetCurrentDirectory();
+            int index = AssetsDir.IndexOf("Car_Dealership");
+            if (index >= 0)
+                AssetsDir = AssetsDir.Substring(0, index);
+            AssetsDir += toBeAdded;
+            Directory.CreateDirectory(AssetsDir);
+        }
+
+        
 
     }
 }

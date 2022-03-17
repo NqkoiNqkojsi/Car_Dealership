@@ -23,7 +23,7 @@ namespace CarDealership.Models
         /// <summary>
         /// Date of manufacturing
         /// </summary>
-
+        public string imgDir { get; set; }
         public DateTime manufDate { get; set; }
         /// <summary>
         /// Date the offer is made
