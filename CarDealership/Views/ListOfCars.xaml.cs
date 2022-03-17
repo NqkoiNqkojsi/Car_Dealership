@@ -31,14 +31,20 @@ namespace CarDealership.Views
         }
         public async void ShowCars()
         {
-            ListCarPanel.Children.Clear();
-            foreach(string id in usedId)
+            try
             {
-                CarShowCase carShowCase = new CarShowCase(id);
-                carShowCase.Name = id;
-                await Task.Delay(10);
-                carShowCase.PointerPressed += OpenCarPage;
-                ListCarPanel.Children.Add(carShowCase);
+                ListCarPanel.Children.Clear();
+                foreach (string id in usedId)
+                {
+                    CarShowCase carShowCase = new CarShowCase(id);
+                    carShowCase.Name = id;
+                    await Task.Delay(100);
+                    carShowCase.PointerPressed += OpenCarPage;
+                    ListCarPanel.Children.Add(carShowCase);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
         public ListOfCars(List<string> ids)
