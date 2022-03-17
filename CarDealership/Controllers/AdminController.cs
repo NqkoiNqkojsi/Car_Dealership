@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Models;
+using CarDealership.Controllers;
+using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
@@ -14,14 +16,17 @@ namespace CarDealership.Controllers
         /// </summary>
         public void ApproveCar(Car car)
         {
-            try
+            if (CustomerController.sessionID != null)
             {
-                Car.approvedCars.Add(car);
-                Car.quarantinedCars.Remove(car);
-            }
-            catch (Exception ex)
-            { 
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    Car.approvedCars.Add(car);
+                    Car.quarantinedCars.Remove(car);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
@@ -29,9 +34,21 @@ namespace CarDealership.Controllers
         /// Removes car from the list of cars customers can see
         /// </summary>
        
-        public void RemoveCar(Car car)
+        public void RemoveCar(int id)
         {
-            Car.approvedCars.Remove(car);
+            if (CustomerController.sessionID != null)
+            {
+                using (CarContext carContext = new CarContext())
+                {
+                    var car = carContext.cars.Find(id);
+                    if (car != null)
+                    {
+                        Car.approvedCars.Remove(car);
+                        carContext.cars.Remove(car);
+                        carContext.SaveChanges();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -40,23 +57,57 @@ namespace CarDealership.Controllers
 
         public void ApproveCarBrand(CarBrand carBrand)
         {
-            try
+            if (CustomerController.sessionID != null)
             {
-                CarBrand.carBrands.Add(carBrand);
-                CarBrand.carBrandsUnverified.Remove(carBrand);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+
+                try
+                {
+                    CarBrand.carBrands.Add(carBrand);
+                    CarBrand.carBrandsUnverified.Remove(carBrand);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
+
         /// <summary>
         /// Removes a car brand from the list of legitimate car brands
         /// </summary>
 
-        public void RemoveCarBrand(CarBrand carBrand)
+        public void RemoveCarBrand(int id)
         {
-            CarBrand.carBrands.Remove(carBrand);
+            if (CustomerController.sessionID != null)
+            {
+                using (CarBrandContext carBrandContext = new CarBrandContext())
+                {
+                    var carBrand = carBrandContext.carBrands.Find(id);
+                    if (carBrand != null)
+                    {
+                        CarBrand.carBrands.Remove(carBrand);
+                        carBrandContext.carBrands.Remove(carBrand);
+                        carBrandContext.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void RemoveCustomerAccount(int id)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                using (CustomerContext customerContext = new CustomerContext())
+                {
+                    var customer = customerContext.customers.Find(id);
+                    if (customer != null)
+                    {
+                        CustomerController.customers.Remove(customer);
+                        customerContext.customers.Remove(customer);
+                        customerContext.SaveChanges();
+                    }
+                }
+            }
         }
 
     }

@@ -125,8 +125,10 @@
     <Compile Include="Data\CarContext.cs" />
     <Compile Include="Data\CustomerContext.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Data\FavoriteCarContext.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\FavoriteCar.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

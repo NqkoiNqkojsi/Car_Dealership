@@ -1,8 +1,14 @@
 ﻿using CarDealership.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace CarDealership.Data
 {
-    public class CustomerContext : DbContext
+    public class FavoriteCarContext : DbContext
     {
         /// <summary>
         /// Connection String
@@ -10,14 +16,14 @@ namespace CarDealership.Data
         private const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";//pull the connection string after making a connecting the database with sql server
 
         /// <summary>
-        /// Cars Table
+        /// CarBrands Table
         /// </summary>
-        public DbSet<Customer> customers { get; set; }
+        public DbSet<FavoriteCar> relaionFavourite { get; set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CustomerContext()
+        public FavoriteCarContext()
         {
             // Create the database automaticly
             Database.EnsureCreated();
@@ -32,4 +38,3 @@ namespace CarDealership.Data
         }
     }
 }
-
