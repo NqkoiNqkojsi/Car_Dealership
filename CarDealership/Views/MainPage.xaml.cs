@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using CarDealership.Views;
-using CarDealership.Controllers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -55,7 +54,7 @@ namespace CarDealership
             MainView.Children.Add(carPage);
         }
 
-        private void toggleButtonListCars_Checked(object sender, RoutedEventArgs e)
+        public void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
             ListOfCars listOfCars = new ListOfCars(CarsSortAndFilterController.CompleteSort(""));
