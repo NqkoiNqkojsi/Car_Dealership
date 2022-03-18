@@ -25,10 +25,13 @@ namespace CarDealership.Controllers
             try
             {
                 string[] dateArray = date.Split('.');//split the month and year
-                DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
-                dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
-                dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
                 
+                DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
+                
+                dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
+                
+                dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
+           
                 //add manufacture date to the car table 
                 using (carContext = new CarContext())
                 {
@@ -66,7 +69,7 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Show Cars in the Customer's Wishlist
+        /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
