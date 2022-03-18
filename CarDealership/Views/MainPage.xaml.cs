@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using CarDealership.Views;
+using CarDealership.Controllers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -30,6 +31,14 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
+            MockUpListsController.GenerateMockUpCarBrand(10);
+            MockUpListsController.GenerateMockUpCar(10);
+            //ListOfCars miro = new ListOfCars();
+            //MainView.Children.Add(miro);
+        }
+        private void ToggleSwitch_Toggled(Object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

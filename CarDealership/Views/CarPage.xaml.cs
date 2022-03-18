@@ -31,7 +31,6 @@ namespace CarDealership.Views
         {
             this.InitializeComponent();
             this.id = id;
-            IdText.Text = id;
             MakeContent(id);
         }
     }
