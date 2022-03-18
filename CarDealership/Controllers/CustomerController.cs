@@ -19,7 +19,7 @@ namespace CarDealership.Controllers
 
 
         public static List<Customer> customers = new List<Customer>();
-
+        public static string sessionId;
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
