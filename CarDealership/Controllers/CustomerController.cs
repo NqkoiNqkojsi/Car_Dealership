@@ -15,8 +15,8 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
-      
-      
+
+        internal  static string sessionID {get;set;}
         public static List<Customer> customers = new List<Customer>();
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace CarDealership.Controllers
         public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
             CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
-            Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
+            Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven,  engineVolume, info);
             Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
             customer.publicOffers.Add(car);
         }

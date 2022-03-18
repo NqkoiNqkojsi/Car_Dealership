@@ -23,27 +23,26 @@ namespace CarDealership.Models
         /// <summary>
         /// Date of manufacturing
         /// </summary>
-
+        public string imgDir { get; set; }
         public DateTime manufDate { get; set; }
         /// <summary>
         /// Date the offer is made
         /// </summary>
         public double horsePower { get; set; }
         public double kmDriven { get; set; }
-        /// <summary>
-        /// Directory of the image
-        /// </summary>
-        public string imgDir { get; set; }
+
         public double engineVolume { get; set; }
         /// <summary>
         /// Additional info about the car
         /// </summary>
         public string info { get; set; }
         private static ulong counter=0;
+
         /// <summary>
         /// List of all cars
         /// </summary>
-         public static List<Car> quarantinedCars = new List<Car>();
+         
+        public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
         public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
@@ -53,7 +52,6 @@ namespace CarDealership.Models
             this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
-            this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.info = info;
             quarantinedCars.Add(this);
@@ -66,7 +64,6 @@ namespace CarDealership.Models
             this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
             this.kmDriven = kmDriven;
-            this.imgDir = imgDir;
             this.engineVolume = engineVolume;
             this.info = info;
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
@@ -92,7 +89,6 @@ namespace CarDealership.Models
             carinfo.Add("year", manufDate.Year.ToString());
             carinfo.Add("price", price.ToString());
             carinfo.Add("seller", owner.name);
-            carinfo.Add("imgDir", imgDir);
             carinfo.Add("horsePower", horsePower.ToString());
             carinfo.Add("km", kmDriven.ToString());
             carinfo.Add("engineVolume", engineVolume.ToString());
