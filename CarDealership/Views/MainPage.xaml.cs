@@ -30,13 +30,6 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            CarSearchMenue carSearchMenue = new CarSearchMenue();
-            MainView.Children.Add(carSearchMenue);
-        }
-
-        public void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

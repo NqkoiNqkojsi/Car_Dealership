@@ -91,5 +91,10 @@ namespace CarDealership.Views
             
           
         }
+
+        private void Year_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
