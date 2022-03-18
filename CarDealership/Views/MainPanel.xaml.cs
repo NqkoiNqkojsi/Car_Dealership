@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using CarDealership.Controllers;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -22,8 +23,19 @@ namespace CarDealership.Views
         public MainPanel()
         {
             this.InitializeComponent();
+            GenerateYear();
+            GenerateMonths();
+            Month.SelectedItem = Month.Items[0];
+            Day.SelectedItem = Day.Items[0];
+            Year.SelectedItem = Year.Items[0];
         }
-
+        private void GenerateYear()
+        {
+            for (int i = 2022; i > 1900; i--)
+            {
+                Year.Items.Add(i);
+            }
+        }
         private void GenerateMonths()
         {
             Month.Items.Add("January");
@@ -42,6 +54,7 @@ namespace CarDealership.Views
 
         private void GenerateDays(int month)
         { 
+            Day.Items.Clear();
             if (month == 2)
             {
                 for (int i = 1; i <= 28; i++)
@@ -90,6 +103,46 @@ namespace CarDealership.Views
             }
             
           
+        }
+
+        private void Month_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GenerateDays(Month.SelectedIndex+1);
+        }
+
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CustomerController.IsValidPassword(passwordSignin.Password) &&
+                CustomerController.IsValidEmail(emailSignin.Text)&&
+                usernameSignin.Text.Length>3)
+            {
+                string date=Day.SelectedValue.ToString()+"."+Month.SelectedValue.ToString()+"."+Year.SelectedValue.ToString();
+                DateTime dateTime = DateTime.Parse(date);
+                //CustomerController.CreateCustomer(usernameSignin.Text, dateTime)
+            }
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void passwordSignin_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (CustomerController.IsValidPassword(passwordSignin.Password))
+            {
+                
+            }
+        }
+
+        private void emailSignin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void usernameSignin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

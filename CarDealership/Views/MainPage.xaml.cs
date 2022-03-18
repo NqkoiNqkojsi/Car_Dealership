@@ -74,7 +74,10 @@ namespace CarDealership
             MainView.Children.Add(listOfCars);
         }
 
-        private void toggleButtonMain_Checked(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Open the search by clicking the logo, used by most userControls
+        /// </summary>
+        public void toggleButtonMain_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
             CarSearchMenue search = new CarSearchMenue();
@@ -82,7 +85,9 @@ namespace CarDealership
             MainView.Children.Add(search);
             toggleButtonMain.Background = toggleOnBrush;
         }
-
+        /// <summary>
+        /// Open the log in/sign up by clicking the register button
+        /// </summary>
         private void toggleButtonRegister_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
@@ -90,7 +95,9 @@ namespace CarDealership
             MainView.Children.Add(mainPanel);
             toggleButtonRegister.Background = toggleOnBrush;
         }
-
+        /// <summary>
+        /// Open the MakeOffer by clicking the make offer button
+        /// </summary>
         private void toggleButtonMakeOffer_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
@@ -98,7 +105,9 @@ namespace CarDealership
             MainView.Children.Add(search);
             toggleButtonMain.Background = toggleOnBrush;
         }
-
+        /// <summary>
+        /// Open the List of cars filled with wished cars by clicking the wished button
+        /// </summary>
         private void toggleButtonWished_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
@@ -106,7 +115,9 @@ namespace CarDealership
             MainView.Children.Add(search);
             toggleButtonMain.Background = toggleOnBrush;
         }
-
+        /// <summary>
+        /// Open the List of cars filled with owned cars by clicking the owned button
+        /// </summary>
         private void toggleButtonOwnOffers_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
@@ -114,7 +125,9 @@ namespace CarDealership
             MainView.Children.Add(search);
             toggleButtonMain.Background = toggleOnBrush;
         }
-
+        /// <summary>
+        /// Toggle dark Mode
+        /// </summary>
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
 

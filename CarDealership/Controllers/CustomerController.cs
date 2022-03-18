@@ -87,8 +87,8 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Checks Email Validity
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
+        /// <param name="email">potential email</param>
+        /// <returns>true or false</returns>
         public static bool IsValidEmail(string email)
         {
             try
@@ -101,6 +101,45 @@ namespace CarDealership.Controllers
                 return false;
             }
         }
+        /// <summary>
+        /// Checks Password Validity
+        /// </summary>
+        /// <param name="password">potential password</param>
+        /// <returns>true or false</returns>
+        public static bool IsValidPassword(string password)
+        {
+            try
+            {
+                const int MIN_LENGTH = 8;
+                const int MAX_LENGTH = 15;
+
+                if (password == null) return false;
+
+                bool meetsLengthRequirements = password.Length >= MIN_LENGTH && password.Length <= MAX_LENGTH;
+                bool hasLetter = false;
+                bool hasDecimalDigit = false;
+
+                if (meetsLengthRequirements)
+                {
+                    foreach (char c in password)
+                    {
+                        if (char.IsLetter(c)) hasLetter = true;
+                        else if (char.IsDigit(c)) hasDecimalDigit = true;
+                    }
+                }
+
+                bool isValid = meetsLengthRequirements
+                            && hasLetter
+                            && hasDecimalDigit
+                            ;
+                return isValid;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
 
         /// <summary>
         /// Registers a customer
