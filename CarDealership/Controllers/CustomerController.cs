@@ -139,7 +139,28 @@ namespace CarDealership.Controllers
                 return false;
             }
         }
-        
+        /// <summary>
+        /// Make a date from a string with 
+        /// </summary>
+        /// <param name="date">format=dd.M.yyy :"23.10.2003"</param>
+        /// <returns>DateTime with only moth and year</returns>
+        public static DateTime MakeBirthDate(string date)
+        {
+            try
+            {
+                string[] dateArray = date.Split('.');//split the month and year
+                DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
+                dateTime = dateTime.AddDays(Convert.ToInt32(dateArray[0]) - 1);//add the days without the first
+                dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[1]) - 1);//add the months without the first
+                dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[2]) - 1);//add the years without the first
+                return dateTime;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Unable to parse '{0}'", date);
+                return DateTime.MinValue;//at error return min value
+            }
+        }
 
         /// <summary>
         /// Registers a customer
@@ -148,6 +169,7 @@ namespace CarDealership.Controllers
         {
             bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
+            sessionID = customer.id;
             if (!CustomerExists)
             {
                 customers.Add(customer);

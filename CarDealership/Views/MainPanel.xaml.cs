@@ -114,11 +114,12 @@ namespace CarDealership.Views
         {
             if (CustomerController.IsValidPassword(passwordSignin.Password) &&
                 CustomerController.IsValidEmail(emailSignin.Text)&&
-                usernameSignin.Text.Length>3)
+                usernameSignin.Text.Length>3 &&
+                telnumberSignin.Text.Length>8)
             {
                 string date=Day.SelectedValue.ToString()+"."+Month.SelectedValue.ToString()+"."+Year.SelectedValue.ToString();
-                DateTime dateTime = DateTime.Parse(date);
-                //CustomerController.CreateCustomer(usernameSignin.Text, dateTime)
+                DateTime dateTime = CustomerController.MakeBirthDate(date);
+                CustomerController.CreateCustomer(usernameSignin.Text, dateTime, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
             }
         }
 
