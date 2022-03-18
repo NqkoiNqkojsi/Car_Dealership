@@ -14,7 +14,7 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds a car to the list of cars visible to customers
         /// </summary>
-        public void ApproveCar(Car car)
+        public static void ApproveCar(Car car)
         {
             if (CustomerController.sessionID != null)
             {
@@ -34,7 +34,7 @@ namespace CarDealership.Controllers
         /// Removes car from the list of cars customers can see
         /// </summary>
        
-        public void RemoveCar(int id)
+        public static void RemoveCar(int id)
         {
             if (CustomerController.sessionID != null)
             {
@@ -55,7 +55,7 @@ namespace CarDealership.Controllers
         /// Adds a car brand to the list of legitimate car brands
         /// </summary>
 
-        public void ApproveCarBrand(CarBrand carBrand)
+        public static void ApproveCarBrand(CarBrand carBrand)
         {
             if (CustomerController.sessionID != null)
             {
@@ -76,7 +76,7 @@ namespace CarDealership.Controllers
         /// Removes a car brand from the list of legitimate car brands
         /// </summary>
 
-        public void RemoveCarBrand(int id)
+        public static void RemoveCarBrand(int id)
         {
             if (CustomerController.sessionID != null)
             {
@@ -93,7 +93,7 @@ namespace CarDealership.Controllers
             }
         }
 
-        public void RemoveCustomerAccount(int id)
+        public static void RemoveCustomerAccount(int id)
         {
             if (CustomerController.sessionID != null)
             {

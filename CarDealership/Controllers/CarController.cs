@@ -7,6 +7,8 @@ using CarDealership.Models;
 using System.IO;
 using System.Web;
 using CarDealership.Data;
+using Windows.Storage;
+using System.Diagnostics;
 
 namespace CarDealership.Controllers
 {
@@ -23,9 +25,19 @@ namespace CarDealership.Controllers
             try
             {
                 string[] dateArray = date.Split('.');//split the month and year
+                
                 DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
+                
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
+                
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
+           
+                //add manufacture date to the car table 
+                using (carContext = new CarContext())
+                {
+                    var newDate = carContext.cars.Select(d=> d.manufDate == dateTime);
+                    carContext.SaveChanges();
+                }
                 return dateTime;
             }
             catch (FormatException e)
@@ -33,7 +45,7 @@ namespace CarDealership.Controllers
                 Console.WriteLine("Unable to parse '{0}'", date);
                 return DateTime.MinValue;//at error return min value
             }
-        } 
+        }
 
         /// <summary>
         /// Adds cars to customer's wish list
@@ -57,7 +69,7 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Show Cars in the Customer's Wishlist
+        /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
@@ -71,6 +83,23 @@ namespace CarDealership.Controllers
         
         public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
+        /// <summary>
+        /// Creates a directory that contains a car's photos
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static void MakeImgDir(string id)
+        {
+            string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
+            string AssetsDir = Directory.GetCurrentDirectory();
+            int index = AssetsDir.IndexOf("Car_Dealership");
+            if (index >= 0)
+                AssetsDir = AssetsDir.Substring(0, index);
+            AssetsDir += toBeAdded;
+            Directory.CreateDirectory(AssetsDir);
+        }
+
+        
 
     }
 }
