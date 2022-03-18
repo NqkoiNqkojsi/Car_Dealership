@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using CarDealership.Views;
-using CarDealership.Controllers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -31,13 +30,13 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            MockUpListsController.GenerateMockUpCarBrand(10);
-            MockUpListsController.GenerateMockUpCar(10);
+            DebugMessage.Text= MockUpListsController.GenerateMockUpCarBrand(20);
+            DebugMessage.Text =DebugMessage.Text+ MockUpListsController.GenerateMockUpCar(20);
             Search search = new Search();
             MainView.Children.Add(search);
             carIds = CarsSortAndFilterController.CompleteSort("");
         }
-        private void DeactivateButtons()
+        public void DeactivateButtons()
         {
             toggleButtonCarPage.IsChecked = false;
             toggleButtonCarPage.Background = toggleOffBrush;
@@ -47,11 +46,19 @@ namespace CarDealership
             toggleButtonSearch.Background = toggleOffBrush;
             MainView.Children.Clear();
         }
-
-        private void toggleButtonListCars_Checked(object sender, RoutedEventArgs e)
+        public void AddToMainView(object sender, PointerRoutedEventArgs e)
         {
             DeactivateButtons();
-            ListOfCars listOfCars = new ListOfCars(carIds);
+            CarShowCase carShowCase = (CarShowCase)sender;
+            CarPage carPage = new CarPage(carShowCase.id);
+            MainView.Children.Add(carPage);
+        }
+
+        public void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+            ListOfCars listOfCars = new ListOfCars(CarsSortAndFilterController.CompleteSort(""));
+            listOfCars.OpenCarPage += AddToMainView;
             MainView.Children.Add(listOfCars);
             toggleButtonListCars.Background = toggleOnBrush;
         }
@@ -59,7 +66,7 @@ namespace CarDealership
         private void toggleButtonCarPage_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            CarPage carPage = new CarPage();
+            CarPage carPage = new CarPage("0");
             MainView.Children.Add(carPage);
             toggleButtonCarPage.Background = toggleOnBrush;
         }
