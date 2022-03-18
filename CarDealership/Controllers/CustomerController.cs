@@ -223,10 +223,10 @@ namespace CarDealership.Controllers
                         }
                     }
                 }
+                catch (Exception eSql)
+                {
+                    Console.WriteLine($"Exception: {eSql.Message}");
                 }
-            catch (Exception eSql)
-            {
-                Console.WriteLine($"Exception: {eSql.Message}");
             }
         }
 
