@@ -42,7 +42,7 @@ namespace CarDealership.Views
                 ComboBox_Model.Items.Add(models);
         }
         
-        public List<string> GetResult()
+        public List<int> GetResult()
         {
             //TO DO
             // Do the search here

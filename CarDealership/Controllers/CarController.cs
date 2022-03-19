@@ -43,7 +43,7 @@ namespace CarDealership.Controllers
         /// <param name="carId">ids of liked cars</param>
         public static void AddFavoriteCar(int carId)
         {
-            if (CustomerController.sessionID != null)
+            if (CustomerController.sessionID != 0)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
 
@@ -53,7 +53,7 @@ namespace CarDealership.Controllers
 
         public static void RemoveFavoriteCar(int carId)
         {
-            if (CustomerController.sessionID != null)
+            if (CustomerController.sessionID != 0)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
             }
@@ -61,7 +61,7 @@ namespace CarDealership.Controllers
 
         public static bool IsFavoriteCar(int carId)
         {
-            if (CustomerController.sessionID != null)
+            if (CustomerController.sessionID != 0)
             {
                 try
                 {
@@ -78,19 +78,19 @@ namespace CarDealership.Controllers
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <returns>list of ids</returns>
-        //public static List<string> ShowFavoriteCars()
-        //{
-        //    if (CustomerController.sessionID != null)
-        //    {
-        //        Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
-        //        return customer.favoritedCars.Select(x => x.id).ToList();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Log in to perform this operation");
-        //        return null;
-        //    }
-        //}
+        public static List<int> ShowFavoriteCars()
+        {
+            if (CustomerController.sessionID != 0)
+            {
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.favoritedCars.Select(x => x.id).ToList();
+            }
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
+        }
 
         /// <summary>
         /// Show Cars in the Customer's Wishlist
@@ -118,7 +118,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static void MakeImgDir(string id)
+        public static void MakeImgDir(int id)
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
             string AssetsDir = Directory.GetCurrentDirectory();
@@ -134,7 +134,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static string ImgDirString(string id)
+        public static string ImgDirString(int id)
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
             string AssetsDir = Directory.GetCurrentDirectory();
@@ -169,7 +169,7 @@ namespace CarDealership.Controllers
         /// <param name="carPhoto">the file itself</param>
         /// <param name="num">the number with which to be saved</param>
         /// <returns></returns>
-        public static async Task AddPhotoToDir(string id, StorageFile carPhoto, string num)
+        public static async Task AddPhotoToDir(int id, StorageFile carPhoto, string num)
         {
             if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
             var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
@@ -177,13 +177,13 @@ namespace CarDealership.Controllers
             await carPhoto.MoveAsync(dir); 
         }
         
-        public static int PhotoInDirCount(string id)
+        public static int PhotoInDirCount(int id)
         {
             DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
             int count = dir.GetFiles().Length;
             return count;
         }
-        public static List<string> PhotosAll(string id)
+        public static List<string> PhotosAll(int id)
         {
             DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
             return dir.GetFiles().Select(f => f.ToString()).ToList();

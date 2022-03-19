@@ -23,7 +23,7 @@ namespace CarDealership.Views
 {
     public sealed partial class CarShowCase : UserControl
     {
-        public string id { get; set; }
+        public int id { get; set; }
         /// <summary>
         /// color for when the car is unwished
         /// </summary>
@@ -60,7 +60,7 @@ namespace CarDealership.Views
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
-        private void MakeContent(string id)
+        private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
             Title.Text = info["brand"] + " " + info["model"];
@@ -102,7 +102,7 @@ namespace CarDealership.Views
                 return false;
             }
         }
-        public CarShowCase(string id)
+        public CarShowCase(int id)
         {
             this.InitializeComponent();
             this.id = id;

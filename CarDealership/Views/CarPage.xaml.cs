@@ -24,12 +24,12 @@ namespace CarDealership.Views
 {
     public sealed partial class CarPage : UserControl
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string ownerEmail { get; set; }
         public List<string> paths=new List<string>();
         public int imgCount = 0;
         public int imgAt = 0;
-        private void MakeContent(string id)
+        private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
             Title.Text = info["brand"] + " " + info["model"];
@@ -96,7 +96,7 @@ namespace CarDealership.Views
             }
             DisplayImg(null);
         }
-        public CarPage(string id)
+        public CarPage(int id)
         {
             this.InitializeComponent();
             this.id = id;

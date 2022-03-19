@@ -65,9 +65,9 @@ namespace CarDealership.Views
                 {
                     //Make the offer
                     string date=ManMonth.Text+" "+ManYear.Text;
-                    string offerID=CustomerController.CreateOffer(CarBrand.SelectedValue.ToString(), CarModel.SelectedValue.ToString(), Double.Parse(Price.Text), date,
+                    int offerID=CustomerController.CreateOffer(CarBrand.SelectedValue.ToString(), CarModel.SelectedValue.ToString(), Double.Parse(Price.Text), date,
                        Double.Parse(HorsePower.Text), Double.Parse(KmDriven.Text), Double.Parse(Litres.Text), Info.Text);
-                    if (offerID != null)
+                    if (offerID != 0)
                     {
                         //Save the files
                         CarController.MakeImgDir(offerID);
