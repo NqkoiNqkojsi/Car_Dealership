@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using CarDealership.Controllers;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -22,6 +23,11 @@ namespace CarDealership.Views
         public MakeOffer()
         {
             this.InitializeComponent();
+            CarBrand.Items.Add("All");
+            foreach (string brands in CarBrandController.GetBrands())
+                CarBrand.Items.Add(brands);
+            for (int i = 2022; i > 1929; i--)
+                ManYear.Items.Add(i);
         }
     }
 }

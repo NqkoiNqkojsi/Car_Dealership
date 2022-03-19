@@ -8,20 +8,29 @@
     mc:Ignorable="d" Width="1594" Height="1080">
 
     <Grid Width="1594" Height="1080">
-        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="471" Margin="71,118,0,0" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="872" Margin="876,118,0,0" VerticalAlignment="Top" Width="672" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="872" Margin="860,0,0,0" VerticalAlignment="Center" Width="672" RenderTransformOrigin="0.5,0.5" Fill="#FF8CA2CC"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="366" Margin="76,622,0,0" VerticalAlignment="Top" Width="733" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="366" Margin="58,610,0,0" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.5,0.5" Fill="#FF8CA2CC"/>
+        <Rectangle x:Name="Image" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
             <Rectangle.Fill>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="58,40,0,0" TextWrapping="Wrap" Text="CarName" VerticalAlignment="Top" Height="81" Width="527" FontSize="48"/>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="67,35,0,0" TextWrapping="Wrap" Text="CarName" VerticalAlignment="Top" Height="69" Width="527" FontSize="48"/>
         <Button Content="Next" Margin="704,0,0,0" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
         <Button Content="Prev" Margin="69,0,0,0" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
-        <StackPanel Margin="58,603,797,110" CornerRadius="20" Background="#FF8495B5" Opacity="0.8">
-            <TextBlock TextWrapping="Wrap" Text="Seller info:" Height="61" Width="227" FontSize="48"/>
-            <TextBlock TextWrapping="Wrap" FontSize="36" Height="63" Width="716" Margin="10,0,0,0"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
-            <TextBlock TextWrapping="Wrap" FontSize="36" Height="63" Width="718" Margin="10,0,0,0"><Run Text="Phone:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-            <TextBox TextWrapping="Wrap" Text="Write an email." Height="131" Width="536" RenderTransformOrigin="0.5,0.489" FontSize="36" HorizontalAlignment="Left"/>
-            <Button Content="Send" HorizontalAlignment="Right" CornerRadius="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="36" Width="184" Padding="8,4,10,5" Margin="0,0,10,0"/>
-        </StackPanel>
+        <TextBlock TextWrapping="Wrap" Text="Seller info:" Height="61" Width="227" FontSize="48" Margin="123,624,1244,395"/>
+        <TextBlock TextWrapping="Wrap" FontSize="36" Margin="77,765,1165,161"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+        <TextBlock TextWrapping="Wrap" FontSize="36" Height="63" Margin="77,717,1198,300"><Run Text="Phone:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <TextBox CornerRadius="12" TextWrapping="Wrap" Text="Write an email." Width="362" RenderTransformOrigin="0.5,0.489" FontSize="36" HorizontalAlignment="Left" Margin="427,620,0,113"/>
+        <Button Content="Send" CornerRadius="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="43" Width="98" Padding="8,4,10,5" Margin="691,924,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock x:Name="textBlockPrice" HorizontalAlignment="Left" Margin="874,104,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="82" Width="588" FontSize="56"/>
+        <TextBlock x:Name="textBlockHorsePower" HorizontalAlignment="Left" Margin="895,183,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="100" Width="567" FontSize="36"/>
+        <TextBlock x:Name="textBlockKmDriven" HorizontalAlignment="Left" Margin="895,283,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="100" Width="567" FontSize="36"/>
+        <TextBlock x:Name="textBlockDate" HorizontalAlignment="Left" Margin="895,383,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="100" Width="567" FontSize="36"/>
+        <TextBlock x:Name="textBlockLitres" HorizontalAlignment="Left" Margin="895,483,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="100" Width="567" FontSize="36"/>
+        <TextBlock x:Name="textBlockInfo" HorizontalAlignment="Left" Margin="895,583,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="385" Width="602" FontSize="36"/>
     </Grid>
 </UserControl>

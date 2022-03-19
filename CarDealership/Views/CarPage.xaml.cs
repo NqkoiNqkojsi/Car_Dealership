@@ -33,5 +33,9 @@ namespace CarDealership.Views
             this.id = id;
             MakeContent(id);
         }
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
