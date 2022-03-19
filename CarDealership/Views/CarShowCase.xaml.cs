@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 using CarDealership.Controllers;
 using CarDealership;
 
@@ -24,6 +25,8 @@ namespace CarDealership.Views
     {
         public string id { get; set; }
         public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
+        SolidColorBrush buttNormalBrush = new SolidColorBrush(Color.FromArgb(100, 91, 103, 122));
+        SolidColorBrush buttWishedBrush = new SolidColorBrush(Color.FromArgb(100, 210, 214, 144));
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
@@ -41,11 +44,46 @@ namespace CarDealership.Views
             Seller.Text = "From:" + info["seller"];
             //Image.Source=;
         }
+        /// <summary>
+        /// checks if the car is already wished
+        /// </summary>
+        /// <param name="option">0-check in db, 1-make wished, 2-unwished</param>
+        /// <returns></returns>
+        private bool IsWished(int option=0)
+        {
+            if (option ==0)
+            {
+                if (CarController.IsFavoriteCar(id))
+                {
+                    AddWish.Background = buttWishedBrush;
+                    AddWish.Content = "Wished";
+                    return true;
+                }
+                else
+                {
+                    AddWish.Background = buttNormalBrush;
+                    AddWish.Content = "Add Wished";
+                    return false;
+                }
+            }else if (option == 1)
+            {
+                AddWish.Background = buttWishedBrush;
+                AddWish.Content = "Wished";
+                return true;
+            }
+            else
+            {
+                AddWish.Background = buttNormalBrush;
+                AddWish.Content = "Add Wished";
+                return false;
+            }
+        }
         public CarShowCase(string id)
         {
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
+            IsWished();
             //GenerateImg();
         }
         public void c_OpenCarPage(object sender, EventArgs e)
@@ -53,9 +91,20 @@ namespace CarDealership.Views
 
         }
 
-        private async void WishCar(object sender, RoutedEventArgs e)
+        private void WishCar(object sender, RoutedEventArgs e)
         {
-            //CarController.AddFavoriteCar();
+            if (IsWished())
+            {
+                CarController.RemoveFavoriteCar(id);
+                IsWished(1);
+            }
+            else
+            {
+                CarController.AddFavoriteCar(id);
+                IsWished(2);
+            }
+            
+
         }
     }
 }

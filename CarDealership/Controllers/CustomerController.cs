@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,6 @@ namespace CarDealership.Controllers
         private static CustomerContext customerContext = null;
 
         public static List<Customer> customers = new List<Customer>();
-
         public static string sessionID { get; set; }
 
         /// <summary>

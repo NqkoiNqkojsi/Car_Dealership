@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -109,8 +109,9 @@ namespace CarDealership
         private void toggleButtonMakeOffer_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            CarSearchMenue search = new CarSearchMenue();
-            MainView.Children.Add(search);
+            MakeOffer makeOffer=new MakeOffer();
+            makeOffer.ClosePage += ResetView;
+            MainView.Children.Add(makeOffer);
             toggleButtonMain.Background = toggleOnBrush;
         }
         /// <summary>
@@ -138,7 +139,7 @@ namespace CarDealership
         private void toggleButtonOwnOffers_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            //carIds = CarController;
+            carIds = CarController.ShowOwnedCars();
             if (carIds != null)
             {
                 ListOfCars listOfCars = new ListOfCars(carIds);

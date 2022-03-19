@@ -28,7 +28,7 @@ namespace CarDealership.Controllers
             {
                 CarBrand carBrand = new CarBrand(brandsReal.ElementAt(random.Next(7)), random.Next(1000).ToString());
             }
-            return CarBrand.carBrands.Count().ToString() +"; "+ CarBrand.carBrands.Count().ToString();
+            return CarBrand.carBrands.Count().ToString() +"; ";
         }
         public static string GenerateMockUpCustomer(int count)
         {
@@ -36,9 +36,9 @@ namespace CarDealership.Controllers
             for (int i = 0; i < count; i++)
             {
                 Customer customer = new Customer(random.Next().ToString(), DateTime.Now, random.NextDouble().ToString(), "1111111", "email@abv.bg");
-                Customer.customers.Add(customer);
+                CustomerController.customers.Add(customer);
             }
-            return Customer.customers.Count().ToString();
+            return CustomerController.customers.Count().ToString();
         }
     }
 }
