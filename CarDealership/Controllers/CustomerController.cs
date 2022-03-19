@@ -254,10 +254,11 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customer"></param>
         /// <param name="car"></param>
-        public static void AddToFavorite(Customer customer, Car car)
+        public static void AddToFavorite(Car car)
         {
             if (sessionID != null)
             {
+                Customer customer = Customer.customers.Where(c=>c.id==sessionID).FirstOrDefault();
                 customer.favoritedCars.Add(car);
 
                 string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";

@@ -34,13 +34,12 @@ namespace CarDealership.Tests.ControllerTests
         [TestMethod]
         public void ShowFavoriteCarsTest()
         {
-          /*  Car car = new Car("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
+           /* Car car = new Car("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
             List<string> Test = new List<string> {"0"};
-            Customer customer = new Customer("Ivan", CustomerController.MakeBirthDate("23.10.2003"), "123", "44444", "ivan@gmail.com");
-            CustomerController.Login("ivan@gmail.com", "123");
-            CustomerController.AddToFavorite(customer, car);
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
+            CustomerController.AddToFavorite(car);
             List<string> toBeTested = CarController.ShowFavoriteCars();
-            Assert.AreEqual(Test, toBeTested, "Not equal"); FIX LATER */
+            Assert.AreEqual(Test, toBeTested, "Not equal"); */
         }
 
     }
