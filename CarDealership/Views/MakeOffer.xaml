@@ -15,11 +15,13 @@
         <TextBox x:Name="Price" Header="Price" CornerRadius="8" HorizontalAlignment="Left" Margin="123,355,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="100" Width="550" FontSize="40"/>
         <TextBox x:Name="HorsePower" Header="Horse power" CornerRadius="8" HorizontalAlignment="Left" Margin="123,455,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="100" Width="550" FontSize="40"/>
         <TextBox x:Name="KmDriven" Header="Kilometers driven" CornerRadius="8" HorizontalAlignment="Left" Margin="123,555,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="100" Width="550" FontSize="40"/>
+        <Rectangle x:Name="Image" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="407" VerticalAlignment="Top" Width="550" RenderTransformOrigin="0.32,0.5" Margin="928,383,0,0">
+            <Rectangle.Fill>
+                <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <TextBox x:Name="Litres" Header ="Litres" CornerRadius="8" HorizontalAlignment="Left" Margin="123,655,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="100" Width="550" FontSize="40" />
         <TextBox x:Name="Info" Header="Short description" CornerRadius="8" HorizontalAlignment="Left" Margin="123,755,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="205" Width="1355" FontSize="40"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" Text="Make an offer" VerticalAlignment="Top" FontSize="72"/>
-        <TextBlock x:Name="textBlockPhotos" HorizontalAlignment="Left" Margin="928,455,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="300" Width="550" FocusVisualPrimaryBrush="Black"/>
-        <Button x:Name="buttonAddPhotos" Click="buttonAddPhoto_Click" Content="AddPhotos" Margin="928,373,0,0" VerticalAlignment="Top" Width="208" Height="58"/>
-        <Button x:Name="buttonCreate" Click="buttonMakeOffer_Click" Content="Create" Margin="697,697,0,0" VerticalAlignment="Top" Width="208" Height="58"/>
     </Grid>
 </UserControl>

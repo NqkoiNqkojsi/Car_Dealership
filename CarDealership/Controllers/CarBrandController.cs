@@ -11,7 +11,7 @@ namespace CarDealership.Controllers
     public class CarBrandController
     {
         public static List<CarBrand> carBrands = new List<CarBrand>();
-        private static CarBrandContext carBrandContext = null;
+        private static CarDealershipContext carBrandContext = null;
 
         /// <summary>
         /// Get all registered brands.
@@ -19,20 +19,23 @@ namespace CarDealership.Controllers
         /// <returns>Returns a list of all unique brands.</returns>
         public static List<string> GetBrands()
         {
-            using (carBrandContext = new CarBrandContext())
+            using (carBrandContext = new CarDealershipContext())
             {
                 List<string> brands = new List<string>();
-                foreach (var carBrand in carBrandContext.carBrands)
+                using (CarDealershipContext carBrandContext = new CarDealershipContext())
                 {
-                    if (!brands.Contains(carBrand.brand))
+                    foreach (var carBrand in carBrandContext.carBrands)
                     {
-                        brands.Add(carBrand.brand);
+                        if (!brands.Contains(carBrand.brand))
+                        {
+                            brands.Add(carBrand.brand);
+                        }
                     }
                 }
                 return brands;
             }
-
         }
+
 
 
 
@@ -42,7 +45,7 @@ namespace CarDealership.Controllers
         /// <returns>all models in a brand</returns>
         public static List<string> GetModelsByBrand(string brand)
         {
-            using (carBrandContext = new CarBrandContext())
+            using (carBrandContext = new CarDealershipContext())
             {
                 List<string> models = new List<string>();
                 foreach (CarBrand carBrand in carBrandContext.carBrands)

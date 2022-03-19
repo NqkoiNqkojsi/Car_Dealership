@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,14 @@ namespace CarDealership.Models
 {
     public class Customer
     {
-       
-        public string id { get; set; }
+        [Key]
+        public int id { get; set; }
+      
         public string name { get; set; }
+      
         public DateTime birthDate { get; set; }
+
+        public static List<Customer> customers = new List<Customer>();
         public static int counter = 0;//save the last id, probably it will be changed later
         /// <summary>
         /// the cars(offers) that are owned by the user
@@ -48,13 +53,11 @@ namespace CarDealership.Models
 
         public string phoneNum { get; set; }
 
-
-        
         public List<Car> favoritedCars = new List<Car>();
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.name = name;
             this.birthDate = birthDate;
             Password = password;

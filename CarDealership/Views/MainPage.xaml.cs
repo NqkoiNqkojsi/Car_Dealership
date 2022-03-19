@@ -31,8 +31,8 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            DebugText.Text= MockUpListsController.GenerateMockUpCarBrand(20);
-            DebugText.Text =DebugText.Text+ MockUpListsController.GenerateMockUpCar(20);
+            MockUpListsController.GenerateMockUpCarBrand(20);
+            MockUpListsController.GenerateMockUpCar(20);
             toggleButtonMain_Checked(MainView, new RoutedEventArgs());
             carIds = CarsSortAndFilterController.CompleteSort("");
             toggleButtonMain.IsChecked = true;
