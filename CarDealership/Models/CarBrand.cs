@@ -50,6 +50,7 @@ namespace CarDealership.Models
             }
         }
 
+
         /// <summary>
         /// Returns the first CarBrand available
         /// </summary>

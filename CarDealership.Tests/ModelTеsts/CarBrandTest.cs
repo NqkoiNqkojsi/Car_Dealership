@@ -21,9 +21,9 @@ namespace CarDealership.Tests.ModelTеsts
             Assert.AreEqual(false, result2, "The test returns true instead of false");
         }
         [TestMethod]
-        public void SortBrandsTest()
+        public void ReturnBrandTest()
         {
-            //TO DO
+            
         }
 
     }

@@ -25,10 +25,10 @@ namespace CarDealership.Tests.ControllerTests
         [TestMethod]
         public void MakeImgDirTest()
         {
-            //Returned the proper file path, method was since changed to create a directory in that path instead.
-           /* string id = "1";
-            string tobetested = CarController.MakeImgDir(id);
-            Assert.AreEqual("C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\Assets\\1", tobetested, "Not equal"); */
+            
+            string id = "1";
+            string tobetested = CarController.ImgDirString(id);
+            Assert.AreEqual("C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\Assets\\1", tobetested, "Not equal"); 
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarDealership.Models;
 using System.IO;
-using System.Web;
 using CarDealership.Data;
+using Windows.Storage.Pickers;
 using Windows.Storage;
-using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CarDealership.Controllers
 {
@@ -92,13 +90,58 @@ namespace CarDealership.Controllers
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
             string AssetsDir = Directory.GetCurrentDirectory();
-            int index = AssetsDir.IndexOf("Car_Dealership");
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
             if (index >= 0)
                 AssetsDir = AssetsDir.Substring(0, index);
             AssetsDir += toBeAdded;
             Directory.CreateDirectory(AssetsDir);
         }
 
+        /// <summary>
+        /// Returns directory name for ease of the AddPhotoToDir method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string ImgDirString(string id)
+        {
+            string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
+            string AssetsDir = Directory.GetCurrentDirectory();
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
+            if (index >= 0)
+                AssetsDir = AssetsDir.Substring(0, index);
+            AssetsDir += toBeAdded;
+            return AssetsDir;
+        }
+
+        /// <summary>
+        /// Uploads an image to a customer's offer
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<StorageFile> ImageUpload()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            StorageFile carPhoto = await openPicker.PickSingleFileAsync();
+            return carPhoto;
+        }
+
+        /// <summary>
+        /// Adds the image to a car's photo directory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static async Task AddPhotoToDir(string id)
+        {
+            StorageFile carPhoto = await ImageUpload();
+            if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
+            var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
+            await carPhoto.MoveAsync(dir);
+            
+        }
         
 
     }
