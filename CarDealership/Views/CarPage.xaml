@@ -5,12 +5,23 @@
     xmlns:local="using:CarDealership.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="600"
-    d:DesignWidth="720">
+    mc:Ignorable="d" Width="1594" Height="1080">
 
-    <Grid>
-        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="58,40,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="407" FontSize="32"/>
-        <TextBlock x:Name="IdText" HorizontalAlignment="Left" Margin="58,238,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="236" FontSize="32"/>
+    <Grid Width="1594" Height="1080">
+        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="574" VerticalAlignment="Top" Width="851" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
+            <Rectangle.Fill>
+                <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="58,40,0,0" TextWrapping="Wrap" Text="CarName" VerticalAlignment="Top" Height="81" Width="527" FontSize="48"/>
+        <Button Content="Next" Margin="822,628,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
+        <Button Content="Prev" Margin="64,628,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
+        <StackPanel Margin="58,717,685,35" CornerRadius="20" Background="#FF8495B5" Opacity="0.8" Grid.Row="3" Grid.Column="3">
+            <TextBlock TextWrapping="Wrap" Text="Seller info:" Height="61" Width="227" FontSize="48"/>
+            <TextBlock TextWrapping="Wrap" FontSize="36" Height="63" Width="828"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="36" Height="63" Width="828"><Run Text="Phone:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+            <Button Content="Send" HorizontalAlignment="Right" CornerRadius="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="36" Width="132" Padding="8,4,10,5" Margin="0,0,10,0"/>
+            <TextBox TextWrapping="Wrap" Text="Write an email." Height="93" Width="536" RenderTransformOrigin="0.5,0.489" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="36"/>
+        </StackPanel>
     </Grid>
 </UserControl>
