@@ -34,12 +34,17 @@ namespace CarDealership.Tests.ControllerTests
         {
             CustomerController.SendEmail("accountbox@abv.bg", "Test", "Success!");
         }
-
+        [TestMethod]
+        public void CreateCustomerTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            Assert.AreEqual(1, Customer.customers.Count, "Customer not created");
+        }
         [TestMethod]
         public void UpdatePasswordTest()
         {
             CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899","ivan@gmail.com");
-            CustomerController.UpdatePassword("0", "44444", "55555");
+            CustomerController.UpdatePassword("1", "44444", "55555");
             Assert.AreEqual("55555", Customer.customers.Where(c => c.id == CustomerController.sessionID).First().Password, "Different passwords");
         }
         [TestMethod]
@@ -49,5 +54,49 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.Login("ivan@gmail.com", "44444");
             Assert.AreEqual(CustomerController.sessionID, Customer.customers.Where(c => c.name == "Ivan").First().id, "Login failed");
         }
+
+        [TestMethod]
+        public void CreateOfferTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            CustomerController.CreateOffer("Mazda", "Mazda", 1.00, "3.2015", 1.00, 1.00, 1.00, "Its a car");
+            Assert.AreEqual(1, Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count, "Offer didnt go through");
+        }
+
+        [TestMethod]
+        public void RemoveOfferTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            CustomerController.CreateOffer("Mazda", "Mazda", 1.00, "3.2015", 1.00, 1.00, 1.00, "Its a car");
+            int size1 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
+            CustomerController.RemoveOffer("0");
+            int size2 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
+            Assert.AreEqual(size2 + 1, size1, "Offer not removed");
+        }
+
+        [TestMethod]
+        public void ForgottenPasswordTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "accountbox@abv.bg");
+            CustomerController.ForgottenPasswords("accountbox@abv.bg");
+        }
+
+        [TestMethod]
+        public void MakeBirthDateTest()
+        {
+            DateTime date = new DateTime();
+            date.AddYears(2020);
+            date.AddMonths(3);
+            string dateStr = date.ToString("dd.M.yyy");
+            DateTime result = CustomerController.MakeBirthDate(dateStr);
+            Assert.AreEqual(date, result, "The MakeBirthDate returns a wrong DateTime");
+        }
+        [TestMethod]
+        public void isValidPassTest()
+        {
+            string pass = "12345IT!";
+            Assert.AreEqual(CustomerController.IsValidPassword(pass), true, "Pass doesnt work");
+        }
+
     }
 }

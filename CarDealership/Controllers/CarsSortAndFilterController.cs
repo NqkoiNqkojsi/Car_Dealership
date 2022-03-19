@@ -54,7 +54,8 @@ namespace CarDealership.Controllers
         /// <param name="year"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static List<string> CompleteFilter(double priceMin, double priceMax, string brand, int year, string model, string choice)
+
+        public static List<int> CompleteFilter(double priceMin, double priceMax, string brand, int year, string model, string choice)
         {
             List<Car> cars = Car.approvedCars;
             if(priceMin!=0 || priceMax!=0) cars = CarsFilterPrice(cars, priceMax, priceMin);
@@ -76,7 +77,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="choice">can be "Price", "Year" or "Price and Year"</param>
         /// <returns></returns>
-        public static List<string> CompleteSort(string choice)
+        public static List<int> CompleteSort(string choice)
         {
             List<Car> cars = Car.approvedCars;
             if (choice == "Price") cars = CarsSortPrice(cars);
