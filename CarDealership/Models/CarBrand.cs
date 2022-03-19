@@ -9,7 +9,7 @@ namespace CarDealership.Models
     public class CarBrand
     {
         [Key]
-        public string id { get; set; }
+        public int id { get; set; }
 
         public static int counter = 0;//save the last id, probably it will be changed later
 
@@ -30,7 +30,7 @@ namespace CarDealership.Models
         
         public CarBrand(string brand, string model)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.brand = brand;
             this.model = model;
             counter++;

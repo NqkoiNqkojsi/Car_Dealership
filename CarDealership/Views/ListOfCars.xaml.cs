@@ -21,9 +21,9 @@ namespace CarDealership.Views
 {
     public sealed partial class ListOfCars : UserControl
     {
-        List<string> prevId=new List<string>();
-        List<string> nextId=new List<string>();
-        List<string> usedId=new List<string>();
+        List<int> prevId=new List<int>();
+        List<int> nextId=new List<int>();
+        List<int> usedId=new List<int>();
         public event PointerEventHandler OpenCarPage;
         public void ManageImages()
         {
@@ -34,10 +34,10 @@ namespace CarDealership.Views
             try
             {
                 ListCarPanel.Children.Clear();
-                foreach (string id in usedId)
+                foreach (int id in usedId)
                 {
                     CarShowCase carShowCase = new CarShowCase(id);
-                    carShowCase.Name = id;
+                    carShowCase.Name = id.ToString();
                     await Task.Delay(100);
                     carShowCase.PointerPressed += OpenCarPage;
                     ListCarPanel.Children.Add(carShowCase);
@@ -47,7 +47,7 @@ namespace CarDealership.Views
                 Console.WriteLine(ex.ToString());
             }
         }
-        public ListOfCars(List<string> ids)
+        public ListOfCars(List<int> ids)
         {
             this.InitializeComponent();
             Prev.IsEnabled = false;
@@ -108,6 +108,6 @@ namespace CarDealership.Views
     }
     public class OpenCarPageEventArgs : EventArgs
     {
-        public string id { get; set; }
+        public int id { get; set; }
     }
 }

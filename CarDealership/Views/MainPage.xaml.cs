@@ -25,7 +25,7 @@ namespace CarDealership
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public List<int> carIds = new List<int>();
+        public List<int> carIds=new List<int>();
         SolidColorBrush toggleOnBrush= new SolidColorBrush(Color.FromArgb(50, 41, 77, 127));
         SolidColorBrush toggleOffBrush = new SolidColorBrush(Color.FromArgb(20, 0, 0, 0));
         public MainPage()
@@ -34,7 +34,7 @@ namespace CarDealership
             MockUpListsController.GenerateMockUpCarBrand(20);
             MockUpListsController.GenerateMockUpCar(20);
             toggleButtonMain_Checked(MainView, new RoutedEventArgs());
-            carIds = CarsSortAndFilterController.CompleteSort("");
+            carIds = CarsSortAndFilterController.CompleteSort("0");
             toggleButtonMain.IsChecked = true;
             toggleButtonMain.Background = toggleOnBrush;
         }
@@ -59,7 +59,7 @@ namespace CarDealership
         {
             DeactivateButtons();
             CarShowCase carShowCase = (CarShowCase)sender;
-            CarPage carPage = new CarPage(carShowCase.id.ToString());
+            CarPage carPage = new CarPage(carShowCase.id);
             MainView.Children.Add(carPage);
         }
         /// <summary>
@@ -130,7 +130,9 @@ namespace CarDealership
             }
             else
             {
-                //Show Error Message
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("No wished cars found!");
+                p.Child = errorMessage;
             }
         }
         /// <summary>
@@ -149,7 +151,9 @@ namespace CarDealership
             }
             else
             {
-                //Show Error Message
+                Popup p=new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("No own cars found!");
+                p.Child = errorMessage;
             }
         }
         /// <summary>

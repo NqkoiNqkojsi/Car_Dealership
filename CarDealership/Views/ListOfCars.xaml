@@ -10,9 +10,9 @@
     d:DesignWidth="720">
 
     <Grid>
-        <Button x:Name="Next" CornerRadius="12" Content="Next" Margin="0,550,20,0" VerticalAlignment="Top" Click="GoNext" Width="70" HorizontalAlignment="Right" FontSize="14"/>
-        <Button x:Name="Prev" CornerRadius="12" Content="Prev" Margin="20,550,0,0" VerticalAlignment="Top" Click="GoPrev" Width="70" FontSize="14"/>
-        <StackPanel x:Name="ListCarPanel" Margin="0,0,0,63" Height="520"></StackPanel>
-        <TextBlock HorizontalAlignment="Left" Margin="306,551,0,0" TextWrapping="Wrap" Text="Page (x) out of (y)" VerticalAlignment="Top" Height="26" Width="111" FontSize="14"/>
+        <Button x:Name="Next" CornerRadius="12" Content="Next" Margin="0,0,20,110" VerticalAlignment="Bottom" Click="GoNext" Width="70" HorizontalAlignment="Right" FontSize="14"/>
+        <Button x:Name="Prev" CornerRadius="12" Content="Prev" Margin="20,0,0,110" VerticalAlignment="Bottom" Click="GoPrev" Width="70" FontSize="14"/>
+        <StackPanel x:Name="ListCarPanel" Margin="0,7,0,147"/>
+        <TextBlock HorizontalAlignment="Left" Margin="306,0,0,110" TextWrapping="Wrap" Text="Page (x) out of (y)" VerticalAlignment="Bottom" Height="26" Width="111" FontSize="14"/>
     </Grid>
 </UserControl>

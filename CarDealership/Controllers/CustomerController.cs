@@ -321,9 +321,9 @@ namespace CarDealership.Controllers
         /// <param name="engineVolume"></param>
         /// <param name="info"></param>
         /// <returns>a response message</returns>
-        public static string CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        public static int CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 try
                 {
@@ -343,14 +343,14 @@ namespace CarDealership.Controllers
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
 
                   
-                    return "Made an offer";
+                    return car.id;
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
+                    return 0;
                 }
             }
-            return "Not logged in!";
+            return 0;
         }
         /// <summary>
         /// Method to log in a customer
@@ -380,7 +380,7 @@ namespace CarDealership.Controllers
 
         public static void RemoveOffer(int id)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                 Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
