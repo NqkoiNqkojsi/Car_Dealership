@@ -65,7 +65,6 @@ namespace CarDealership.Models
             this.phoneNum = phoneNum;
             this.email=email;
             counter++;
-            isAdmin = false;
         }
     }
 }

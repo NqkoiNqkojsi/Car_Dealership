@@ -42,5 +42,12 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.UpdatePassword("0", "44444", "55555");
             Assert.AreEqual("55555", Customer.customers.Where(c => c.id == CustomerController.sessionID).First().Password, "Different passwords");
         }
+        [TestMethod]
+        public void LoginTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            CustomerController.Login("ivan@gmail.com", "44444");
+            Assert.AreEqual(CustomerController.sessionID, Customer.customers.Where(c => c.name == "Ivan").First().id, "Login failed");
+        }
     }
 }
