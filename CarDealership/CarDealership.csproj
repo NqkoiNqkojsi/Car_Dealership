@@ -124,8 +124,12 @@
     <Compile Include="Data\CarBrandContext.cs" />
     <Compile Include="Data\CarContext.cs" />
     <Compile Include="Data\CustomerContext.cs" />
+    <Compile Include="Data\PictureContext.cs" />
+    <Compile Include="Data\RelationSellerContext.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\RelationSeller.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -167,6 +171,7 @@
   <ItemGroup>
     <Content Include="Assets\default_img.png" />
     <Content Include="Assets\Error logo.png" />
+    <Content Include="Data\cardealership.sql" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\githubLogo.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

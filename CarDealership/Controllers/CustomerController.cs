@@ -341,7 +341,7 @@ namespace CarDealership.Controllers
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
                   
-                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+                    Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                   
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                   
