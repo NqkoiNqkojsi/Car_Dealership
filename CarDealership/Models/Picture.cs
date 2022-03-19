@@ -12,10 +12,9 @@ namespace CarDealership.Models
     {
         [Key]
         public int id { get; set; }
-
-        [ForeignKey("Car")]
         public int carId { get; set; }
-
+        
+        [ForeignKey("Car")]
         public virtual Car car { get; set; }
 
         public string picture { get; set; }

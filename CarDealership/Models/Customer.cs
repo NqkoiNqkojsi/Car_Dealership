@@ -53,10 +53,8 @@ namespace CarDealership.Models
             set { password = CustomerController.HashString(value); }
         }
 
-        public string phoneNum;
+        public string phoneNum { get; set; }
 
-
-        
         public List<Car> favoritedCars = new List<Car>();
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)

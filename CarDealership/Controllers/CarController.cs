@@ -12,7 +12,7 @@ namespace CarDealership.Controllers
 {
     public class CarController
     {
-        private static CarContext carContext = null;
+        private static CarDealershipContext carContext = null;
         /// <summary>
         /// Make a date from a string with only month and year
         /// </summary>
