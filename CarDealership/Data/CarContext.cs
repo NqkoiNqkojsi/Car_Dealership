@@ -4,10 +4,6 @@ namespace CarDealership.Data
 {
     public class CarContext : DbContext
     {
-        /// <summary>
-        /// Connection String
-        /// </summary> 
-        private const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";//pull the connection string after making a connecting the database with sql server
 
         /// <summary>
         /// Cars Table
@@ -28,7 +24,36 @@ namespace CarDealership.Data
         /// </summary> 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True";
+                optionsBuilder.UseSqlServer(connString);
+            }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>(entity =>
+            {
+                entity.HasKey(k => k.id).HasName("pk_cars_id");
+
+                entity.Property(k => k.id).HasColumnName("id_car");
+
+                entity.HasOne(b => b.carBrand).WithMany().HasForeignKey(b => b.carBrandId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("fk_car_car_brand");
+
+                entity.Property(p => p.price).HasColumnName("price");
+
+                entity.Property(p => p.manufDate).HasColumnType("datetime").HasColumnName("manufactureDate");
+
+                entity.Property(p => p.horsePower).HasColumnType("float").HasColumnName("horsepower");
+
+                entity.Property(p => p.kmDriven).HasColumnType("float").HasColumnName("kmDriven");
+
+                entity.Property(p => p.engineVolume).HasColumnType("float").HasColumnName("engineVolume");
+
+                entity.Property(p => p.info).HasColumnName("additional_info").HasMaxLength(1000);
+            });
+
+
         }
     }
 }

@@ -1,18 +1,24 @@
-﻿using CarDealership.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CarDealership.Models;
+
 namespace CarDealership.Data
 {
-    public class CarBrandContext : DbContext
+    public class PictureContext : DbContext
     {
         /// <summary>
         /// CarBrands Table
         /// </summary>
-        public DbSet<CarBrand> carBrands { get; set; }
+        public DbSet<Picture> carBrands { get; set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CarBrandContext()
+        public PictureContext()
         {
             // Create the database automaticly
             Database.EnsureCreated();
@@ -32,17 +38,16 @@ namespace CarDealership.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CarBrand>(entity =>
+            modelBuilder.Entity<Picture>(entity =>
             {
                 entity.HasKey(k => k.id).HasName("idcar_brand");
 
-                entity.Property(p => p.brand).HasMaxLength(45).IsRequired().HasColumnName("brand");
+                entity.HasOne(c => c.car).WithMany().HasForeignKey(k => k.carId).OnDelete(DeleteBehavior.ClientCascade).HasConstraintName("fk_car_picture");
 
-                entity.Property(p => p.model).HasMaxLength(45).IsRequired().HasColumnName("model");
+                entity.Property(p => p.picture);
 
             });
 
         }
     }
 }
-
