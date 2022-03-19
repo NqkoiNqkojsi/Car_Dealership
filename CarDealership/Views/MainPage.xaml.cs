@@ -31,10 +31,12 @@ namespace CarDealership
         public MainPage()
         {
             this.InitializeComponent();
-            MockUpListsController.GenerateMockUpCarBrand(10);
-            MockUpListsController.GenerateMockUpCar(10);
-            //ListOfCars miro = new ListOfCars();
+            //MockUpListsController.GenerateMockUpCarBrand(10);
+            //MockUpListsController.GenerateMockUpCar(10);
+            //CarPage miro = new CarPage("0");
             //MainView.Children.Add(miro);
+            MakeOffer offer = new MakeOffer();
+            MainView.Children.Add(offer);
         }
         private void ToggleSwitch_Toggled(Object sender, RoutedEventArgs e)
         {
