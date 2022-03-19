@@ -210,6 +210,7 @@ namespace CarDealership.Controllers
                     }
                 }
             }
+            Console.WriteLine("Log in to update your password");
         }
 
         /// <summary>
@@ -245,6 +246,7 @@ namespace CarDealership.Controllers
                     }
                 }
             }
+            else Console.WriteLine("Log in to send emails");
         }
 
         /// <summary>
@@ -254,38 +256,42 @@ namespace CarDealership.Controllers
         /// <param name="car"></param>
         public static void AddToFavorite(Customer customer, Car car)
         {
-            customer.favoritedCars.Add(car);
-
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
-
-            try
+            if (sessionID != null)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    if (conn.State == System.Data.ConnectionState.Open)
-                    {
-                        using (SqlCommand cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
-                                                "values (" + customer.id + ", " + car.id + ")";
+                customer.favoritedCars.Add(car);
 
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                while (reader.Read())
+                                cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
+                                                    "values (" + customer.id + ", " + car.id + ")";
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
-                                    var carId = car.id;
-                                    var customerId = customer.id;
+                                    while (reader.Read())
+                                    {
+                                        var carId = car.id;
+                                        var customerId = customer.id;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                catch (Exception eSql)
+                {
+                    Console.WriteLine($"Exception: {eSql.Message}");
+                }
             }
-            catch (Exception eSql)
-            {
-                Console.WriteLine($"Exception: {eSql.Message}");
-            }
+            else Console.WriteLine("Log in to perform this operation");
         }
 
         /// <summary>
@@ -352,6 +358,23 @@ namespace CarDealership.Controllers
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
+
         }
+
+        public static void RemoveOffer(string id)
+        {
+            if (sessionID != null)
+            {
+                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
+                customer.publicOffers.Remove(car);
+                foreach (Customer cus in Customer.customers)
+                {
+                    if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
+                }
+            }
+            else Console.WriteLine("Log in to remove offers.");
+        }
+
     }
 }
