@@ -32,10 +32,6 @@ namespace CarDealership.Models
         /// the cars(offers) that are wished by the user
         /// </summary>
         public List<Car> carsFavourite=new List<Car>();
-        /// <summary>
-        /// all customers available
-        /// </summary>
-        public static List<Customer> customers = new List<Customer>();
 
         public string Email
         {
@@ -53,9 +49,10 @@ namespace CarDealership.Models
             set { password = CustomerController.HashString(value); }
         }
 
-        public string phoneNum;
+        public string phoneNum { get; set; }
 
 
+        
         public List<Car> favoritedCars = new List<Car>();
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)
@@ -67,7 +64,6 @@ namespace CarDealership.Models
             this.phoneNum = phoneNum;
             this.email=email;
             counter++;
-            isAdmin = false;
         }
     }
 }

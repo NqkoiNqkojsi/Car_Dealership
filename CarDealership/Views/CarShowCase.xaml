@@ -10,7 +10,7 @@
     <Grid Name="ShowCase" CornerRadius="20" Background="#7FC5C5C5" BorderBrush="Black">
 
 
-        <Rectangle x:Name="Image"  HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="135" RenderTransformOrigin="0.32,0.5">
+        <Rectangle x:Name="Image" RadiusX="20" RadiusY="20" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="135" RenderTransformOrigin="0.32,0.5">
             <Rectangle.Fill>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
             </Rectangle.Fill>

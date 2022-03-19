@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarDealership.Models;
 using System.IO;
-using System.Web;
 using CarDealership.Data;
+using Windows.Storage.Pickers;
 using Windows.Storage;
-using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CarDealership.Controllers
 {
@@ -31,13 +29,6 @@ namespace CarDealership.Controllers
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
                 
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
-           
-                //add manufacture date to the car table 
-                using (carContext = new CarContext())
-                {
-                    var newDate = carContext.cars.Select(d=> d.manufDate == dateTime);
-                    carContext.SaveChanges();
-                }
                 return dateTime;
             }
             catch (FormatException e)
@@ -46,41 +37,96 @@ namespace CarDealership.Controllers
                 return DateTime.MinValue;//at error return min value
             }
         }
-
         /// <summary>
         /// Adds cars to customer's wish list
         /// </summary>
-        /// <param name="customerId"> </param>
-        /// <param name="carId">id of liked car</param>
-
-        public static void AddFavoriteCar(string customerId, string carId)
+        /// <param name="carId">ids of liked cars</param>
+        public static void AddFavoriteCar(string carId)
         {
-            Customer.customers.First(x => x.id == customerId).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
-
-            FavoriteCarContext favoriteCarContext = null;
-
-            FavoriteCar favoriteCar = new FavoriteCar(customerId, carId);
-
-            using(favoriteCarContext = new FavoriteCarContext())
+            if (CustomerController.sessionID != null)
             {
-                favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                favoriteCarContext.SaveChanges();
+                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+
+                FavoriteCarContext favoriteCarContext = null;
+
+                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
+
+                using (favoriteCarContext = new FavoriteCarContext())
+                {
+                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
+                    favoriteCarContext.SaveChanges();
+                }
             }
         }
 
+        public static void RemoveFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
+
+                FavoriteCarContext favoriteCarContext = null;
+
+                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
+
+                using (favoriteCarContext = new FavoriteCarContext())
+                {
+                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
+                    favoriteCarContext.SaveChanges();
+                }
+            }
+        }
+
+        public static bool IsFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                try
+                {
+                    return CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                }catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
-        /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
-        
-        public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).favoritedCars.Select(x=>x.id).ToList();
+        public static List<string> ShowFavoriteCars()
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.favoritedCars.Select(x => x.id).ToList();
+            }
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
+        }
+        /// <summary>
+        /// Show Cars in the Customer's Wishlist
+        /// </summary>
+        /// <returns>list of ids</returns>
+        public static List<string> ShowOwnedCars()
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.carsOwned.Select(x => x.id).ToList();
+            }
+            Console.WriteLine("Log in to view owned cars");
+            return null;
+        }
         /// <summary>
         /// Returns info of car
         /// </summary>
         /// <param name="id">id of needed car</param>
         /// <returns>dictionary of necessary info</returns>
-        
         public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
         /// <summary>
@@ -92,14 +138,58 @@ namespace CarDealership.Controllers
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
             string AssetsDir = Directory.GetCurrentDirectory();
-            int index = AssetsDir.IndexOf("Car_Dealership");
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
             if (index >= 0)
                 AssetsDir = AssetsDir.Substring(0, index);
             AssetsDir += toBeAdded;
             Directory.CreateDirectory(AssetsDir);
         }
 
-        
+        /// <summary>
+        /// Returns directory name for ease of the AddPhotoToDir method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string ImgDirString(string id)
+        {
+            string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
+            string AssetsDir = Directory.GetCurrentDirectory();
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
+            if (index >= 0)
+                AssetsDir = AssetsDir.Substring(0, index);
+            AssetsDir += toBeAdded;
+            return AssetsDir;
+        }
 
+        /// <summary>
+        /// Uploads an image to a customer's offer
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<StorageFile> ImageUpload()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            StorageFile carPhoto = await openPicker.PickSingleFileAsync();
+            return carPhoto;
+        }
+
+        /// <summary>
+        /// Adds the image to a car's photo directory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static async Task AddPhotoToDir(string id)
+        {
+            StorageFile carPhoto = await ImageUpload();
+            if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
+            var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
+            await carPhoto.MoveAsync(dir);
+            
+        }
+        
     }
 }

@@ -14,9 +14,7 @@
         <ComboBox x:Name="ComboBox_Model" Margin="0,170,150,0" Width="542" Height="137" Header="Model" FontSize="48" HorizontalAlignment="Right" />
         <ComboBox x:Name="ComboBox_Sort" Margin="902,550,0,0" Width="542" Height="137" Header="Sort by" FontSize="48" />
         <Button x:Name="buttonSearch" Content="Search" Margin="0,756,0,0" VerticalAlignment="Top" CornerRadius="20" Height="194" Width="1294" HorizontalAlignment="Center" FontSize="72"/>
-        <TextBox x:Name="MinPriceText" HorizontalAlignment="Left" Margin="150,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="68" Width="542" FontSize="48"/>
-        <TextBlock x:Name="TextBlockMin"  HorizontalAlignment="Left" Margin="150,359,0,0" TextWrapping="Wrap" Text="Minimum price" VerticalAlignment="Top" Height="67" Width="506" FontSize="48"/>
-        <TextBox x:Name="MaxPriceText" HorizontalAlignment="Left" Margin="902,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="68" Width="538" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="902,359,0,0" TextWrapping="Wrap" Text="Maximum price" VerticalAlignment="Top" Height="70" Width="534" FontSize="48"/>
+        <TextBox x:Name="MinPriceText" Header="Minimum price" HorizontalAlignment="Left" Margin="150,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="137" Width="542" FontSize="48"/>
+        <TextBox x:Name="MaxPriceText" Header="Maximum price" HorizontalAlignment="Left" Margin="902,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="137" Width="538" FontSize="48"/>
     </Grid>
 </UserControl>
