@@ -53,7 +53,7 @@ namespace CarDealership.Models
             set { password = CustomerController.HashString(value); }
         }
 
-        public string phoneNum;
+        public string phoneNum { get; set; }
 
 
         
