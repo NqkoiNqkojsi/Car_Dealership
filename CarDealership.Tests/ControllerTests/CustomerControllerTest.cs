@@ -34,5 +34,10 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.SendEmail("accountbox@abv.bg", "Test", "Success!");
         }
 
+        [TestMethod]
+        public void UpdatePasswordTest()
+        {
+
+        }
     }
 }

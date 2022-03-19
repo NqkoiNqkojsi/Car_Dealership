@@ -39,7 +39,6 @@ namespace CarDealership.Controllers
                 return DateTime.MinValue;//at error return min value
             }
         }
-
         /// <summary>
         /// Adds cars to customer's wish list
         /// </summary>
@@ -51,7 +50,6 @@ namespace CarDealership.Controllers
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
             }
         }
-
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
@@ -63,7 +61,11 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.favoritedCars.Select(x => x.id).ToList();
             }
-            return null;
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
         }
         /// <summary>
         /// Show Cars in the Customer's Wishlist
@@ -76,6 +78,7 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.carsOwned.Select(x => x.id).ToList();
             }
+            Console.WriteLine("Log in to view owned cars");
             return null;
         }
         /// <summary>
