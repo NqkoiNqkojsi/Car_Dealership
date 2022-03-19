@@ -17,7 +17,6 @@ namespace CarDealership.Controllers
         private static CustomerContext customerContext = null;
 
         public static List<Customer> customers = new List<Customer>();
-      
         public static string sessionID { get; set; }
 
         /// <summary>
@@ -258,7 +257,7 @@ namespace CarDealership.Controllers
         {
             if (sessionID != null)
             {
-                Customer customer = Customer.customers.Where(c=>c.id==sessionID).FirstOrDefault();
+                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                 customer.favoritedCars.Add(car);
 
                 string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
@@ -341,7 +340,7 @@ namespace CarDealership.Controllers
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
-                  
+
                     return "Made an offer";
                 }
                 catch (Exception ex)
@@ -361,12 +360,12 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                if(customers.Any(c => c.email == email))
+                if (customers.Any(c => c.email == email))
                 {
                     Customer customer = customers.First(c => c.email == email);
-                    if(customer.Password == HashString(password))
+                    if (customer.Password == HashString(password))
                     {
-                        sessionId = customer.id;
+                        sessionID = customer.id;
                         return "Success";
                     }
                     return "Wrong password";
@@ -375,7 +374,7 @@ namespace CarDealership.Controllers
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        } 
+        }
 
         public static void RemoveOffer(string id)
         {
@@ -386,7 +385,7 @@ namespace CarDealership.Controllers
                 customer.publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
-                    if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
+                    if (cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
                 }
             }
             else Console.WriteLine("Log in to remove offers.");
