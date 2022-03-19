@@ -18,5 +18,8 @@
         <TextBox x:Name="Litres" Header ="Litres" CornerRadius="8" HorizontalAlignment="Left" Margin="123,655,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="100" Width="550" FontSize="40" />
         <TextBox x:Name="Info" Header="Short description" CornerRadius="8" HorizontalAlignment="Left" Margin="123,755,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="205" Width="1355" FontSize="40"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" Text="Make an offer" VerticalAlignment="Top" FontSize="72"/>
+        <TextBlock x:Name="textBlockPhotos" HorizontalAlignment="Left" Margin="928,455,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="300" Width="550" FocusVisualPrimaryBrush="Black"/>
+        <Button x:Name="buttonAddPhotos" Click="buttonAddPhoto_Click" Content="AddPhotos" Margin="928,373,0,0" VerticalAlignment="Top" Width="208" Height="58"/>
+        <Button x:Name="buttonCreate" Click="buttonMakeOffer_Click" Content="Create" Margin="697,697,0,0" VerticalAlignment="Top" Width="208" Height="58"/>
     </Grid>
 </UserControl>
