@@ -41,7 +41,7 @@ namespace CarDealership.Controllers
         /// Adds cars to customer's wish list
         /// </summary>
         /// <param name="carId">ids of liked cars</param>
-        public static void AddFavoriteCar(string carId)
+        public static void AddFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
@@ -51,7 +51,7 @@ namespace CarDealership.Controllers
             }
         }
 
-        public static void RemoveFavoriteCar(string carId)
+        public static void RemoveFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
@@ -59,7 +59,7 @@ namespace CarDealership.Controllers
             }
         }
 
-        public static bool IsFavoriteCar(string carId)
+        public static bool IsFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
@@ -78,26 +78,27 @@ namespace CarDealership.Controllers
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <returns>list of ids</returns>
-        public static List<string> ShowFavoriteCars()
-        {
-            if (CustomerController.sessionID != null)
-            {
-                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
-                return customer.favoritedCars.Select(x => x.id).ToList();
-            }
-            else
-            {
-                Console.WriteLine("Log in to perform this operation");
-                return null;
-            }
-        }
+        //public static List<string> ShowFavoriteCars()
+        //{
+        //    if (CustomerController.sessionID != null)
+        //    {
+        //        Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+        //        return customer.favoritedCars.Select(x => x.id).ToList();
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Log in to perform this operation");
+        //        return null;
+        //    }
+        //}
+
         /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
         /// <returns>list of ids</returns>
-        public static List<string> ShowOwnedCars()
+        public static List<int> ShowOwnedCars()
         {
-            if (CustomerController.sessionID != null)
+            if (CustomerController.sessionID != 0)
             {
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.publicOffers.Select(x => x.id).ToList();
@@ -110,7 +111,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="id">id of needed car</param>
         /// <returns>dictionary of necessary info</returns>
-        public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
+        public static Dictionary<string, string> IDtoCarInfo(int id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
         /// <summary>
         /// Creates a directory that contains a car's photos
