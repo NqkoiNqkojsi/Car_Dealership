@@ -39,9 +39,17 @@ namespace CarDealership.Controllers
                 return DateTime.MinValue;//at error return min value
             }
         }
-
-        
-
+        /// <summary>
+        /// Adds cars to customer's wish list
+        /// </summary>
+        /// <param name="carId">ids of liked cars</param>
+        public static void AddFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+            }
+        }
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
