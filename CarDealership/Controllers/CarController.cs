@@ -70,14 +70,21 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customerId">the user id using the app</param>
         /// <returns>list of ids</returns>
-        
-        public static List<string> ShowFavoriteCars(string customerId)=> Customer.customers.First(x => x.id == customerId).favoritedCars.Select(x=>x.id).ToList();
+
+        public static List<string> ShowFavoriteCars()
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.favoritedCars.Select(x => x.id).ToList();
+            }
+            return null;
+        }
         /// <summary>
         /// Returns info of car
         /// </summary>
         /// <param name="id">id of needed car</param>
         /// <returns>dictionary of necessary info</returns>
-        
         public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
         /// <summary>

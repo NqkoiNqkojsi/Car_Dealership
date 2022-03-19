@@ -73,6 +73,13 @@ namespace CarDealership
             listOfCars.OpenCarPage += AddCarPage;
             MainView.Children.Add(listOfCars);
         }
+        /// <summary>
+        /// Called from other views, it resets the view deleting everything in MainView
+        /// </summary>
+        public void ResetView(object sender, RoutedEventArgs e)
+        {
+            DeactivateButtons();
+        }
 
         /// <summary>
         /// Open the search by clicking the logo, used by most userControls
@@ -92,6 +99,7 @@ namespace CarDealership
         {
             DeactivateButtons();
             MainPanel mainPanel = new MainPanel();
+            mainPanel.ClosePage += ResetView;
             MainView.Children.Add(mainPanel);
             toggleButtonRegister.Background = toggleOnBrush;
         }
@@ -111,9 +119,18 @@ namespace CarDealership
         private void toggleButtonWished_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            CarSearchMenue search = new CarSearchMenue();
-            MainView.Children.Add(search);
-            toggleButtonMain.Background = toggleOnBrush;
+            carIds = CarController.ShowFavoriteCars();
+            if (carIds != null)
+            {
+                ListOfCars listOfCars = new ListOfCars(carIds);
+                MainView.Children.Add(listOfCars);
+                listOfCars.OpenCarPage += AddCarPage;
+                toggleButtonMain.Background = toggleOnBrush;
+            }
+            else
+            {
+                //Show Error Message
+            }
         }
         /// <summary>
         /// Open the List of cars filled with owned cars by clicking the owned button

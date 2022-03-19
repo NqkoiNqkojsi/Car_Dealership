@@ -20,6 +20,7 @@ namespace CarDealership.Views
 {
     public sealed partial class MainPanel : UserControl
     {
+        public event RoutedEventHandler ClosePage;
         public MainPanel()
         {
             this.InitializeComponent();
@@ -121,6 +122,7 @@ namespace CarDealership.Views
                 DateTime dateTime = CustomerController.MakeBirthDate(date);
                 CustomerController.CreateCustomer(usernameSignin.Text, dateTime, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
             }
+            ClosePage.Invoke(this, null);
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
