@@ -19,9 +19,11 @@ namespace CarDealership.Views
 {
     public sealed partial class ErrorMessage : UserControl
     {
-        public ErrorMessage()
+        public event RoutedEventHandler ClosePage;
+        public ErrorMessage(string text)
         {
             this.InitializeComponent();
+            ErrorMessageBody.Text = text;
         }
     }
 }
