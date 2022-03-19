@@ -18,7 +18,7 @@ namespace CarDealership.Controllers
                 car.owner = new Customer(random.Next().ToString(), DateTime.Now, random.NextDouble().ToString(), "1111111", "email@abv.bg");
                 Car.approvedCars.Add(car);
             }
-            return ": "+Car.approvedCars.Count().ToString() +"; "+ Car.quarantinedCars.Count().ToString();
+            return ": "+Car.approvedCars.Count().ToString() +"; "+ Car.approvedCars.Count().ToString();
         }
         static List<string> brandsReal = new List<string> { "","BMW", "Mercedes", "Audi", "VW", "Tesla", "Toyota", "Ford"};
         public static string GenerateMockUpCarBrand(int count)
