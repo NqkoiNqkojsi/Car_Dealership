@@ -18,7 +18,6 @@ CREATE TABLE car (
   manufactureDate DATETIME NOT NULL,
   horsepower FLOAT NOT NULL,
   kmDriven FLOAT NULL,
-  imgDir VARCHAR(45) NULL,
   engineVolume FLOAT NULL,
   additional_info VARCHAR(255) NULL,
   PRIMARY KEY (id)
