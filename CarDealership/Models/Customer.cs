@@ -49,8 +49,6 @@ namespace CarDealership.Models
 
         public string phoneNum { get; set; }
 
-
-        
         public List<Car> favoritedCars = new List<Car>();
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)

@@ -121,11 +121,8 @@
     <Compile Include="Controllers\CarsSortAndFilterController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MockUpListsController.cs" />
-    <Compile Include="Data\CarBrandContext.cs" />
-    <Compile Include="Data\CarContext.cs" />
-    <Compile Include="Data\CustomerContext.cs" />
-    <Compile Include="Data\PictureContext.cs" />
-    <Compile Include="Data\RelationSellerContext.cs" />
+    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\database.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Picture.cs" />

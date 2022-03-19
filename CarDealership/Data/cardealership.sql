@@ -1,6 +1,6 @@
-﻿CREATE DATABASE [cardealership]
+﻿CREATE DATABASE cardealership
 GO
-USE [cardealership]
+USE cardealership
 GO
 CREATE TABLE [CarBrand]
 (
@@ -15,7 +15,7 @@ CREATE TABLE [Car]
     [carBrandId] INT NOT NULL,
     CONSTRAINT [fk_car_car_brand] FOREIGN KEY ([carBrandId]) REFERENCES [CarBrand]([id]),
     [price] FLOAT NOT NULL,
-    [manufDate] DATETIME NOT NULL,
+    [manufDate] VARCHAR(45) NOT NULL,
     [horsePower] FLOAT NOT NULL,
     [kmDriven] FLOAT NOT NULL,
     [engineVolume] FLOAT NOT NULL,
@@ -45,5 +45,6 @@ CREATE TABLE [Picture]
 (
     [id] INT PRIMARY KEY IDENTITY NOT NULL,
     [carId] INT NOT NULL,
+    CONSTRAINT [fk_car_picture] FOREIGN KEY ([carId]) REFERENCES [Car]([Id]),
     [picture] VARBINARY(MAX)
 );

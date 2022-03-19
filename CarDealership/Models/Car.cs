@@ -66,6 +66,11 @@ namespace CarDealership.Models
             approvedCars.Add(this);
             counter++;
         }
+        
+        public Car()
+        {
+
+        }
         public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter.ToString();

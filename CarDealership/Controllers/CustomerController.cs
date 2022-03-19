@@ -14,7 +14,7 @@ namespace CarDealership.Controllers
 {
     public class CustomerController
     {
-        private static CustomerContext customerContext = null;
+        private static CarDealershipContext customerContext = null;
 
       
         public static string sessionID { get; set; }
@@ -173,7 +173,7 @@ namespace CarDealership.Controllers
             if (!CustomerExists)
             {
                 Customer.customers.Add(customer);
-                using (customerContext = new CustomerContext())
+                using (customerContext = new CarDealershipContext())
                 {
                     customerContext.customers.Add(customer);
                     customerContext.SaveChanges();
@@ -194,7 +194,7 @@ namespace CarDealership.Controllers
                     {
                         Customer.customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
 
-                        using (customerContext = new CustomerContext())
+                        using (customerContext = new CarDealershipContext())
                         {
                             if (oldPass != null)
                             {
