@@ -162,9 +162,8 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static async Task AddPhotoToDir(string id)
+        public static async Task AddPhotoToDir(string id, StorageFile carPhoto)
         {
-            StorageFile carPhoto = await ImageUpload();
             if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
             var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
             await carPhoto.MoveAsync(dir);

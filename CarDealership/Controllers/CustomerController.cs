@@ -342,14 +342,14 @@ namespace CarDealership.Controllers
                     car.owner = customer;
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                   
-                    return "Made an offer";
+                    return car.id;
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
+                    return null;
                 }
             }
-            return "Not logged in!";
+            return null;
         }
         /// <summary>
         /// Method to log in a customer
