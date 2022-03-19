@@ -56,8 +56,6 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
-
-                
             }
         }
 

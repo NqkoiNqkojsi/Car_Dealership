@@ -60,6 +60,26 @@ namespace CarDealership.Tests.ControllerTests
             Assert.AreEqual(CarController.ShowOwnedCars(), test, "Doesn't work");
         }
 
+        [TestMethod]
+        public void isFavoriteTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
+            Car car = new Car("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
+            CustomerController.AddToFavorite(car);
+            Assert.AreEqual(true, CarController.IsFavoriteCar(car.id), "Isnt in favorites");
+        }
         
+        [TestMethod]
+        public void RemoveFaveCarTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
+            Car car = new Car("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
+            CustomerController.AddToFavorite(car);
+            int size1 = Customer.customers.Where(c=>c.name == "Ivan").First().favoritedCars.Count();
+            CarController.RemoveFavoriteCar(car.id);
+            int size2 = Customer.customers.Where(c => c.name == "Ivan").First().favoritedCars.Count();
+            Assert.AreEqual(size2 + 1, size1, "Car removed unsuccessfully");
+        }
+
     }
 }
