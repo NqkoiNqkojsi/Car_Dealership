@@ -7,10 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="1080" Width="1594">
 
-    <Grid Width="1594" Height="1080" Background="#A6BBE3" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid Width="1354" Height="970" Background="#A6BBE3" Margin="0,0,240,110" >
-            <Border Height="Auto" Margin="225,327,804,327" Width="Auto">
+    <Grid Width="1594" Height="1080"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Width="1354" Height="970" Margin="0,0,240,110" >
+
+            <Border Height="Auto" Margin="136,271,758,270" Width="Auto">
                 <Grid>
+
                     <PasswordBox x:Name="passwordSignin" Header="Password" Margin="1,112,-1,148" CornerRadius="8" Height="56" Width="325" PasswordChanged="passwordSignin_PasswordChanged"/>
                     <TextBox x:Name="usernameSignin" Header="Username" CornerRadius="8" HorizontalAlignment="Center" TextWrapping="Wrap" Height="56" Width="325" Margin="0,0,0,260" TextChanged="usernameSignin_TextChanged"/>
                     <TextBox x:Name="emailSignin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Height="56" Width="325" Margin="1,56,-1,204" TextChanged="emailSignin_TextChanged"/>
@@ -21,13 +23,15 @@
                     <Button x:Name="SignInButton" Content="Sign in" CornerRadius="8" VerticalAlignment="Top" Height="30" Width="325" Margin="0,286,0,0" HorizontalAlignment="Center" Click="SignInButton_Click"/>
                 </Grid>
             </Border>
-            <Border Height="Auto" Margin="804,412,225,411" Width="Auto">
+
+            <Border Height="Auto" Margin="758,386,136,385" Width="Auto">
                 <Grid>
                     <TextBox x:Name="emailLogin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Height="56" Width="325" Margin="1,0,-1,91"/>
                     <PasswordBox x:Name="passwordLogin" Header="Password" Margin="0,56,0,35" CornerRadius="8" Height="56" Width="325"/>
                     <Button x:Name="LoginButton" Content="Sign in" CornerRadius="8" VerticalAlignment="Top" Height="30" Width="325" Margin="0,117,0,0" HorizontalAlignment="Center" Click="LoginButton_Click"/>
                 </Grid>
             </Border>
+
         </Grid>
 
         <StackPanel Height="110" Width ="1594" Margin="0,970,0,0" Background="Pink"/>

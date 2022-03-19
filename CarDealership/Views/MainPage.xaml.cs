@@ -157,6 +157,7 @@ namespace CarDealership
         private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
 
+
         }
     }
 }

@@ -143,7 +143,11 @@ namespace CarDealership.Views
 
         }
 
-        private void usernameSignin_TextChanged(object sender, TextChangedEventArgs e)
+        private void usernameSignin_TextChanged(object sender, TextChangedEventArgs e){
+        
+        }
+
+        private void Year_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

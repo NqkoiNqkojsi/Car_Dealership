@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="#A6BBE3">
+    Background="#A6BBE3" >
 
 
     <Grid>
@@ -18,7 +18,7 @@
             <ToggleButton x:Name="toggleButtonOwnOffers" Content="My offers" Background ="#5B677D" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" CornerRadius="20" Checked="toggleButtonOwnOffers_Checked"/>
             <ToggleButton Content="Admin menu" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="85" Width="305" Foreground="White" Visibility="Collapsed" IsEnabled="False" CornerRadius="20"/>
             <TextBlock x:Name="DebugText" TextWrapping="Wrap" Text="TextBlock"/>
-
+            <StackPanel Height="100"/>
         </StackPanel>
         <ToggleSwitch x:Name="toggleSwitchDarkMode" Header="Dark mode" Margin ="10.5,0,0,122" Foreground="White" FocusVisualPrimaryBrush="White" BorderBrush="White" FocusVisualSecondaryBrush="#99FFFFFF" Toggled="ToggleSwitch_Toggled" RequestedTheme="Dark" Visibility="Visible" VerticalAlignment="Bottom"/>
         <StackPanel Margin="0,0,0,976"/>
