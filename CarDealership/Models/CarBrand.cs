@@ -34,21 +34,16 @@ namespace CarDealership.Models
         /// <param name="model">eg. i30, Duster...</param>
         /// <param name="verified">is it sure if it's real model</param>
         
-        public CarBrand(string brand, string model, bool verified)
+        public CarBrand(string brand, string model)
         {
             this.id = counter.ToString();
             this.brand = brand;
             this.model = model;
             counter++;
-            if (verified)
-            {
-                carBrands.Add(this);
-            }
-            else
-            {
-                carBrandsUnverified.Add(this);
-            }
+            carBrands.Add(this);
+            
         }
+
 
         /// <summary>
         /// Returns the first CarBrand available

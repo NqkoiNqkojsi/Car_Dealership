@@ -42,7 +42,6 @@ namespace CarDealership.Models
         /// List of all cars
         /// </summary>
          
-        public static List<Car> quarantinedCars = new List<Car>();
          public static List<Car> approvedCars = new List<Car>();
         public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
@@ -54,7 +53,7 @@ namespace CarDealership.Models
             this.kmDriven = kmDriven;
             this.engineVolume = engineVolume;
             this.info = info;
-            quarantinedCars.Add(this);
+            approvedCars.Add(this);
             counter++;
         }
         public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
@@ -69,9 +68,9 @@ namespace CarDealership.Models
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
             if (carBrand == null)
             {
-                carBrand = new CarBrand(brand, model,false);
+                carBrand = new CarBrand(brand, model);
             }
-            quarantinedCars.Add(this);
+            approvedCars.Add(this);
             counter++;
         }
         public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();
