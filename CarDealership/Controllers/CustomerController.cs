@@ -167,7 +167,7 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void CreateCustomer(string name, string birthDate, string password, string phoneNum, string email)
         {
-            bool CustomerExists = Customer.customers.Any(c => c.name == name && c.email == email);
+            bool CustomerExists = Customer.customers.Any(c => c.name == name && c.Email == email);
             Customer customer = new Customer(name, CustomerController.MakeBirthDate(birthDate), password, phoneNum, email);
             sessionID = customer.id;
             if (!CustomerExists)
@@ -300,11 +300,11 @@ namespace CarDealership.Controllers
         /// <param name="email"></param>
         public static void ForgottenPasswords(string email)
         {
-            bool trueMail = Customer.customers.Any(c => c.email == email);
+            bool trueMail = Customer.customers.Any(c => c.Email == email);
             if (trueMail)
             {
                 string newPass = RandomPassword();
-                Customer.customers.Where(c => c.email == email).FirstOrDefault().Password = newPass;
+                Customer.customers.Where(c => c.Email == email).FirstOrDefault().Password = newPass;
                 SendEmail(email, "Password Recovery", $"Your new password is {newPass}, log in to your account and update it to whatever you want.");
             }
         }
@@ -362,9 +362,9 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                if(Customer.customers.Any(c => c.email == email))
+                if(Customer.customers.Any(c => c.Email == email))
                 {
-                    Customer customer = Customer.customers.First(c => c.email == email);
+                    Customer customer = Customer.customers.First(c => c.Email == email);
                     if(customer.Password == HashString(password))
                     {
                         sessionID = customer.id;
