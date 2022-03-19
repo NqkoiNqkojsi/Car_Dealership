@@ -42,5 +42,24 @@ namespace CarDealership.Tests.ControllerTests
             Assert.AreEqual(Test, toBeTested, "Not equal"); 
         }
 
+        [TestMethod]
+        public void AddFavoriteCarTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
+            Car car = new Car("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
+            CustomerController.AddToFavorite(car);
+            Assert.AreEqual(1, Customer.customers.Where(c=>c.name=="Ivan").FirstOrDefault().favoritedCars.Count());
+        }
+
+        [TestMethod]
+        public void ShowOwnedCarsTest()
+        {
+            List<string> test = new List<string> {"0"};
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
+            CustomerController.CreateOffer("Test", "Test", 1.00, "4.2005", 1.00, 1.00, 1.00, "");
+            Assert.AreEqual(CarController.ShowOwnedCars(), test, "Doesn't work");
+        }
+
+        
     }
 }
