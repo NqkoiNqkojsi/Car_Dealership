@@ -339,13 +339,10 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-                    customer.publicOffers.Add(car);
+                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                     return "Made an offer";
                 }
                 catch (Exception ex)
-                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
-                    return "Made an offer";
-                }catch (Exception ex)
                 {
                     return ex.Message;
                 }
