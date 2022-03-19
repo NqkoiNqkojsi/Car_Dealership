@@ -124,7 +124,6 @@
     <Compile Include="Data\CarBrandContext.cs" />
     <Compile Include="Data\CarContext.cs" />
     <Compile Include="Data\CustomerContext.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Data\FavoriteCarContext.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />

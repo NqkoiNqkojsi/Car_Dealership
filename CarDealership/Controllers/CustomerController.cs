@@ -16,8 +16,9 @@ namespace CarDealership.Controllers
     {
         private static CustomerContext customerContext = null;
 
+        public static List<Customer> customers = new List<Customer>();
 
-        internal  static string sessionID {get;set;}
+        public static string sessionID { get; set; }
 
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -165,10 +166,10 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Registers a customer
         /// </summary>
-        public static void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum, string email)
+        public static void CreateCustomer(string name, string birthDate, string password, string phoneNum, string email)
         {
             bool CustomerExists = Customer.customers.Any(c => c.name == name && c.email == email);
-            Customer customer = new Customer(name, birthDate, password, phoneNum, email);
+            Customer customer = new Customer(name, CustomerController.MakeBirthDate(birthDate), password, phoneNum, email);
             sessionID = customer.id;
             if (!CustomerExists)
             {
@@ -209,6 +210,7 @@ namespace CarDealership.Controllers
                     }
                 }
             }
+            Console.WriteLine("Log in to update your password");
         }
 
         /// <summary>
@@ -244,6 +246,7 @@ namespace CarDealership.Controllers
                     }
                 }
             }
+            else Console.WriteLine("Log in to send emails");
         }
 
         /// <summary>
@@ -251,40 +254,45 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="customer"></param>
         /// <param name="car"></param>
-        public static void AddToFavorite(Customer customer, Car car)
+        public static void AddToFavorite(Car car)
         {
-            customer.favoritedCars.Add(car);
-
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
-
-            try
+            if (sessionID != null)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    if (conn.State == System.Data.ConnectionState.Open)
-                    {
-                        using (SqlCommand cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
-                                                "values (" + customer.id + ", " + car.id + ")";
+                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                customer.favoritedCars.Add(car);
 
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        if (conn.State == System.Data.ConnectionState.Open)
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                while (reader.Read())
+                                cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
+                                                    "values (" + customer.id + ", " + car.id + ")";
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
-                                    var carId = car.id;
-                                    var customerId = customer.id;
+                                    while (reader.Read())
+                                    {
+                                        var carId = car.id;
+                                        var customerId = customer.id;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                catch (Exception eSql)
+                {
+                    Console.WriteLine($"Exception: {eSql.Message}");
+                }
             }
-            catch (Exception eSql)
-            {
-                Console.WriteLine($"Exception: {eSql.Message}");
-            }
+            else Console.WriteLine("Log in to perform this operation");
         }
 
         /// <summary>
@@ -323,7 +331,7 @@ namespace CarDealership.Controllers
                     CarBrand carBrand;
                     if (CarBrand.IsNew(brand, model))
                     {
-                        carBrand = new CarBrand(brand, model, true);
+                        carBrand = new CarBrand(brand, model);
                     }
                     else
                     {
@@ -333,24 +341,56 @@ namespace CarDealership.Controllers
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+
                     return "Made an offer";
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return ex.Message;
                 }
             }
             return "Not logged in!";
         }
-
+        /// <summary>
+        /// Method to log in a customer
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns>response message</returns>
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
-                sessionID = Customer.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
-                return Customer.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                if (customers.Any(c => c.email == email))
+                {
+                    Customer customer = customers.First(c => c.email == email);
+                    if (customer.Password == HashString(password))
+                    {
+                        sessionID = customer.id;
+                        return "Success";
+                    }
+                    return "Wrong password";
+                }
+                return "no profile";
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
         }
+
+        public static void RemoveOffer(string id)
+        {
+            if (sessionID != null)
+            {
+                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
+                customer.publicOffers.Remove(car);
+                foreach (Customer cus in Customer.customers)
+                {
+                    if (cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
+                }
+            }
+            else Console.WriteLine("Log in to remove offers.");
+        }
+
     }
 }
