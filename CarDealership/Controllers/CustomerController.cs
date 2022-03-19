@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -366,7 +366,7 @@ namespace CarDealership.Controllers
                     Customer customer = customers.First(c => c.email == email);
                     if(customer.Password == HashString(password))
                     {
-                        sessionId = customer.id;
+                        sessionID = customer.id;
                         return "Success";
                     }
                     return "Wrong password";

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CarDealership.Models;
@@ -46,16 +46,6 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
             }
         }
 
@@ -64,16 +54,6 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
             }
         }
 

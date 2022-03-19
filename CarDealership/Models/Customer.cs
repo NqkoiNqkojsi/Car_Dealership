@@ -32,7 +32,8 @@ namespace CarDealership.Models
         /// the cars(offers) that are wished by the user
         /// </summary>
         public List<Car> carsFavourite=new List<Car>();
-
+        public static List<Customer> customers = new List<Customer>();
+        
         public string Email
         {
             get { return email; }
