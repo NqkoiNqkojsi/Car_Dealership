@@ -23,7 +23,8 @@ namespace CarDealership.Tests.ModelTеsts
         [TestMethod]
         public void ReturnBrandTest()
         {
-            
+            CarBrand brand = new CarBrand("Test", "Test");
+            Assert.AreEqual(brand, CarBrand.ReturnBrand("Test", "Test"), "Return isnt working properly");
         }
 
     }

@@ -166,10 +166,10 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Registers a customer
         /// </summary>
-        public static void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum, string email)
+        public static void CreateCustomer(string name, string birthDate, string password, string phoneNum, string email)
         {
             bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
-            Customer customer = new Customer(name, birthDate, password, phoneNum, email);
+            Customer customer = new Customer(name, CustomerController.MakeBirthDate(birthDate), password, phoneNum, email);
             sessionID = customer.id;
             if (!CustomerExists)
             {
@@ -339,13 +339,10 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-                    customer.publicOffers.Add(car);
+                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                     return "Made an offer";
                 }
                 catch (Exception ex)
-                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
-                    return "Made an offer";
-                }catch (Exception ex)
                 {
                     return ex.Message;
                 }
@@ -353,15 +350,14 @@ namespace CarDealership.Controllers
             return "Not logged in!";
         }
 
-        public static string Login(string email, string password)
+        public static void Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
                 sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
-                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                Console.WriteLine("Login successful!");
             }
             else Console.WriteLine("Invalid email or password");
-            return ("Invalid email or password");
 
         }
 

@@ -28,7 +28,7 @@ namespace CarDealership.Controllers
             {
                 CarBrand carBrand = new CarBrand(brandsReal.ElementAt(random.Next(7)), random.Next(1000).ToString());
             }
-            return CarBrand.carBrands.Count().ToString() +"; "+ CarBrand.carBrandsUnverified.Count().ToString();
+            return CarBrand.carBrands.Count().ToString() +"; "+ CarBrand.carBrands.Count().ToString();
         }
         public static string GenerateMockUpCustomer(int count)
         {

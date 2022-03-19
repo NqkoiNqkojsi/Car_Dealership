@@ -40,27 +40,7 @@ namespace CarDealership.Controllers
             }
         }
 
-        /// <summary>
-        /// Adds cars to customer's wish list
-        /// </summary>
-        /// <param name="carId">ids of liked cars</param>
-        public static void AddFavoriteCar(string carId)
-        {
-            if (CustomerController.sessionID != null)
-            {
-                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
@@ -73,7 +53,11 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.favoritedCars.Select(x => x.id).ToList();
             }
-            return null;
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
         }
         /// <summary>
         /// Show Cars in the Customer's Wishlist
@@ -86,6 +70,7 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.carsOwned.Select(x => x.id).ToList();
             }
+            Console.WriteLine("Log in to view owned cars");
             return null;
         }
         /// <summary>
