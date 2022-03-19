@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +16,8 @@ namespace CarDealership.Controllers
     {
         private static CustomerContext customerContext = null;
 
-        
       
-        public static string sessionID = null;
+        public static string sessionID { get; set; }
 
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -340,10 +339,9 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-                  
+  
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
-                  
-                    Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+
                   
                     return "Made an offer";
                 }
@@ -354,17 +352,31 @@ namespace CarDealership.Controllers
             }
             return "Not logged in!";
         }
-
-        public static void Login(string email, string password)
+        /// <summary>
+        /// Method to log in a customer
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns>response message</returns>
+        public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
-                sessionID = Customer.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
-                Console.WriteLine("Login successful!");
+                if(Customer.customers.Any(c => c.email == email))
+                {
+                    Customer customer = Customer.customers.First(c => c.email == email);
+                    if(customer.Password == HashString(password))
+                    {
+                        sessionID = customer.id;
+                        return "Success";
+                    }
+                    return "Wrong password";
+                }
+                return "no profile";
             }
             else Console.WriteLine("Invalid email or password");
-
-        }
+            return ("Invalid email or password");
+        } 
 
         public static void RemoveOffer(string id)
         {
