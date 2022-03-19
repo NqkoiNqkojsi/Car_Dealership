@@ -20,9 +20,12 @@ namespace CarDealership.Views
 {
     public sealed partial class CarSearchMenue : UserControl
     {
+        public event RoutedEventHandler InitializeSearch;
         public CarSearchMenue()
         {
             this.InitializeComponent();
+            buttonSearch.Click += InitializeSearch;
+            foreach(string brands in CarBrandController.GetBrands())
             ComboBox_Brand.Items.Add("All");
             foreach (string brands in CarBrandController.GetBrands())
                 ComboBox_Brand.Items.Add(brands);
@@ -31,7 +34,6 @@ namespace CarDealership.Views
             ComboBox_Sort.Items.Add("Year");
             ComboBox_Sort.Items.Add("Price");
             ComboBox_Sort.Items.Add("Price and Year");
-            
         }
         public void ComboBox_SelectionChanged_1(object sender, RoutedEventArgs e)
         {
@@ -39,9 +41,12 @@ namespace CarDealership.Views
             foreach (string models in CarBrandController.GetModels(ComboBox_Brand.SelectedValue.ToString()))
                 ComboBox_Model.Items.Add(models);
         }
-        public void SearchEngaged(object sender, RoutedEventArgs e)
+        
+        public List<string> GetResult()
         {
-                
+            //TO DO
+            // Do the search here
+            return CarsSortAndFilterController.CompleteSort("");
         }
     }
 }

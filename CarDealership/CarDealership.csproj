@@ -132,6 +132,9 @@
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ErrorMessage.xaml.cs">
+      <DependentUpon>ErrorMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\default_img.png" />
+    <Content Include="Assets\Error logo.png" />
     <Content Include="Data\CarDealership.sql" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\githubLogo.png" />
@@ -182,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\ErrorMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
