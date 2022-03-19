@@ -8,37 +8,31 @@
     mc:Ignorable="d" Height="1080" Width="1594">
 
     <Grid Width="1594" Height="1080"  HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid Width="1354" Height="970" Margin="0,0,240,110" >
+        <Grid Width="1354" Height="970" Margin="120,10,120,100" >
 
             <Border Height="Auto" Margin="136,271,758,270" Width="Auto">
                 <Grid>
 
-                    <PasswordBox x:Name="passwordSignin" Header="Password" Margin="0,150,0,203" CornerRadius="8" Width="460" Height="76"/>
-                    <TextBox x:Name="usernameSignin" Header="Username" CornerRadius="8" TextWrapping="Wrap" Margin="0,0,0,353" Width="460" Height="76"/>
-                    <TextBox x:Name="emailSignin" Header="E-mail" CornerRadius=                "8" TextWrapping="Wrap" Margin="0,74,0,279" Width="460" Height="76"/>
-                    <TextBox x:Name="telnumberSignin" Header="Telephone Number" CornerRadius="8" TextWrapping="Wrap" Margin="0,228,0,125" Width="460" Height="76"/>
-                    <ComboBox x:Name="Day" CornerRadius="8" Header="Day" PlaceholderText="Pick a day" Width="148" Height="76" Margin="0,304,0,0"/>
-                    <ComboBox x:Name="Month" CornerRadius="8" Header="Month" PlaceholderText="Pick a month" Width="148" Height="78" Margin="0,304,0,0" HorizontalAlignment="Center" />
-                    <ComboBox x:Name="Year" CornerRadius="8" Header="Year" PlaceholderText="Pick a year" Width="148" Height="78" Margin="312,304,0,0" SelectionChanged="Year_SelectionChanged"/>
-                    <Button x:Name="SignInButton" Content="Sign in" CornerRadius="8" VerticalAlignment="Top" Height="42" Width="460" Margin="0,387,0,0" HorizontalAlignment="Center" />
-
+                    <PasswordBox x:Name="passwordSignin" Header="Password" Margin="1,112,-1,148" CornerRadius="8" Height="56" Width="325" PasswordChanged="passwordSignin_PasswordChanged"/>
+                    <TextBox x:Name="usernameSignin" Header="Username" CornerRadius="8" HorizontalAlignment="Center" TextWrapping="Wrap" Height="56" Width="325" Margin="0,0,0,260" TextChanged="usernameSignin_TextChanged"/>
+                    <TextBox x:Name="emailSignin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Height="56" Width="325" Margin="1,56,-1,204" TextChanged="emailSignin_TextChanged"/>
+                    <TextBox x:Name="telnumberSignin" Header="Telephone Number" CornerRadius="8" TextWrapping="Wrap" Height="56.3" Width="325" Margin="1,168,-1,91"/>
+                    <ComboBox x:Name="Day" CornerRadius="8" Header="Day" PlaceholderText="Pick a day" Width="105" Height="56" Margin="0,225,0,0" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="Month" CornerRadius="8" Header="Month" PlaceholderText="Pick a month" Width="105" Height="56" Margin="1,225,0,0" SelectionChanged="Month_SelectionChanged"/>
+                    <ComboBox x:Name="Year" CornerRadius="8" Header="Year" PlaceholderText="Pick a year" Width="105" Height="56" Margin="221,225,0,0"/>
+                    <Button x:Name="SignInButton" Content="Sign in" CornerRadius="8" VerticalAlignment="Top" Height="30" Width="325" Margin="0,286,0,0" HorizontalAlignment="Center" Click="SignInButton_Click"/>
                 </Grid>
             </Border>
 
             <Border Height="Auto" Margin="758,386,136,385" Width="Auto">
                 <Grid>
-
-                    <TextBox x:Name="emailLogin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Height="76" Width="460" Margin="0,0,0,123"/>
-                    <PasswordBox x:Name="passwordLogin" Header="Password" Margin="0,76,0,47" CornerRadius="8" Height="76" Width="460"/>
-                    <Button x:Name="LoginButton" Content="Log In" CornerRadius="8" VerticalAlignment="Top" Height="42" Width="460" Margin="0,157,0,0" HorizontalAlignment="Center"/>
-
+                    <TextBox x:Name="emailLogin" Header="E-mail" CornerRadius="8" TextWrapping="Wrap" Height="56" Width="325" Margin="1,0,-1,91"/>
+                    <PasswordBox x:Name="passwordLogin" Header="Password" Margin="0,56,0,35" CornerRadius="8" Height="56" Width="325"/>
+                    <Button x:Name="LoginButton" Content="Sign in" CornerRadius="8" VerticalAlignment="Top" Height="30" Width="325" Margin="0,117,0,0" HorizontalAlignment="Center" Click="LoginButton_Click"/>
                 </Grid>
             </Border>
 
         </Grid>
-
-        <StackPanel Height="110" Width ="1594" Margin="0,970,0,0" Background="Pink"/>
-        <StackPanel Margin="1354,0,0,0" Background="Pink" Orientation="Vertical" Width="240" />
     </Grid>
 
 </UserControl> 

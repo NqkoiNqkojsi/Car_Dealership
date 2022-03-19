@@ -13,7 +13,7 @@ namespace CarDealership.Tests.ModelTеsts
             // check for true
             bool result1 = CarBrand.IsNew("Dacia", "Duster");
             // check for false
-            CarBrand brand = new CarBrand("None", "None", false);
+            CarBrand brand = new CarBrand("None", "None");
             bool result2 = CarBrand.IsNew("None", "None");
 
             // Assert
