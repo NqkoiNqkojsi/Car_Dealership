@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,13 +17,11 @@ namespace CarDealership.Controllers
         private static CustomerContext customerContext = null;
 
 
-        internal  static string sessionID {get;set;}
 
         public static List<Customer> customers = new List<Customer>();
       
-        public static string sessionID = null;
+        public static string sessionID { get; set; }
 
-        public static List<Customer> customers = new List<Customer>();
         public static string sessionId;
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -347,16 +345,22 @@ namespace CarDealership.Controllers
             }
             return "Not logged in!";
         }
-
+        /// <summary>
+        /// Method to log in a customer
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns>response message</returns>
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
-                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
                 return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        }
+        } 
+
+
     }
 }
