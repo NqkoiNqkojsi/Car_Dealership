@@ -48,7 +48,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
 
                 FavoriteCarContext favoriteCarContext = null;
 
@@ -66,7 +66,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
+                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
 
                 FavoriteCarContext favoriteCarContext = null;
 
@@ -86,7 +86,7 @@ namespace CarDealership.Controllers
             {
                 try
                 {
-                    return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                    return CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
                 }catch (Exception ex)
                 {
                     return false;
@@ -102,7 +102,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.favoritedCars.Select(x => x.id).ToList();
             }
             return null;
@@ -115,7 +115,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.carsOwned.Select(x => x.id).ToList();
             }
             return null;

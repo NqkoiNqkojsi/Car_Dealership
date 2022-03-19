@@ -355,7 +355,17 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                if(customers.Any(c => c.email == email))
+                {
+                    Customer customer = customers.First(c => c.email == email);
+                    if(customer.Password == HashString(password))
+                    {
+                        sessionId = customer.id;
+                        return "Success";
+                    }
+                    return "Wrong password";
+                }
+                return "no profile";
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
