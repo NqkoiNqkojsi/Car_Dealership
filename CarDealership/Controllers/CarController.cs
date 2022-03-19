@@ -49,16 +49,6 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
             }
         }
 
