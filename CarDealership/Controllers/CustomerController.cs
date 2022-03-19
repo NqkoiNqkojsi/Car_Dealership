@@ -15,8 +15,13 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
-        public static string sessionID = null;
 
+
+        internal  static string sessionID {get;set;}
+
+        public static List<Customer> customers = new List<Customer>();
+      
+        public static string sessionID = null;
 
         public static List<Customer> customers = new List<Customer>();
         public static string sessionId;
@@ -88,8 +93,8 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Checks Email Validity
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
+        /// <param name="email">potential email</param>
+        /// <returns>true or false</returns>
         public static bool IsValidEmail(string email)
         {
             try
@@ -102,6 +107,66 @@ namespace CarDealership.Controllers
                 return false;
             }
         }
+        /// <summary>
+        /// Checks Password Validity
+        /// </summary>
+        /// <param name="password">potential password</param>
+        /// <returns>true or false</returns>
+        public static bool IsValidPassword(string password)
+        {
+            try
+            {
+                const int MIN_LENGTH = 8;
+                const int MAX_LENGTH = 15;
+
+                if (password == null) return false;
+
+                bool meetsLengthRequirements = password.Length >= MIN_LENGTH && password.Length <= MAX_LENGTH;
+                bool hasLetter = false;
+                bool hasDecimalDigit = false;
+
+                if (meetsLengthRequirements)
+                {
+                    foreach (char c in password)
+                    {
+                        if (char.IsLetter(c)) hasLetter = true;
+                        else if (char.IsDigit(c)) hasDecimalDigit = true;
+                    }
+                }
+
+                bool isValid = meetsLengthRequirements
+                            && hasLetter
+                            && hasDecimalDigit
+                            ;
+                return isValid;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Make a date from a string with 
+        /// </summary>
+        /// <param name="date">format=dd.M.yyy :"23.10.2003"</param>
+        /// <returns>DateTime with only moth and year</returns>
+        public static DateTime MakeBirthDate(string date)
+        {
+            try
+            {
+                string[] dateArray = date.Split('.');//split the month and year
+                DateTime dateTime = new DateTime();//empty DateTime =1.1.0001
+                dateTime = dateTime.AddDays(Convert.ToInt32(dateArray[0]) - 1);//add the days without the first
+                dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[1]) - 1);//add the months without the first
+                dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[2]) - 1);//add the years without the first
+                return dateTime;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Unable to parse '{0}'", date);
+                return DateTime.MinValue;//at error return min value
+            }
+        }
 
         /// <summary>
         /// Registers a customer
@@ -110,6 +175,7 @@ namespace CarDealership.Controllers
         {
             bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
+            sessionID = customer.id;
             if (!CustomerExists)
             {
                 customers.Add(customer);
@@ -253,15 +319,33 @@ namespace CarDealership.Controllers
         /// <param name="kmDriven"></param>
         /// <param name="engineVolume"></param>
         /// <param name="info"></param>
-        public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        /// <returns>a response message</returns>
+        public static string CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
             if (sessionID != null)
             {
-                CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
-                Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
-                Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
-                customer.publicOffers.Add(car);
+                try
+                {
+                    CarBrand carBrand;
+                    if (CarBrand.IsNew(brand, model))
+                    {
+                        carBrand = new CarBrand(brand, model, true);
+                    }
+                    else
+                    {
+                        carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+                    }
+                    Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
+                    Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
+                    car.owner = customer;
+                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+                    return "Made an offer";
+                }catch (Exception ex)
+                {
+                    return ex.Message;
+                }
             }
+            return "Not logged in!";
         }
 
         public static string Login(string email, string password)
