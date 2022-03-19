@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +69,38 @@ namespace CarDealership.Controllers
             }
         }
 
+        public static void RemoveFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
+
+                FavoriteCarContext favoriteCarContext = null;
+
+                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
+
+                using (favoriteCarContext = new FavoriteCarContext())
+                {
+                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
+                    favoriteCarContext.SaveChanges();
+                }
+            }
+        }
+
+        public static bool IsFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                try
+                {
+                    return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                }catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
