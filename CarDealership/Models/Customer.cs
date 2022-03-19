@@ -32,10 +32,6 @@ namespace CarDealership.Models
         /// the cars(offers) that are wished by the user
         /// </summary>
         public List<Car> carsFavourite=new List<Car>();
-        /// <summary>
-        /// all customers available
-        /// </summary>
-        public static List<Customer> customers = new List<Customer>();
 
         public string Email
         {
@@ -68,7 +64,6 @@ namespace CarDealership.Models
             this.phoneNum = phoneNum;
             this.email=email;
             counter++;
-            isAdmin = false;
         }
     }
 }
