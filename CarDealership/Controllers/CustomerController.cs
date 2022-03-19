@@ -20,7 +20,6 @@ namespace CarDealership.Controllers
       
         public static string sessionID = null;
 
-        public static List<Customer> customers = new List<Customer>();
         public static string sessionId;
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -255,19 +254,33 @@ namespace CarDealership.Controllers
         /// <param name="kmDriven"></param>
         /// <param name="engineVolume"></param>
         /// <param name="info"></param>
-        public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        public static string CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
-            CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
-            Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven,  engineVolume, info);
-            Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
-            customer.publicOffers.Add(car);
             if (sessionID != null)
             {
-                CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
-                Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
-                Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
-                customer.publicOffers.Add(car);
+                try
+                {
+                    CarBrand carBrand;
+                    if (CarBrand.IsNew(brand, model))
+                    {
+                        carBrand = new CarBrand(brand, model, true);
+                    }
+                    else
+                    {
+                        carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+                    }
+                    Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
+                    Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
+                    car.owner = customer;
+                    customer.publicOffers.Add(car);
+                    return "Made an offer";
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
             }
+            return "Not logged in!";
         }
 
         public static string Login(string email, string password)
