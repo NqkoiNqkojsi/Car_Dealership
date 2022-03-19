@@ -102,7 +102,7 @@ namespace CarDealership.Controllers
                     var customer = customerContext.customers.Find(id);
                     if (customer != null)
                     {
-                        CustomerController.customers.Remove(customer);
+                        Customer.customers.Remove(customer);
                         customerContext.customers.Remove(customer);
                         customerContext.SaveChanges();
                     }

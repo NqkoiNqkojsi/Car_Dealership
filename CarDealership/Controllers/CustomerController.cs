@@ -19,12 +19,6 @@ namespace CarDealership.Controllers
 
         internal  static string sessionID {get;set;}
 
-        public static List<Customer> customers = new List<Customer>();
-      
-        public static string sessionID = null;
-
-        public static List<Customer> customers = new List<Customer>();
-        public static string sessionId;
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
@@ -173,12 +167,12 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void CreateCustomer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {
-            bool CustomerExists = customers.Any(c => c.name == name && c.email == email);
+            bool CustomerExists = Customer.customers.Any(c => c.name == name && c.email == email);
             Customer customer = new Customer(name, birthDate, password, phoneNum, email);
             sessionID = customer.id;
             if (!CustomerExists)
             {
-                customers.Add(customer);
+                Customer.customers.Add(customer);
                 using (customerContext = new CustomerContext())
                 {
                     customerContext.customers.Add(customer);
@@ -194,11 +188,11 @@ namespace CarDealership.Controllers
         {
             if (sessionID != null)
             {
-                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
+                if (Customer.customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
                     try
                     {
-                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+                        Customer.customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
 
                         using (customerContext = new CustomerContext())
                         {
@@ -299,11 +293,11 @@ namespace CarDealership.Controllers
         /// <param name="email"></param>
         public static void ForgottenPasswords(string email)
         {
-            bool trueMail = customers.Any(c => c.email == email);
+            bool trueMail = Customer.customers.Any(c => c.email == email);
             if (trueMail)
             {
                 string newPass = RandomPassword();
-                CustomerController.customers.Where(c => c.email == email).FirstOrDefault().Password = newPass;
+                Customer.customers.Where(c => c.email == email).FirstOrDefault().Password = newPass;
                 SendEmail(email, "Password Recovery", $"Your new password is {newPass}, log in to your account and update it to whatever you want.");
             }
         }
@@ -336,9 +330,9 @@ namespace CarDealership.Controllers
                         carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
                     }
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
-                    Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
+                    Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+                    Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                     return "Made an offer";
                 }catch (Exception ex)
                 {
@@ -352,8 +346,8 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
-                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                sessionID = Customer.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                return Customer.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
