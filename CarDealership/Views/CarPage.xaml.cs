@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using CarDealership.Controllers;
+using Windows.Storage.Pickers;
+using Windows.Storage;
+using System.Threading.Tasks;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -22,7 +25,7 @@ namespace CarDealership.Views
     public sealed partial class CarPage : UserControl
     {
         public string id { get; set; }
-        public List<BitmapImage> images=new List<BitmapImage>();
+        public List<StorageFile> images=new List<StorageFile>();
         private void MakeContent(string id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
@@ -33,9 +36,17 @@ namespace CarDealership.Views
             textBlockHorsePower.Text = "Power:" + info["horsePower"];
             textBlockLitres.Text = "Volume:" + info["engineVolume"]+"l";
             textBlockInfo.Text = info["addInfo"];
-            textBlockName.Text = info["seller"];
-            textBlockPhone.Text = info["sellerPhone"];
+            textBlockName.Text = "Name:"+info["seller"];
+            textBlockPhone.Text = "Phone:"+info["sellerPhone"];
             //Image.Source=;
+        }
+        public void GenerateImg()
+        {
+            ImageBrush uniformToFillBrush = new ImageBrush();
+            uniformToFillBrush.ImageSource =
+                new BitmapImage(new Uri("Assets/githubLogo.png", UriKind.Relative));
+            uniformToFillBrush.Stretch = Stretch.UniformToFill;
+            Image.Fill = uniformToFillBrush;
         }
         public CarPage(string id)
         {
