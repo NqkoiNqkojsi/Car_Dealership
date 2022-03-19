@@ -69,7 +69,7 @@ namespace CarDealership.Models
             this.carBrand = CarBrand.ReturnBrand(brand, model);//check for the model if its available, make new if nothing is found
             if (carBrand == null)
             {
-                carBrand = new CarBrand(brand, model,false);
+                carBrand = new CarBrand(brand, model);
             }
             approvedCars.Add(this);
             counter++;

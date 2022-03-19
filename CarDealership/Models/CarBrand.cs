@@ -18,36 +18,22 @@ namespace CarDealership.Models
         /// <summary>
         /// list of all the brands with models that are real
         /// </summary>
-        
         public static List<CarBrand> carBrands = new List<CarBrand>();
         
-        /// <summary>
-        /// list of the unverified models
-        /// </summary>
-       
-        public static List<CarBrand> carBrandsUnverified=new List<CarBrand>();
         
         /// <summary>
         /// Register a brand with model
         /// </summary>
         /// <param name="brand">eg. BMW, Audi...</param>
         /// <param name="model">eg. i30, Duster...</param>
-        /// <param name="verified">is it sure if it's real model</param>
-        
-        public CarBrand(string brand, string model, bool verified)
+        /// <param name="verified">is it sure if it's real model</param> 
+        public CarBrand(string brand, string model)
         {
             this.id = counter.ToString();
             this.brand = brand;
             this.model = model;
             counter++;
-            if (verified)
-            {
-                carBrands.Add(this);
-            }
-            else
-            {
-                carBrandsUnverified.Add(this);
-            }
+            carBrands.Add(this);
         }
 
         /// <summary>
@@ -60,7 +46,7 @@ namespace CarDealership.Models
         /// </summary>
         public static bool IsNew(string brand, string model)
         {
-            if(carBrandsUnverified.Any(a=>a.brand == brand || a.model == model) || carBrands.Any(a => a.brand == brand || a.model == model))//check if the model is in already in the list
+            if(carBrands.Any(a => a.brand == brand || a.model == model))//check if the model is in already in the list
             {
                 return false;
             }

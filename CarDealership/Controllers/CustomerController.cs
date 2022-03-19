@@ -327,7 +327,7 @@ namespace CarDealership.Controllers
                     CarBrand carBrand;
                     if (CarBrand.IsNew(brand, model))
                     {
-                        carBrand = new CarBrand(brand, model, true);
+                        carBrand = new CarBrand(brand, model);
                     }
                     else
                     {

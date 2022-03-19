@@ -31,13 +31,6 @@ namespace CarDealership.Controllers
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
                 
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
-           
-                //add manufacture date to the car table 
-                using (carContext = new CarContext())
-                {
-                    var newDate = carContext.cars.Select(d=> d.manufDate == dateTime);
-                    carContext.SaveChanges();
-                }
                 return dateTime;
             }
             catch (FormatException e)

@@ -124,7 +124,6 @@
     <Compile Include="Data\CarBrandContext.cs" />
     <Compile Include="Data\CarContext.cs" />
     <Compile Include="Data\CustomerContext.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Data\FavoriteCarContext.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -166,7 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\default_img.png" />
-    <Content Include="Data\CarDealership.sql" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\githubLogo.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
