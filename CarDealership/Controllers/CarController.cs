@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CarDealership.Models;
@@ -45,17 +45,9 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
 
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
+               
             }
         }
 
@@ -63,17 +55,9 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
 
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
+                
             }
         }
 
@@ -83,7 +67,7 @@ namespace CarDealership.Controllers
             {
                 try
                 {
-                    return CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                    return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
                 }catch (Exception ex)
                 {
                     return false;
@@ -99,7 +83,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.favoritedCars.Select(x => x.id).ToList();
             }
             else
@@ -116,7 +100,7 @@ namespace CarDealership.Controllers
         {
             if (CustomerController.sessionID != null)
             {
-                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.carsOwned.Select(x => x.id).ToList();
             }
             Console.WriteLine("Log in to view owned cars");
@@ -191,5 +175,11 @@ namespace CarDealership.Controllers
             
         }
         
+        public static int PhotoInDirAmount(string id)
+        {
+            DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
+            int count = dir.GetFiles().Length;
+            return count;
+        }
     }
 }

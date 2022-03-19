@@ -49,5 +49,29 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.Login("ivan@gmail.com", "44444");
             Assert.AreEqual(CustomerController.sessionID, Customer.customers.Where(c => c.name == "Ivan").First().id, "Login failed");
         }
+
+        [TestMethod]
+        public void CreateOfferTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            CustomerController.CreateOffer("Mazda", "Mazda", 1.00, "3.2015", 1.00, 1.00, 1.00, "Its a car");
+            Assert.AreEqual(1, Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count, "Offer didnt go through");
+        }
+
+        [TestMethod]
+        public void RemoveOfferTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
+            CustomerController.CreateOffer("Mazda", "Mazda", 1.00, "3.2015", 1.00, 1.00, 1.00, "Its a car");
+            int size1 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
+            CustomerController.RemoveOffer("0");
+            int size2 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
+            Assert.AreEqual(size2 + 1, size1, "Offer not removed");
+        }
+
+        public void ForgottenPasswordTest()
+        {
+
+        }
     }
 }

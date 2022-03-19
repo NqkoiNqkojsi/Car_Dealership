@@ -36,9 +36,9 @@ namespace CarDealership.Controllers
             for (int i = 0; i < count; i++)
             {
                 Customer customer = new Customer(random.Next().ToString(), DateTime.Now, random.NextDouble().ToString(), "1111111", "email@abv.bg");
-                CustomerController.customers.Add(customer);
+                Customer.customers.Add(customer);
             }
-            return CustomerController.customers.Count().ToString();
+            return Customer.customers.Count().ToString();
         }
     }
 }

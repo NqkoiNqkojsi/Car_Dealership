@@ -16,7 +16,6 @@ namespace CarDealership.Controllers
     {
         private static CustomerContext customerContext = null;
 
-        public static List<Customer> customers = new List<Customer>();
       
         public static string sessionID { get; set; }
 
@@ -361,12 +360,12 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                if(customers.Any(c => c.email == email))
+                if(Customer.customers.Any(c => c.email == email))
                 {
-                    Customer customer = customers.First(c => c.email == email);
+                    Customer customer = Customer.customers.First(c => c.email == email);
                     if(customer.Password == HashString(password))
                     {
-                        sessionId = customer.id;
+                        sessionID = customer.id;
                         return "Success";
                     }
                     return "Wrong password";

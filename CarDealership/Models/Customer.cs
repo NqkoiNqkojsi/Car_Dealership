@@ -14,11 +14,9 @@ namespace CarDealership.Models
         public string id { get; set; }
         public string name { get; set; }
         public DateTime birthDate { get; set; }
-
-        public bool isAdmin {get; set; }
+        public static List<Customer> customers = new List<Customer>();
         public static int counter = 0;//save the last id, probably it will be changed later
-        
-        public bool isLoggedIn = false;
+       
         public List<Car> publicOffers = new List<Car>();
 
         private string password;
