@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +14,10 @@ namespace CarDealership.Controllers
 {
     public class CustomerController
     {
-        private static CustomerContext customerContext = null;
+        private static CarDealershipContext customerContext = null;
 
-        public static List<Customer> customers = new List<Customer>();
-        public static string sessionID { get; set; }
+      
+        public static int sessionID { get; set; }
 
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -167,13 +167,13 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void CreateCustomer(string name, string birthDate, string password, string phoneNum, string email)
         {
-            bool CustomerExists = Customer.customers.Any(c => c.name == name && c.email == email);
+            bool CustomerExists = Customer.customers.Any(c => c.name == name && c.Email == email);
             Customer customer = new Customer(name, CustomerController.MakeBirthDate(birthDate), password, phoneNum, email);
             sessionID = customer.id;
             if (!CustomerExists)
             {
                 Customer.customers.Add(customer);
-                using (customerContext = new CustomerContext())
+                using (customerContext = new CarDealershipContext())
                 {
                     customerContext.customers.Add(customer);
                     customerContext.SaveChanges();
@@ -184,9 +184,9 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Redo Password
         /// </summary>
-        public static void UpdatePassword(string id, string oldPass, string newPass)
+        public static void UpdatePassword(int id, string oldPass, string newPass)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 if (Customer.customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
@@ -194,7 +194,7 @@ namespace CarDealership.Controllers
                     {
                         Customer.customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
 
-                        using (customerContext = new CustomerContext())
+                        using (customerContext = new CarDealershipContext())
                         {
                             if (oldPass != null)
                             {
@@ -257,7 +257,7 @@ namespace CarDealership.Controllers
         {
             if (sessionID != null)
             {
-                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                Customer customer = Customer.customers.Where(c=>c.id==sessionID).FirstOrDefault();
                 customer.favoritedCars.Add(car);
 
                 string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
@@ -300,11 +300,11 @@ namespace CarDealership.Controllers
         /// <param name="email"></param>
         public static void ForgottenPasswords(string email)
         {
-            bool trueMail = Customer.customers.Any(c => c.email == email);
+            bool trueMail = Customer.customers.Any(c => c.Email == email);
             if (trueMail)
             {
                 string newPass = RandomPassword();
-                Customer.customers.Where(c => c.email == email).FirstOrDefault().Password = newPass;
+                Customer.customers.Where(c => c.Email == email).FirstOrDefault().Password = newPass;
                 SendEmail(email, "Password Recovery", $"Your new password is {newPass}, log in to your account and update it to whatever you want.");
             }
         }
@@ -339,8 +339,10 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
+  
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
 
+                  
                     return "Made an offer";
                 }
                 catch (Exception ex)
@@ -360,10 +362,10 @@ namespace CarDealership.Controllers
         {
             if (IsValidEmail(email))
             {
-                if (customers.Any(c => c.email == email))
+                if(Customer.customers.Any(c => c.Email == email))
                 {
-                    Customer customer = customers.First(c => c.email == email);
-                    if (customer.Password == HashString(password))
+                    Customer customer = Customer.customers.First(c => c.Email == email);
+                    if(customer.Password == HashString(password))
                     {
                         sessionID = customer.id;
                         return "Success";
@@ -374,9 +376,9 @@ namespace CarDealership.Controllers
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        }
+        } 
 
-        public static void RemoveOffer(string id)
+        public static void RemoveOffer(int id)
         {
             if (sessionID != null)
             {
@@ -385,7 +387,7 @@ namespace CarDealership.Controllers
                 customer.publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
-                    if (cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
+                    if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
                 }
             }
             else Console.WriteLine("Log in to remove offers.");

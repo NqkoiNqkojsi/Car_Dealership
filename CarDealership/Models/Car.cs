@@ -5,29 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Controllers;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarDealership.Models
 {
     
     public class Car
     {
-        public string id { get; set; }
+        [Key]
+        public int id { get; set; }
 
         /// <summary>
         /// Holds the model and brand of the car
         /// </summary>
-        public CarBrand carBrand { get; set; }
-        public Customer owner { get; set; }
+        [ForeignKey("CarBrand")]
+        public int carBrandId { get; set; }
+        
+        public virtual CarBrand carBrand { get; set; }
 
+        public Customer owner { get; set; }
+        
+        [Required]
         public double price { get; set; }
         /// <summary>
         /// Date of manufacturing
         /// </summary>
-        public string imgDir { get; set; }
+        
         public DateTime manufDate { get; set; }
         /// <summary>
         /// Date the offer is made
         /// </summary>
+
+        [Required]
         public double horsePower { get; set; }
         public double kmDriven { get; set; }
 
@@ -36,7 +46,7 @@ namespace CarDealership.Models
         /// Additional info about the car
         /// </summary>
         public string info { get; set; }
-        private static ulong counter=0;
+        private static int counter=0;
 
         /// <summary>
         /// List of all cars
@@ -45,7 +55,7 @@ namespace CarDealership.Models
          public static List<Car> approvedCars = new List<Car>();
         public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.carBrand = carBrand;
             this.price= price;
             this.manufDate = CarController.MakeDate(manufDateStr);
@@ -56,9 +66,14 @@ namespace CarDealership.Models
             approvedCars.Add(this);
             counter++;
         }
+        
+        public Car()
+        {
+
+        }
         public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.price = price;
             this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
@@ -88,7 +103,7 @@ namespace CarDealership.Models
             carinfo.Add("year", manufDate.Year.ToString());
             carinfo.Add("price", price.ToString());
             carinfo.Add("seller", owner.name);
-            carinfo.Add("sellerID", owner.id);
+            carinfo.Add("sellerID", owner.id.ToString());
             carinfo.Add("sellerPhone", owner.phoneNum);
             carinfo.Add("horsePower", horsePower.ToString());
             carinfo.Add("km", kmDriven.ToString());

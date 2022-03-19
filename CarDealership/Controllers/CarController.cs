@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CarDealership.Models;
@@ -12,7 +12,7 @@ namespace CarDealership.Controllers
 {
     public class CarController
     {
-        private static CarContext carContext = null;
+        private static CarDealershipContext carContext = null;
         /// <summary>
         /// Make a date from a string with only month and year
         /// </summary>
@@ -41,50 +41,33 @@ namespace CarDealership.Controllers
         /// Adds cars to customer's wish list
         /// </summary>
         /// <param name="carId">ids of liked cars</param>
-        public static void AddFavoriteCar(string carId)
+        public static void AddFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
-                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
 
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
+               
             }
         }
 
-        public static void RemoveFavoriteCar(string carId)
+        public static void RemoveFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
-                CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
             }
         }
 
-        public static bool IsFavoriteCar(string carId)
+        public static bool IsFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != null)
             {
                 try
                 {
-                    return CustomerController.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
-                }catch (Exception ex)
+                    return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                }
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -95,29 +78,30 @@ namespace CarDealership.Controllers
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <returns>list of ids</returns>
-        public static List<string> ShowFavoriteCars()
-        {
-            if (CustomerController.sessionID != null)
-            {
-                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
-                return customer.favoritedCars.Select(x => x.id).ToList();
-            }
-            else
-            {
-                Console.WriteLine("Log in to perform this operation");
-                return null;
-            }
-        }
+        //public static List<string> ShowFavoriteCars()
+        //{
+        //    if (CustomerController.sessionID != null)
+        //    {
+        //        Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+        //        return customer.favoritedCars.Select(x => x.id).ToList();
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Log in to perform this operation");
+        //        return null;
+        //    }
+        //}
+
         /// <summary>
         /// Show Cars in the Customer's Wishlist
         /// </summary>
         /// <returns>list of ids</returns>
-        public static List<string> ShowOwnedCars()
+        public static List<int> ShowOwnedCars()
         {
-            if (CustomerController.sessionID != null)
+            if (CustomerController.sessionID != 0)
             {
-                Customer customer = CustomerController.customers.First(x => x.id == CustomerController.sessionID);
-                return customer.carsOwned.Select(x => x.id).ToList();
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.publicOffers.Select(x => x.id).ToList();
             }
             Console.WriteLine("Log in to view owned cars");
             return null;
@@ -127,7 +111,7 @@ namespace CarDealership.Controllers
         /// </summary>
         /// <param name="id">id of needed car</param>
         /// <returns>dictionary of necessary info</returns>
-        public static Dictionary<string, string> IDtoCarInfo(string id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
+        public static Dictionary<string, string> IDtoCarInfo(int id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
         /// <summary>
         /// Creates a directory that contains a car's photos
@@ -174,6 +158,7 @@ namespace CarDealership.Controllers
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".png");
             StorageFile carPhoto = await openPicker.PickSingleFileAsync();
+
             return carPhoto;
         }
 
@@ -191,5 +176,11 @@ namespace CarDealership.Controllers
             
         }
         
+        public static int PhotoInDirAmount(string id)
+        {
+            DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
+            int count = dir.GetFiles().Length;
+            return count;
+        }
     }
 }
