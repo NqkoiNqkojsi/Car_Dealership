@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace CarDealership.Models
 {
     public class CarBrand
     {
+        [Key]
         public string id { get; set; }
 
         public static int counter = 0;//save the last id, probably it will be changed later

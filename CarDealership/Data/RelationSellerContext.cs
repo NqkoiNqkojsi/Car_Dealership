@@ -1,18 +1,24 @@
-﻿using CarDealership.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CarDealership.Models;
+
 namespace CarDealership.Data
 {
-    public class CarBrandContext : DbContext
+    public class RelationSellerContext: DbContext
     {
         /// <summary>
-        /// CarBrands Table
+        /// Cars Table
         /// </summary>
-        public DbSet<CarBrand> carBrands { get; set; }
+        public DbSet<Customer> relationSeller { get; set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CarBrandContext()
+        public RelationSellerContext()
         {
             // Create the database automaticly
             Database.EnsureCreated();
@@ -26,23 +32,23 @@ namespace CarDealership.Data
             if (!optionsBuilder.IsConfigured)
             {
                 var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True";
-
                 optionsBuilder.UseSqlServer(connString);
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CarBrand>(entity =>
+
+            modelBuilder.Entity<RelationSeller>(entity =>
             {
-                entity.HasKey(k => k.id).HasName("idcar_brand");
+                entity.HasKey(k => k.id).HasName("id");
 
-                entity.Property(p => p.brand).HasMaxLength(45).IsRequired().HasColumnName("brand");
+                entity.Property(k => k.id).HasColumnName("id");
 
-                entity.Property(p => p.model).HasMaxLength(45).IsRequired().HasColumnName("model");
+                entity.HasOne(c => c.customer).WithMany().HasForeignKey(k => k.customerId).OnDelete(DeleteBehavior.ClientCascade).HasConstraintName("fk_customer_relation");
 
+                entity.HasOne(c => c.car).WithMany().HasForeignKey(k => k.carId).OnDelete(DeleteBehavior.ClientCascade).HasConstraintName("fk_car_relation");
             });
-
         }
     }
 }
-

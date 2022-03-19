@@ -5,29 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarDealership.Controllers;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarDealership.Models
 {
     
     public class Car
     {
+        [Key]
         public string id { get; set; }
 
         /// <summary>
         /// Holds the model and brand of the car
         /// </summary>
-        public CarBrand carBrand { get; set; }
-        public Customer owner { get; set; }
+        [ForeignKey("CarBrand")]
+        public int carBrandId { get; set; }
+        
+        public virtual CarBrand carBrand { get; set; }
 
+        public Customer owner { get; set; }
+        
+        [Required]
         public double price { get; set; }
         /// <summary>
         /// Date of manufacturing
         /// </summary>
-        public string imgDir { get; set; }
+        
         public DateTime manufDate { get; set; }
         /// <summary>
         /// Date the offer is made
         /// </summary>
+
+        [Required]
         public double horsePower { get; set; }
         public double kmDriven { get; set; }
 

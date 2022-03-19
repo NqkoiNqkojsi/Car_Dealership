@@ -5,11 +5,6 @@ namespace CarDealership.Data
     public class CustomerContext : DbContext
     {
         /// <summary>
-        /// Connection String
-        /// </summary> 
-        private const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";//pull the connection string after making a connecting the database with sql server
-
-        /// <summary>
         /// Cars Table
         /// </summary>
         public DbSet<Customer> customers { get; set; }
@@ -28,7 +23,31 @@ namespace CarDealership.Data
         /// </summary> 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True";
+                optionsBuilder.UseSqlServer(connString);
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(k => k.id).HasName("id_customer");
+
+                entity.Property(p => p.name).HasColumnName("name").HasMaxLength(45);
+
+                entity.Property(p => p.birthDate).HasColumnName("price").HasColumnType("datetime");
+
+                entity.Property(p => p.Password).HasMaxLength(500).HasColumnName("password").IsRequired();
+
+                entity.Property(p => p.email).HasMaxLength(45).HasColumnName("email").IsRequired();
+
+                entity.Property(p => p.phoneNum).HasMaxLength(45).HasColumnName("phoneNum").IsRequired();
+
+            });
         }
     }
 }
