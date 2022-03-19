@@ -26,7 +26,7 @@ namespace CarDealership.Models
         /// </summary>
         /// <param name="brand">eg. BMW, Audi...</param>
         /// <param name="model">eg. i30, Duster...</param>
-        /// <param name="verified">is it sure if it's real model</param> 
+        
         public CarBrand(string brand, string model)
         {
             this.id = counter.ToString();
@@ -35,6 +35,7 @@ namespace CarDealership.Models
             counter++;
             carBrands.Add(this);
         }
+
 
         /// <summary>
         /// Returns the first CarBrand available

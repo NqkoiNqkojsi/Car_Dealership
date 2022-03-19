@@ -119,8 +119,7 @@ namespace CarDealership.Views
                 telnumberSignin.Text.Length>8)
             {
                 string date=Day.SelectedValue.ToString()+"."+Month.SelectedValue.ToString()+"."+Year.SelectedValue.ToString();
-                DateTime dateTime = CustomerController.MakeBirthDate(date);
-                CustomerController.CreateCustomer(usernameSignin.Text, dateTime, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
+                CustomerController.CreateCustomer(usernameSignin.Text, date, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
             }
             ClosePage.Invoke(this, null);
         }

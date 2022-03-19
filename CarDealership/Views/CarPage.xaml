@@ -8,7 +8,7 @@
     mc:Ignorable="d" Width="1594" Height="1080">
 
     <Grid Width="1594" Height="1080">
-        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="574" VerticalAlignment="Top" Width="851" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
+        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
             <Rectangle.Fill>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
             </Rectangle.Fill>

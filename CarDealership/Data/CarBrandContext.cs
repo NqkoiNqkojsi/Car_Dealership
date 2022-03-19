@@ -7,8 +7,7 @@ namespace CarDealership.Data
         /// <summary>
         /// Connection String
         /// </summary> 
-        private const string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";//pull the connection string after making a connecting the database with sql server
-
+        private const string connectionString = "";
         /// <summary>
         /// CarBrands Table
         /// </summary>
