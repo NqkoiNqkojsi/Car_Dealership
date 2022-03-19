@@ -24,9 +24,17 @@ namespace CarDealership.Views
     public sealed partial class CarShowCase : UserControl
     {
         public string id { get; set; }
-        public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
+        /// <summary>
+        /// color for when the car is unwished
+        /// </summary>
         SolidColorBrush buttNormalBrush = new SolidColorBrush(Color.FromArgb(100, 91, 103, 122));
+        /// <summary>
+        /// color for when the car is already wished
+        /// </summary>
         SolidColorBrush buttWishedBrush = new SolidColorBrush(Color.FromArgb(100, 210, 214, 144));
+        /// <summary>
+        /// make the image 
+        /// </summary>
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
@@ -43,7 +51,9 @@ namespace CarDealership.Views
                 }
             }catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage(ex.Message);
+                p.Child = errorMessage;
             }
             uniformToFillBrush.ImageSource =
                 new BitmapImage(new Uri("Assets/default_img.png", UriKind.Relative));
@@ -57,7 +67,6 @@ namespace CarDealership.Views
             Price.Text = "Price:" + info["price"] + "lv";
             Year.Text = "Made in:" + info["year"];
             Seller.Text = "From:" + info["seller"];
-            //Image.Source=;
         }
         /// <summary>
         /// checks if the car is already wished

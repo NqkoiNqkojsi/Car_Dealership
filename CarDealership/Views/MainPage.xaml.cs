@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -130,7 +130,9 @@ namespace CarDealership
             }
             else
             {
-                //Show Error Message
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("No wished cars found!");
+                p.Child = errorMessage;
             }
         }
         /// <summary>
@@ -149,7 +151,9 @@ namespace CarDealership
             }
             else
             {
-                //Show Error Message
+                Popup p=new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("No own cars found!");
+                p.Child = errorMessage;
             }
         }
         /// <summary>
