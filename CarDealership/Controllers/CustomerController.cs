@@ -15,8 +15,10 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
+      
+        public static List<Customer> customers = new List<Customer>();
+      
         public static string sessionID = null;
-
 
         public static List<Customer> customers = new List<Customer>();
         public static string sessionId;
@@ -255,6 +257,10 @@ namespace CarDealership.Controllers
         /// <param name="info"></param>
         public static string CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
+            CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+            Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven,  engineVolume, info);
+            Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
+            customer.publicOffers.Add(car);
             if (sessionID != null)
             {
                 try
