@@ -9,6 +9,10 @@ using System.Web;
 using CarDealership.Data;
 using Windows.Storage;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
+using Windows.UI.Xaml.Media.Imaging;
+using System.Drawing;
+using Syncfusion.Pdf.Graphics;
 
 namespace CarDealership.Controllers
 {
@@ -98,8 +102,35 @@ namespace CarDealership.Controllers
             AssetsDir += toBeAdded;
             Directory.CreateDirectory(AssetsDir);
         }
+        public static void AddPhoto()
+        {
+            //Load a PDF document
 
-        
+            PdfLoadedDocument doc = new PdfLoadedDocument("input.pdf");
 
+            //Get first page from document
+
+            PdfLoadedPage page = doc.Pages[0] as PdfLoadedPage;
+
+            //Create PDF graphics for the page
+
+            PdfGraphics graphics = page.Graphics;
+
+            //Load the image from the disk
+
+            PdfBitmap image = new PdfBitmap("Autumn Leaves.jpg");
+
+            //Draw the image
+
+            graphics.DrawImage(image, 0, 0);
+
+            //Save the document
+
+            doc.Save("Output.pdf");
+
+            //Close the document
+
+            doc.Close(true);
+        }      
     }
 }
