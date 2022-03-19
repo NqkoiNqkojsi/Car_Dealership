@@ -166,6 +166,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AutoHub Logo small.png" />
     <Content Include="Assets\AutoHub3 Logo.png" />
     <Content Include="Assets\default_img.png" />
     <Content Include="Assets\Error logo.png" />

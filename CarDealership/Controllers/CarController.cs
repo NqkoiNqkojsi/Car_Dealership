@@ -56,8 +56,6 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
-
-                
             }
         }
 
@@ -68,7 +66,8 @@ namespace CarDealership.Controllers
                 try
                 {
                     return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -102,7 +101,7 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != 0)
             {
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
-                return customer.carsOwned.Select(x => x.id).ToList();
+                return customer.publicOffers.Select(x => x.id).ToList();
             }
             Console.WriteLine("Log in to view owned cars");
             return null;
@@ -159,6 +158,7 @@ namespace CarDealership.Controllers
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".png");
             StorageFile carPhoto = await openPicker.PickSingleFileAsync();
+
             return carPhoto;
         }
 
