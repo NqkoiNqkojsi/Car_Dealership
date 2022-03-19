@@ -138,9 +138,18 @@ namespace CarDealership
         private void toggleButtonOwnOffers_Checked(object sender, RoutedEventArgs e)
         {
             DeactivateButtons();
-            CarSearchMenue search = new CarSearchMenue();
-            MainView.Children.Add(search);
-            toggleButtonMain.Background = toggleOnBrush;
+            //carIds = CarController;
+            if (carIds != null)
+            {
+                ListOfCars listOfCars = new ListOfCars(carIds);
+                MainView.Children.Add(listOfCars);
+                listOfCars.OpenCarPage += AddCarPage;
+                toggleButtonMain.Background = toggleOnBrush;
+            }
+            else
+            {
+                //Show Error Message
+            }
         }
         /// <summary>
         /// Toggle dark Mode

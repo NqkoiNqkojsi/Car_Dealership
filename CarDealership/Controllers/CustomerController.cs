@@ -304,12 +304,33 @@ namespace CarDealership.Controllers
         /// <param name="kmDriven"></param>
         /// <param name="engineVolume"></param>
         /// <param name="info"></param>
-        public static void CreateOffer(string name, string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
+        /// <returns>a response message</returns>
+        public static string CreateOffer(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume, string info)
         {
-            CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
-            Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven,  engineVolume, info);
-            Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
-            customer.publicOffers.Add(car);
+            if (sessionID != null)
+            {
+                try
+                {
+                    CarBrand carBrand;
+                    if (CarBrand.IsNew(brand, model))
+                    {
+                        carBrand = new CarBrand(brand, model, true);
+                    }
+                    else
+                    {
+                        carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+                    }
+                    Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
+                    Customer customer = customers.Where(c => c.id == sessionID).FirstOrDefault();
+                    car.owner = customer;
+                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
+                    return "Made an offer";
+                }catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+            return "Not logged in!";
         }
 
         public static string Login(string email, string password)
