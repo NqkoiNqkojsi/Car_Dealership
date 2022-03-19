@@ -12,7 +12,7 @@ namespace CarDealership.Models
     public class Customer
     {
         [Key]
-        public string id { get; set; }
+        public int id { get; set; }
       
         public string name { get; set; }
       
@@ -57,7 +57,7 @@ namespace CarDealership.Models
 
         public Customer(string name, DateTime birthDate, string password, string phoneNum, string email)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.name = name;
             this.birthDate = birthDate;
             Password = password;

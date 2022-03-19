@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace CarDealership.Controllers
         private static CarDealershipContext customerContext = null;
 
       
-        public static string sessionID { get; set; }
+        public static int sessionID { get; set; }
 
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -184,9 +184,9 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Redo Password
         /// </summary>
-        public static void UpdatePassword(string id, string oldPass, string newPass)
+        public static void UpdatePassword(int id, string oldPass, string newPass)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 if (Customer.customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
@@ -378,7 +378,7 @@ namespace CarDealership.Controllers
             return ("Invalid email or password");
         } 
 
-        public static void RemoveOffer(string id)
+        public static void RemoveOffer(int id)
         {
             if (sessionID != null)
             {

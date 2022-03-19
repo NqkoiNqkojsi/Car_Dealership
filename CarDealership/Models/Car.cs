@@ -14,7 +14,7 @@ namespace CarDealership.Models
     public class Car
     {
         [Key]
-        public string id { get; set; }
+        public int id { get; set; }
 
         /// <summary>
         /// Holds the model and brand of the car
@@ -46,7 +46,7 @@ namespace CarDealership.Models
         /// Additional info about the car
         /// </summary>
         public string info { get; set; }
-        private static ulong counter=0;
+        private static int counter=0;
 
         /// <summary>
         /// List of all cars
@@ -55,7 +55,7 @@ namespace CarDealership.Models
          public static List<Car> approvedCars = new List<Car>();
         public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.carBrand = carBrand;
             this.price= price;
             this.manufDate = CarController.MakeDate(manufDateStr);
@@ -73,7 +73,7 @@ namespace CarDealership.Models
         }
         public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
-            this.id = counter.ToString();
+            this.id = counter;
             this.price = price;
             this.manufDate = CarController.MakeDate(manufDateStr);
             this.horsePower = horsePower;
@@ -103,7 +103,7 @@ namespace CarDealership.Models
             carinfo.Add("year", manufDate.Year.ToString());
             carinfo.Add("price", price.ToString());
             carinfo.Add("seller", owner.name);
-            carinfo.Add("sellerID", owner.id);
+            carinfo.Add("sellerID", owner.id.ToString());
             carinfo.Add("sellerPhone", owner.phoneNum);
             carinfo.Add("horsePower", horsePower.ToString());
             carinfo.Add("km", kmDriven.ToString());
