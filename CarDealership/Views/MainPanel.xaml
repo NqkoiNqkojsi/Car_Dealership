@@ -8,7 +8,7 @@
     mc:Ignorable="d" Height="1080" Width="1594">
 
     <Grid Width="1594" Height="1080"  HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid Width="1354" Height="970" Margin="0,0,240,110" >
+        <Grid Width="1354" Height="970" Margin="120,10,120,100" >
 
             <Border Height="Auto" Margin="136,271,758,270" Width="Auto">
                 <Grid>
@@ -36,9 +36,6 @@
             </Border>
 
         </Grid>
-
-        <StackPanel Height="110" Width ="1594" Margin="0,970,0,0" Background="Pink"/>
-        <StackPanel Margin="1354,0,0,0" Background="Pink" Orientation="Vertical" Width="240" />
     </Grid>
 
 </UserControl> 
