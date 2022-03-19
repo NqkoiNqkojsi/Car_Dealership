@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerTests\CarControllerTest.cs" />
+    <Compile Include="ControllerTests\CarsSortAndFilterControllerTest.cs" />
     <Compile Include="ControllerTests\CustomerControllerTest.cs" />
     <Compile Include="ModelTеsts\CarBrandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
