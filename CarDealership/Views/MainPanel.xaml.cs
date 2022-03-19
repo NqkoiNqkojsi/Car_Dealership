@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -126,7 +126,11 @@ namespace CarDealership.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (emailLogin.Text.Length>0 && passwordLogin.Password.Length>0)
+            {
+                string res=CustomerController.Login(emailLogin.Text, passwordLogin.Password);
+            }
+            ClosePage.Invoke(this, null);
         }
 
         private void passwordSignin_PasswordChanged(object sender, RoutedEventArgs e)
