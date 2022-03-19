@@ -16,9 +16,12 @@ namespace CarDealership.Controllers
     {
         private static CustomerContext customerContext = null;
 
-        public static List<Customer> customers = new List<Customer>();
 
-        public static string sessionID { get; set; }
+        internal  static string sessionID {get;set;}
+
+        public static List<Customer> customers = new List<Customer>();
+      
+        public static string sessionID = null;
 
         /// <summary>
         /// Safe Password Hashing w/ SHA512
@@ -256,10 +259,7 @@ namespace CarDealership.Controllers
         /// <param name="car"></param>
         public static void AddToFavorite(Car car)
         {
-            if (sessionID != null)
-            {
-                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
-                customer.favoritedCars.Add(car);
+            customer.favoritedCars.Add(car);
 
                 string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
 
@@ -340,8 +340,7 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-                    Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
-
+                    customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
                     return "Made an offer";
                 }
                 catch (Exception ex)
@@ -351,30 +350,16 @@ namespace CarDealership.Controllers
             }
             return "Not logged in!";
         }
-        /// <summary>
-        /// Method to log in a customer
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns>response message</returns>
+
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
-                if (customers.Any(c => c.email == email))
-                {
-                    Customer customer = customers.First(c => c.email == email);
-                    if (customer.Password == HashString(password))
-                    {
-                        sessionID = customer.id;
-                        return "Success";
-                    }
-                    return "Wrong password";
-                }
-                return "no profile";
+                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
+                return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
-            return ("Invalid email or password");
+
         }
 
         public static void RemoveOffer(string id)
@@ -386,11 +371,10 @@ namespace CarDealership.Controllers
                 customer.publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
-                    if (cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
+                    if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
                 }
             }
             else Console.WriteLine("Log in to remove offers.");
         }
-
     }
 }
