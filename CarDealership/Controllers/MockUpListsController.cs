@@ -18,7 +18,7 @@ namespace CarDealership.Controllers
                 car.owner = new Customer(random.Next().ToString(), DateTime.Now, random.NextDouble().ToString(), "1111111", "email@abv.bg");
                 Car.approvedCars.Add(car);
             }
-            return ": "+Car.approvedCars.Count().ToString() +"; "+ Car.quarantinedCars.Count().ToString();
+            return ": "+Car.approvedCars.Count().ToString() +"; "+ Car.approvedCars.Count().ToString();
         }
         static List<string> brandsReal = new List<string> { "","BMW", "Mercedes", "Audi", "VW", "Tesla", "Toyota", "Ford"};
         public static string GenerateMockUpCarBrand(int count)
@@ -26,9 +26,9 @@ namespace CarDealership.Controllers
             Random random = new Random();
             for (int i = 0; i < count; i++)
             {
-                CarBrand carBrand = new CarBrand(brandsReal.ElementAt(random.Next(7)), random.Next(1000).ToString(), true);
+                CarBrand carBrand = new CarBrand(brandsReal.ElementAt(random.Next(7)), random.Next(1000).ToString());
             }
-            return CarBrand.carBrands.Count().ToString() +"; "+ CarBrand.carBrandsUnverified.Count().ToString();
+            return CarBrand.carBrands.Count().ToString() +"; "+ CarBrand.carBrands.Count().ToString();
         }
         public static string GenerateMockUpCustomer(int count)
         {

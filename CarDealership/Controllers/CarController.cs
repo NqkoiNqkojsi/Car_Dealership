@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarDealership.Models;
 using System.IO;
-using System.Web;
 using CarDealership.Data;
+using Windows.Storage.Pickers;
 using Windows.Storage;
-using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CarDealership.Controllers
 {
@@ -32,12 +30,7 @@ namespace CarDealership.Controllers
                 
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
            
-                //add manufacture date to the car table 
-                using (carContext = new CarContext())
-                {
-                    var newDate = carContext.cars.Select(d=> d.manufDate == dateTime);
-                    carContext.SaveChanges();
-                }
+                
                 return dateTime;
             }
             catch (FormatException e)
@@ -46,7 +39,6 @@ namespace CarDealership.Controllers
                 return DateTime.MinValue;//at error return min value
             }
         }
-
         /// <summary>
         /// Adds cars to customer's wish list
         /// </summary>
@@ -56,19 +48,8 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
-
-                FavoriteCarContext favoriteCarContext = null;
-
-                FavoriteCar favoriteCar = new FavoriteCar(CustomerController.sessionID, carId);
-
-                using (favoriteCarContext = new FavoriteCarContext())
-                {
-                    favoriteCarContext.relaionFavourite.Add(favoriteCar);
-                    favoriteCarContext.SaveChanges();
-                }
             }
         }
-
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
@@ -80,7 +61,11 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.favoritedCars.Select(x => x.id).ToList();
             }
-            return null;
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
         }
         /// <summary>
         /// Show Cars in the Customer's Wishlist
@@ -93,6 +78,7 @@ namespace CarDealership.Controllers
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
                 return customer.carsOwned.Select(x => x.id).ToList();
             }
+            Console.WriteLine("Log in to view owned cars");
             return null;
         }
         /// <summary>
@@ -111,14 +97,58 @@ namespace CarDealership.Controllers
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
             string AssetsDir = Directory.GetCurrentDirectory();
-            int index = AssetsDir.IndexOf("Car_Dealership");
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
             if (index >= 0)
                 AssetsDir = AssetsDir.Substring(0, index);
             AssetsDir += toBeAdded;
             Directory.CreateDirectory(AssetsDir);
         }
 
-        
+        /// <summary>
+        /// Returns directory name for ease of the AddPhotoToDir method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string ImgDirString(string id)
+        {
+            string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
+            string AssetsDir = Directory.GetCurrentDirectory();
+            int index = AssetsDir.LastIndexOf("Car_Dealership");
+            if (index >= 0)
+                AssetsDir = AssetsDir.Substring(0, index);
+            AssetsDir += toBeAdded;
+            return AssetsDir;
+        }
 
+        /// <summary>
+        /// Uploads an image to a customer's offer
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<StorageFile> ImageUpload()
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+            StorageFile carPhoto = await openPicker.PickSingleFileAsync();
+            return carPhoto;
+        }
+
+        /// <summary>
+        /// Adds the image to a car's photo directory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static async Task AddPhotoToDir(string id)
+        {
+            StorageFile carPhoto = await ImageUpload();
+            if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
+            var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
+            await carPhoto.MoveAsync(dir);
+            
+        }
+        
     }
 }

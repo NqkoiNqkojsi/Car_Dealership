@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarDealership.Models;
 
 namespace CarDealership.Tests.ControllerTests
 {
@@ -34,5 +35,12 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.SendEmail("accountbox@abv.bg", "Test", "Success!");
         }
 
+        [TestMethod]
+        public void UpdatePasswordTest()
+        {
+            CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899","ivan@gmail.com");
+            CustomerController.UpdatePassword("0", "44444", "55555");
+            Assert.AreEqual("55555", Customer.customers.Where(c => c.id == CustomerController.sessionID).First().Password, "Different passwords");
+        }
     }
 }
