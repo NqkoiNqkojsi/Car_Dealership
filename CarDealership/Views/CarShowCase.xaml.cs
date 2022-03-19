@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace CarDealership.Views
 {
     public sealed partial class CarShowCase : UserControl
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
         SolidColorBrush buttNormalBrush = new SolidColorBrush(Color.FromArgb(100, 91, 103, 122));
         SolidColorBrush buttWishedBrush = new SolidColorBrush(Color.FromArgb(100, 210, 214, 144));
@@ -35,7 +35,7 @@ namespace CarDealership.Views
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
-        private void MakeContent(string id)
+        private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
             Title.Text = info["brand"] + " " + info["model"];
@@ -78,7 +78,7 @@ namespace CarDealership.Views
                 return false;
             }
         }
-        public CarShowCase(string id)
+        public CarShowCase(int id)
         {
             this.InitializeComponent();
             this.id = id;

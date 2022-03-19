@@ -23,7 +23,7 @@ namespace CarDealership.Views
     {
         public string id { get; set; }
         public List<BitmapImage> images=new List<BitmapImage>();
-        private void MakeContent(string id)
+        private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
             Title.Text = info["brand"] + " " + info["model"];

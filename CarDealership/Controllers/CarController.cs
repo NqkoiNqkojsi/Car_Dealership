@@ -79,19 +79,19 @@ namespace CarDealership.Controllers
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
         /// <returns>list of ids</returns>
-        //public static List<string> ShowFavoriteCars()
-        //{
-        //    if (CustomerController.sessionID != null)
-        //    {
-        //        Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
-        //        return customer.favoritedCars.Select(x => x.id).ToList();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Log in to perform this operation");
-        //        return null;
-        //    }
-        //}
+        public static List<int> ShowFavoriteCars()
+        {
+            if (CustomerController.sessionID != 0)
+            {
+                Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
+                return customer.favoritedCars.Select(x => x.id).ToList();
+            }
+            else
+            {
+                Console.WriteLine("Log in to perform this operation");
+                return null;
+            }
+        }
 
         /// <summary>
         /// Show Cars in the Customer's Wishlist

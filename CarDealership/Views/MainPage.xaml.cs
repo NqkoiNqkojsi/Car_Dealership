@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace CarDealership
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public List<string> carIds=new List<string>();
+        public List<int> carIds = new List<int>();
         SolidColorBrush toggleOnBrush= new SolidColorBrush(Color.FromArgb(50, 41, 77, 127));
         SolidColorBrush toggleOffBrush = new SolidColorBrush(Color.FromArgb(20, 0, 0, 0));
         public MainPage()
@@ -59,7 +59,7 @@ namespace CarDealership
         {
             DeactivateButtons();
             CarShowCase carShowCase = (CarShowCase)sender;
-            CarPage carPage = new CarPage(carShowCase.id);
+            CarPage carPage = new CarPage(carShowCase.id.ToString());
             MainView.Children.Add(carPage);
         }
         /// <summary>
