@@ -29,8 +29,6 @@ namespace CarDealership.Controllers
                 dateTime = dateTime.AddMonths(Convert.ToInt32(dateArray[0]) - 1);//add the months without the first
                 
                 dateTime = dateTime.AddYears(Convert.ToInt32(dateArray[1]) - 1);//add the years without the first
-           
-                
                 return dateTime;
             }
             catch (FormatException e)
@@ -48,7 +46,34 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Add(Car.approvedCars.First(x => x.id == carId));
+
+               
             }
+        }
+
+        public static void RemoveFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Remove(Car.approvedCars.First(x => x.id == carId));
+
+                
+            }
+        }
+
+        public static bool IsFavoriteCar(string carId)
+        {
+            if (CustomerController.sessionID != null)
+            {
+                try
+                {
+                    return Customer.customers.First(x => x.id == CustomerController.sessionID).favoritedCars.Any(x=>x.id==carId);   
+                }catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
@@ -150,5 +175,11 @@ namespace CarDealership.Controllers
             
         }
         
+        public static int PhotoInDirAmount(string id)
+        {
+            DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
+            int count = dir.GetFiles().Length;
+            return count;
+        }
     }
 }

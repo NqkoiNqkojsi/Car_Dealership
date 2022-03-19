@@ -103,6 +103,8 @@ namespace CarDealership.Models
             carinfo.Add("year", manufDate.Year.ToString());
             carinfo.Add("price", price.ToString());
             carinfo.Add("seller", owner.name);
+            carinfo.Add("sellerID", owner.id);
+            carinfo.Add("sellerPhone", owner.phoneNum);
             carinfo.Add("horsePower", horsePower.ToString());
             carinfo.Add("km", kmDriven.ToString());
             carinfo.Add("engineVolume", engineVolume.ToString());
