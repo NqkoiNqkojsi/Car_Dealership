@@ -14,14 +14,14 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock x:Name="Title" HorizontalAlignment="Left" Margin="58,40,0,0" TextWrapping="Wrap" Text="CarName" VerticalAlignment="Top" Height="81" Width="527" FontSize="48"/>
-        <Button Name="buttonNext" Content="Next" Margin="717,531,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
-        <Button Name="buttonPrev" Content="Prev" Margin="58,531,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24"/>
+        <Button Name="buttonNext" Content="Next" Margin="717,531,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24" Click="buttonNext_Click"/>
+        <Button Name="buttonPrev" Content="Prev" Margin="58,531,0,0" VerticalAlignment="Top" Height="44" Width="80" CornerRadius="20" FontSize="24" Click="buttonPrev_Click"/>
         <StackPanel Margin="58,666,685,35" CornerRadius="20" Background="#FF8495B5" Opacity="0.8">
             <TextBlock TextWrapping="Wrap" Text="Seller info:" Height="61" Width="227" FontSize="48"/>
             <TextBlock Name="textBlockName" TextWrapping="Wrap" FontSize="36" Height="63" Width="828"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
             <TextBlock Name="textBlockPhone" TextWrapping="Wrap" FontSize="36" Height="63" Width="828"><Run Text="Phone:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-            <Button Name="buttonSendEmail" Content="Send" HorizontalAlignment="Right" CornerRadius="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="36" Width="132" Padding="8,4,10,5" Margin="0,0,10,0"/>
-            <TextBox TextWrapping="Wrap" Text="Write an email." Height="129" Width="821" RenderTransformOrigin="0.5,0.489" FontSize="36"/>
+            <Button Name="buttonSendEmail" Content="Send" HorizontalAlignment="Right" CornerRadius="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="36" Width="132" Padding="8,4,10,5" Margin="0,0,10,0" Click="buttonSendEmail_Click"/>
+            <TextBox Name="textBoxEmail" TextWrapping="Wrap" Text="Write an email." Height="129" Width="821" RenderTransformOrigin="0.5,0.489" FontSize="36"/>
         </StackPanel>
         <TextBlock x:Name="textBlockPrice" HorizontalAlignment="Left" Margin="963,104,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="82" Width="588" FontSize="56"/>
         <TextBlock x:Name="textBlockHorsePower" HorizontalAlignment="Left" Margin="963,292,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="73" Width="567" FontSize="36"/>

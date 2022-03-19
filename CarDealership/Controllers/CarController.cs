@@ -101,7 +101,7 @@ namespace CarDealership.Controllers
             if (CustomerController.sessionID != null)
             {
                 Customer customer = Customer.customers.First(x => x.id == CustomerController.sessionID);
-                return customer.carsOwned.Select(x => x.id).ToList();
+                return customer.publicOffers.Select(x => x.id).ToList();
             }
             Console.WriteLine("Log in to view owned cars");
             return null;
@@ -164,22 +164,28 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds the image to a car's photo directory
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">offer id</param>
+        /// <param name="carPhoto">the file itself</param>
+        /// <param name="num">the number with which to be saved</param>
         /// <returns></returns>
-        public static async Task AddPhotoToDir(string id)
+        public static async Task AddPhotoToDir(string id, StorageFile carPhoto, string num)
         {
-            StorageFile carPhoto = await ImageUpload();
             if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
             var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
-            await carPhoto.MoveAsync(dir);
-            
+            await carPhoto.RenameAsync(num);
+            await carPhoto.MoveAsync(dir); 
         }
         
-        public static int PhotoInDirAmount(string id)
+        public static int PhotoInDirCount(string id)
         {
             DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
             int count = dir.GetFiles().Length;
             return count;
+        }
+        public static List<string> PhotosAll(string id)
+        {
+            DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
+            return dir.GetFiles().Select(f => f.ToString()).ToList();
         }
     }
 }

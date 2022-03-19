@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,8 +30,23 @@ namespace CarDealership.Views
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
+            try
+            {
+                if (CarController.PhotoInDirCount(id) > 0)
+                {
+                    
+                    uniformToFillBrush.ImageSource =
+                        new BitmapImage(new Uri(CarController.PhotosAll(id).First(), UriKind.Absolute));
+                    uniformToFillBrush.Stretch = Stretch.UniformToFill;
+                    Image.Fill = uniformToFillBrush;
+                    return;
+                }
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             uniformToFillBrush.ImageSource =
-                new BitmapImage(new Uri("Assets/githubLogo.png", UriKind.Relative));
+                new BitmapImage(new Uri("Assets/default_img.png", UriKind.Relative));
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
@@ -84,7 +99,7 @@ namespace CarDealership.Views
             this.id = id;
             MakeContent(id);
             IsWished();
-            //GenerateImg();
+            GenerateImg();
         }
         public void c_OpenCarPage(object sender, EventArgs e)
         {

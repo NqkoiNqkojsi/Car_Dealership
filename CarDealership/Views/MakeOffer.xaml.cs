@@ -62,8 +62,10 @@ namespace CarDealership.Views
                     if (offerID != null)
                     {
                         CarController.MakeImgDir(offerID);
+                        int counter = 0;
                         foreach (StorageFile file in storageFiles) {
-                            await CarController.AddPhotoToDir(offerID, file);      
+                            await CarController.AddPhotoToDir(offerID, file, counter.ToString());  
+                            counter++;
                         }
                         ClosePage.Invoke(this, null);
                     }

@@ -78,7 +78,7 @@ namespace CarDealership.Models
         /// <summary>
         /// Returns Car's Information
         /// </summary>
-        /// <returns>brand, model, date, year, price, seller, imgDir, horsePower, km, engineVolume, addInfo</returns>
+        /// <returns>brand, model, date, year, price, seller, horsePower, km, engineVolume, addInfo, sellerPhone, sellerEmail</returns>
         public Dictionary<string, string> PrintCarInfo()
         {
             Dictionary<string, string> carinfo = new Dictionary<string, string>();
@@ -90,6 +90,7 @@ namespace CarDealership.Models
             carinfo.Add("seller", owner.name);
             carinfo.Add("sellerID", owner.id);
             carinfo.Add("sellerPhone", owner.phoneNum);
+            carinfo.Add("sellerEmail", owner.email);
             carinfo.Add("horsePower", horsePower.ToString());
             carinfo.Add("km", kmDriven.ToString());
             carinfo.Add("engineVolume", engineVolume.ToString());
