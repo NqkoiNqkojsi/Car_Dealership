@@ -23,9 +23,10 @@ namespace CarDealership.Views
         public CarSearchMenue()
         {
             this.InitializeComponent();
-            foreach(string brands in CarBrandController.GetBrands())
+            ComboBox_Brand.Items.Add("All");
+            foreach (string brands in CarBrandController.GetBrands())
                 ComboBox_Brand.Items.Add(brands);
-            for(int i=2022;i>1929;i--)
+            for (int i=2022;i>1929;i--)
                 ComboBox_Year.Items.Add(i);
             ComboBox_Sort.Items.Add("Year");
             ComboBox_Sort.Items.Add("Price");
@@ -34,12 +35,13 @@ namespace CarDealership.Views
         }
         public void ComboBox_SelectionChanged_1(object sender, RoutedEventArgs e)
         {
+            ComboBox_Model.Items.Add("All");
             foreach (string models in CarBrandController.GetModels(ComboBox_Brand.SelectedValue.ToString()))
                 ComboBox_Model.Items.Add(models);
         }
         public void SearchEngaged(object sender, RoutedEventArgs e)
         {
-            string choice = ComboBox_Sort.SelectedValue.ToString(); 
+                
         }
     }
 }

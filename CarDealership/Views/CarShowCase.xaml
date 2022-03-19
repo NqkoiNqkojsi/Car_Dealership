@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="100" Width="540">
 
-    <Grid Name="ShowCase" Background="#19C5C5C5">
+    <Grid Name="ShowCase" CornerRadius="20" Background="#7FC5C5C5" BorderBrush="Black">
 
 
         <Rectangle x:Name="Image"  HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="135" RenderTransformOrigin="0.32,0.5">
@@ -19,7 +19,7 @@
         <TextBlock x:Name="Price" HorizontalAlignment="Left" Margin="393,10,0,0" TextWrapping="Wrap" Text="Price:" VerticalAlignment="Top" FontSize="16" Width="137" Height="22" MinWidth="137" MaxWidth="137" MinHeight="24" MaxHeight="24" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         <TextBlock x:Name="Year" HorizontalAlignment="Left" Height="21" Margin="293,41,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top" Width="237" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="237" MinHeight="21" MaxWidth="237" MaxHeight="21"/>
         <TextBlock x:Name="Seller" HorizontalAlignment="Left" Height="21" Margin="293,69,0,0" TextWrapping="Wrap" Text="Seller" VerticalAlignment="Top" Width="235" MinWidth="237" MaxWidth="237" MinHeight="21" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxHeight="21"/>
-        <Button x:Name="AddWish" Click="WishCar" Content="AddWish" Height="49" Margin="155,41,0,0" VerticalAlignment="Top" Background="CornflowerBlue" Width="115"/>
+        <Button x:Name="AddWish" Click="WishCar" Content="AddWish" CornerRadius="20" Height="49" Margin="155,41,0,0" VerticalAlignment="Top" Background="#FF5B677D" Width="115" RenderTransformOrigin="0.609,0.539"/>
 
     </Grid>
 </UserControl>

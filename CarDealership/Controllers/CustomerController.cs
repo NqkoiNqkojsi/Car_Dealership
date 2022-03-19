@@ -15,10 +15,13 @@ namespace CarDealership.Controllers
     public class CustomerController
     {
         private static CustomerContext customerContext = null;
-        public static string sessionID { get; set; }
       
         public static List<Customer> customers = new List<Customer>();
+      
+        public static string sessionID = null;
 
+        public static List<Customer> customers = new List<Customer>();
+        public static string sessionId;
         /// <summary>
         /// Safe Password Hashing w/ SHA512
         /// </summary>
@@ -125,21 +128,29 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void UpdatePassword(string id, string oldPass, string newPass)
         {
-
-
-            if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
+            if (sessionID != null)
             {
-                try
+                if (customers.Where(x => x.id == id).FirstOrDefault().Password == HashString(oldPass))
                 {
-                    customers.Where(x => x.id == id).FirstOrDefault().Password = HashString(newPass);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Username or password is incorrect");
+                    try
+                    {
+                        customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
+
+                        using (customerContext = new CustomerContext())
+                        {
+                            if (oldPass != null)
+                            {
+                                customerContext.Entry(oldPass).CurrentValues.SetValues(newPass);
+                                customerContext.SaveChanges();
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Username or password is incorrect");
+                    }
                 }
             }
-
-
         }
 
         /// <summary>
@@ -147,29 +158,32 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void SendEmail(string receiver, string subject, string message)
         {
-            if (IsValidEmail(receiver))
+            if (sessionID != null)
             {
-                var sender = new MailAddress("cardealeritcareer@gmail.com");
-                var recipient = new MailAddress($"{receiver}");
-                const string fromPassword = "ugtjyktoeiphmvsv";
-                string subj = subject;
-                string body = message;
-                var smtp = new SmtpClient
+                if (IsValidEmail(receiver))
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(sender.Address, fromPassword)
-                };
-                using (var mail = new MailMessage(sender, recipient)
-                {
-                    Subject = subj,
-                    Body = body
-                })
-                {
-                    smtp.Send(mail);
+                    var sender = new MailAddress("cardealeritcareer@gmail.com");
+                    var recipient = new MailAddress($"{receiver}");
+                    const string fromPassword = "ugtjyktoeiphmvsv";
+                    string subj = subject;
+                    string body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(sender.Address, fromPassword)
+                    };
+                    using (var mail = new MailMessage(sender, recipient)
+                    {
+                        Subject = subj,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mail);
+                    }
                 }
             }
         }
@@ -182,7 +196,7 @@ namespace CarDealership.Controllers
         public static void AddToFavorite(Customer customer, Car car)
         {
             customer.favoritedCars.Add(car);
-            
+
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
 
             try
@@ -214,8 +228,6 @@ namespace CarDealership.Controllers
                 Console.WriteLine($"Exception: {eSql.Message}");
             }
         }
-
-
 
         /// <summary>
         /// Sends you an email to recover your password
@@ -249,18 +261,24 @@ namespace CarDealership.Controllers
             Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven,  engineVolume, info);
             Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
             customer.publicOffers.Add(car);
+            if (sessionID != null)
+            {
+                CarBrand carBrand = CarBrand.carBrands.Where(c => c.brand == brand && c.model == model).FirstOrDefault();
+                Car car = new Car(carBrand, price, manufDateStr, kmDriven, horsePower, engineVolume, info);
+                Customer customer = customers.Where(c => c.name == name).FirstOrDefault();
+                customer.publicOffers.Add(car);
+            }
         }
 
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
             {
+                sessionID = CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
                 return CustomerController.customers.Where(c => c.email == email && c.Password == HashString(password)).FirstOrDefault().id;
             }
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
-        } 
-
-
+        }
     }
 }
