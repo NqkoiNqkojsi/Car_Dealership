@@ -4,6 +4,9 @@ using CarDealership.Models;
 
 namespace CarDealership.Data
 {
+    /// <summary>
+    /// CarDealershipContext class.
+    /// </summary>
     public partial class CarDealershipContext : DbContext
     {
         /// <summary>
@@ -16,6 +19,10 @@ namespace CarDealership.Data
             Database.EnsureCreated();
 
         }
+        /// <summary>
+        /// Constructor (overloaded).
+        /// </summary>
+        /// <param name="options"></param>
         public CarDealershipContext(DbContextOptions<CarDealershipContext> options) : base(options)
         {
             Database.EnsureCreated();
@@ -53,7 +60,7 @@ namespace CarDealership.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True;";
+                var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True";
                 optionsBuilder.UseSqlServer(connString);
             }
         }

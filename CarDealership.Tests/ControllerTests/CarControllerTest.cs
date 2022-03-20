@@ -26,7 +26,7 @@ namespace CarDealership.Tests.ControllerTests
         public void MakeImgDirTest()
         {
 
-            string id = "1";
+            int id = 1;
             string tobetested = CarController.ImgDirString(id);
             Assert.AreEqual("C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\Assets\\1", tobetested, "Not equal");
         }
@@ -38,7 +38,7 @@ namespace CarDealership.Tests.ControllerTests
             List<string> Test = new List<string> {"0"};
             CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
             CustomerController.AddToFavorite(car);
-            List<string> toBeTested = CarController.ShowFavoriteCars();
+            List<int> toBeTested = CarController.ShowFavoriteCars();
             Assert.AreEqual(Test, toBeTested, "Not equal"); 
         }
 
