@@ -22,6 +22,6 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,44,0,0" TextWrapping="Wrap" Text="Make an offer" VerticalAlignment="Top" FontSize="72"/>
         <TextBlock x:Name="textBlockPhotos"  HorizontalAlignment="Left" Margin="841,434,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="300" Width="637" FocusVisualPrimaryBrush="Black"/>
         <Button x:Name="buttonAddPhotos" CornerRadius="8" Click="buttonAddPhoto_Click" Content="AddPhotos" Margin="841,352,0,0" VerticalAlignment="Top" Width="637" Height="58" FontSize="36"/>
-        <Button x:Name="buttonCreate" CornerRadius="8" Click="buttonMakeOffer_Click" Content="Create an offer" Margin="841,792,0,0" VerticalAlignment="Top" Width="637" Height="147" FontSize="36"/>
+        <Button x:Name="buttonAddPhotos_Copy" CornerRadius="8" Click="buttonAddPhoto_Click" Content="Create an offer" Margin="841,792,0,0" VerticalAlignment="Top" Width="637" Height="147" FontSize="36"/>
     </Grid>
 </UserControl> 

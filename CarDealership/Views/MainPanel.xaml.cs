@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +30,9 @@ namespace CarDealership.Views
             Day.SelectedItem = Day.Items[0];
             Year.SelectedItem = Year.Items[0];
         }
+        /// <summary>
+        /// make the combo box data
+        /// </summary>
         private void GenerateYear()
         {
             for (int i = 2022; i > 1900; i--)
@@ -37,6 +40,9 @@ namespace CarDealership.Views
                 Year.Items.Add(i);
             }
         }
+        /// <summary>
+        /// make monts combo box
+        /// </summary>
         private void GenerateMonths()
         {
             Month.Items.Add("January");
@@ -52,7 +58,10 @@ namespace CarDealership.Views
             Month.Items.Add("November");
             Month.Items.Add("December");
         }
-
+        /// <summary>
+        /// get the days in the month
+        /// </summary>
+        /// <param name="month"></param>
         private void GenerateDays(int month)
         { 
             Day.Items.Clear();
@@ -100,7 +109,9 @@ namespace CarDealership.Views
             }
             catch(Exception err)
             {
-                Console.WriteLine(err);
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("");
+                p.Child = errorMessage;
             }
             
           
@@ -120,6 +131,12 @@ namespace CarDealership.Views
             {
                 string date=Day.SelectedValue.ToString()+"."+Month.SelectedValue.ToString()+"."+Year.SelectedValue.ToString();
                 CustomerController.CreateCustomer(usernameSignin.Text, date, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
+            }
+            else
+            {
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage("Can't sign up");
+                p.Child = errorMessage;
             }
             ClosePage.Invoke(this, null);
         }

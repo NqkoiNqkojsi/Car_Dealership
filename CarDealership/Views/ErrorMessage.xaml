@@ -10,14 +10,12 @@
     d:DesignHeight="115">
 
     <Grid>
-        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="28" RenderTransformOrigin="0.32,0.5" Margin="20,14,0,0">
+        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.32,0.5" Margin="20,14,0,0">
             <Rectangle.Fill>
                 <ImageBrush Stretch="Fill" ImageSource="/Assets/Error logo.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Button Content="OK" CornerRadius="8" Margin="15,78,0,0" VerticalAlignment="Top" Width="150" Height="25" FontSize="10"/>
-        <Button Content="Cancel" CornerRadius ="8" Margin="185,78,0,0" VerticalAlignment="Top" Width="150" Height="25" FontSize="10"/>
-        <TextBlock x:Name="ErrorMessage1" HorizontalAlignment="Left" Margin="56,19,0,0" TextWrapping="Wrap" Text="An error occurred." VerticalAlignment="Top" Width="280" Height="20" FontWeight="Bold"/>
-        <TextBlock x:Name="ErrorMessage1_Copy" HorizontalAlignment="Left" Margin="56,0,0,0" TextWrapping="Wrap" Text="Error details" VerticalAlignment="Center" Width="280" Height="20" FontWeight="Normal" FontSize="10"/>
+        <TextBlock x:Name="ErrorMessage1" HorizontalAlignment="Left" Margin="83,19,0,0" TextWrapping="Wrap" Text="An error occurred." VerticalAlignment="Top" Width="253" Height="20" FontWeight="Bold"/>
+        <TextBlock x:Name="ErrorMessageBody" HorizontalAlignment="Left" Margin="83,51,0,0" TextWrapping="Wrap" Text="Error details" VerticalAlignment="Top" Width="255" Height="52" FontWeight="Normal" FontSize="10"/>
     </Grid>
 </UserControl>

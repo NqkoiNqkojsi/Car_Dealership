@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,26 +23,50 @@ namespace CarDealership.Views
 {
     public sealed partial class CarShowCase : UserControl
     {
-        public string id { get; set; }
-        public event EventHandler<OpenCarPageEventArgs> OpenCarPage;
+        public int id { get; set; }
+        /// <summary>
+        /// color for when the car is unwished
+        /// </summary>
         SolidColorBrush buttNormalBrush = new SolidColorBrush(Color.FromArgb(100, 91, 103, 122));
+        /// <summary>
+        /// color for when the car is already wished
+        /// </summary>
         SolidColorBrush buttWishedBrush = new SolidColorBrush(Color.FromArgb(100, 210, 214, 144));
+        /// <summary>
+        /// make the image 
+        /// </summary>
         public void GenerateImg()
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
+            try
+            {
+                if (CarController.PhotoInDirCount(id) > 0)
+                {
+                    
+                    uniformToFillBrush.ImageSource =
+                        new BitmapImage(new Uri(CarController.PhotosAll(id).First(), UriKind.Absolute));
+                    uniformToFillBrush.Stretch = Stretch.UniformToFill;
+                    Image.Fill = uniformToFillBrush;
+                    return;
+                }
+            }catch (Exception ex)
+            {
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage(ex.Message);
+                p.Child = errorMessage;
+            }
             uniformToFillBrush.ImageSource =
-                new BitmapImage(new Uri("Assets/githubLogo.png", UriKind.Relative));
+                new BitmapImage(new Uri("Assets/default_img.png", UriKind.Relative));
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
-        private void MakeContent(string id)
+        private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
             Title.Text = info["brand"] + " " + info["model"];
             Price.Text = "Price:" + info["price"] + "lv";
             Year.Text = "Made in:" + info["year"];
             Seller.Text = "From:" + info["seller"];
-            //Image.Source=;
         }
         /// <summary>
         /// checks if the car is already wished
@@ -78,13 +102,13 @@ namespace CarDealership.Views
                 return false;
             }
         }
-        public CarShowCase(string id)
+        public CarShowCase(int id)
         {
             this.InitializeComponent();
             this.id = id;
             MakeContent(id);
             IsWished();
-            //GenerateImg();
+            GenerateImg();
         }
         public void c_OpenCarPage(object sender, EventArgs e)
         {
