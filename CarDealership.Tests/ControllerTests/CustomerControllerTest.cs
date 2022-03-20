@@ -97,6 +97,5 @@ namespace CarDealership.Tests.ControllerTests
             string pass = "12345IT!";
             Assert.AreEqual(CustomerController.IsValidPassword(pass), true, "Pass doesnt work");
         }
-
     }
 }

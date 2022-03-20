@@ -360,16 +360,17 @@ namespace CarDealership.Controllers
         } 
 
         /// <summary>
-        /// Removes the offer from customer's account.
+        /// remove the offer from instances: aprroved cars, favourite cars and publicOffers
         /// </summary>
-        /// <param id="id"></param>
+        /// <param name="id">id of the removed offer</param>
         public static void RemoveOffer(int id)
         {
             if (sessionID != 0)
             {
-                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                //get the needed car
                 Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
-                customer.publicOffers.Remove(car);
+                Car.approvedCars.Remove(car);
+                Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
                     if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);

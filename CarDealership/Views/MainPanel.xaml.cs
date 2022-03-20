@@ -21,6 +21,9 @@ namespace CarDealership.Views
     public sealed partial class MainPanel : UserControl
     {
         public event RoutedEventHandler ClosePage;
+        /// <summary>
+        /// Register page
+        /// </summary>
         public MainPanel()
         {
             this.InitializeComponent();
@@ -97,7 +100,9 @@ namespace CarDealership.Views
         {
 
         }
-
+        /// <summary>
+        /// On month change, update the days
+        /// </summary>
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -110,7 +115,7 @@ namespace CarDealership.Views
             catch(Exception err)
             {
                 Popup p = new Popup();
-                ErrorMessage errorMessage = new ErrorMessage("");
+                ErrorMessage errorMessage = new ErrorMessage(err.Message);
                 p.Child = errorMessage;
             }
             
@@ -121,14 +126,18 @@ namespace CarDealership.Views
         {
             GenerateDays(Month.SelectedIndex+1);
         }
-
+        /// <summary>
+        /// Button event to make new profile
+        /// </summary>
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
+            //check if the fields are filled
             if (CustomerController.IsValidPassword(passwordSignin.Password) &&
                 CustomerController.IsValidEmail(emailSignin.Text)&&
                 usernameSignin.Text.Length>3 &&
                 telnumberSignin.Text.Length>8)
             {
+                //make the customer
                 string date=Day.SelectedValue.ToString()+"."+Month.SelectedValue.ToString()+"."+Year.SelectedValue.ToString();
                 CustomerController.CreateCustomer(usernameSignin.Text, date, passwordSignin.Password, telnumberSignin.Text, emailSignin.Text);
             }
@@ -140,7 +149,9 @@ namespace CarDealership.Views
             }
             ClosePage.Invoke(this, null);
         }
-
+        /// <summary>
+        /// button event to lig in a profile
+        /// </summary>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             if (emailLogin.Text.Length>0 && passwordLogin.Password.Length>0)
