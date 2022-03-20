@@ -44,7 +44,7 @@ namespace CarDealership.Tests.ControllerTests
         public void UpdatePasswordTest()
         {
             CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899","ivan@gmail.com");
-            CustomerController.UpdatePassword("1", "44444", "55555");
+            CustomerController.UpdatePassword(1, "44444", "55555");
             Assert.AreEqual("55555", Customer.customers.Where(c => c.id == CustomerController.sessionID).First().Password, "Different passwords");
         }
         [TestMethod]
@@ -69,7 +69,7 @@ namespace CarDealership.Tests.ControllerTests
             CustomerController.CreateCustomer("Ivan", "23.10.2003", "44444", "0899", "ivan@gmail.com");
             CustomerController.CreateOffer("Mazda", "Mazda", 1.00, "3.2015", 1.00, 1.00, 1.00, "Its a car");
             int size1 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
-            CustomerController.RemoveOffer("0");
+            CustomerController.RemoveOffer(0);
             int size2 = Customer.customers.Where(c => c.id == CustomerController.sessionID).FirstOrDefault().publicOffers.Count;
             Assert.AreEqual(size2 + 1, size1, "Offer not removed");
         }
