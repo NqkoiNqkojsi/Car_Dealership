@@ -1,4 +1,6 @@
-﻿CREATE DATABASE cardealership
+﻿DROP DATABASE IF EXISTS [cardealership];
+GO
+CREATE DATABASE cardealership
 GO
 USE cardealership
 GO
@@ -8,7 +10,7 @@ CREATE TABLE [CarBrand]
     [brand] VARCHAR(45) NOT NULL,
     [model] VARCHAR(45) NOT NULL
 );
-
+GO
 CREATE TABLE [Car]
 (
     [id] INT PRIMARY KEY NOT NULL IDENTITY,
@@ -21,7 +23,7 @@ CREATE TABLE [Car]
     [engineVolume] FLOAT NOT NULL,
     [info] VARCHAR(1000)
 );
-
+GO
 CREATE TABLE [Customer]
 (
     [id] INT PRIMARY KEY NOT NULL IDENTITY,
@@ -31,7 +33,7 @@ CREATE TABLE [Customer]
     [email] VARCHAR(45) NOT NULL,
     [phoneNum] VARCHAR(45) NOT NULL
 );
-
+GO
 CREATE TABLE [RelationSeller]
 (
     [id] INT PRIMARY KEY NOT NULL IDENTITY,
@@ -40,7 +42,7 @@ CREATE TABLE [RelationSeller]
     [carId] INT NOT NULL,
     CONSTRAINT [fk_car_relation] FOREIGN KEY ([carId]) REFERENCES [Car]([id])
 );
-
+GO
 CREATE TABLE [Picture]
 (
     [id] INT PRIMARY KEY IDENTITY NOT NULL,
