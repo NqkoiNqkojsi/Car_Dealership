@@ -60,7 +60,8 @@ namespace CarDealership.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True";
+                var connString = @"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=SSPI";
+                //Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=cardealership;Integrated Security=True
                 optionsBuilder.UseSqlServer(connString);
             }
         }
