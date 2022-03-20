@@ -26,8 +26,12 @@ namespace CarDealership
     public sealed partial class MainPage : Page
     {
         public List<int> carIds=new List<int>();
+        //brushes to color the toggle buttons
         SolidColorBrush toggleOnBrush= new SolidColorBrush(Color.FromArgb(50, 41, 77, 127));
         SolidColorBrush toggleOffBrush = new SolidColorBrush(Color.FromArgb(20, 0, 0, 0));
+        /// <summary>
+        /// Main page holding the main view
+        /// </summary>
         public MainPage()
         {
             this.InitializeComponent();
@@ -38,6 +42,9 @@ namespace CarDealership
             toggleButtonMain.IsChecked = true;
             toggleButtonMain.Background = toggleOnBrush;
         }
+        /// <summary>
+        /// Reset all the nav bar buttons and main view
+        /// </summary>
         public void DeactivateButtons()
         {
             toggleButtonMain.IsChecked = false;

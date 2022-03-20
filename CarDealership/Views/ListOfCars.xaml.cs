@@ -21,14 +21,14 @@ namespace CarDealership.Views
 {
     public sealed partial class ListOfCars : UserControl
     {
+        //list to separate the ids to prev, current, next
         List<int> prevId=new List<int>();
         List<int> nextId=new List<int>();
         List<int> usedId=new List<int>();
         public event PointerEventHandler OpenCarPage;
-        public void ManageImages()
-        {
-            //TO DO
-        }
+        /// <summary>
+        /// make the show cases and display them
+        /// </summary>
         public async void ShowCars()
         {
             try
@@ -38,19 +38,28 @@ namespace CarDealership.Views
                 {
                     CarShowCase carShowCase = new CarShowCase(id);
                     carShowCase.Name = id.ToString();
+                    //need delay so the event functions
                     await Task.Delay(100);
+                    //event to open the car page from the main view
                     carShowCase.PointerPressed += OpenCarPage;
                     ListCarPanel.Children.Add(carShowCase);
                 }
             }catch(Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Popup p = new Popup();
+                ErrorMessage errorMessage = new ErrorMessage(ex.Message);
+                p.Child = errorMessage;
             }
         }
+        /// <summary>
+        /// list of car previews
+        /// </summary>
+        /// <param name="ids">ids of the cars to be shown</param>
         public ListOfCars(List<int> ids)
         {
             this.InitializeComponent();
             Prev.IsEnabled = false;
+            //make the intial lists
             if (ids.Count > 5)
             {
                 usedId.AddRange(ids.Take(5));
@@ -65,9 +74,13 @@ namespace CarDealership.Views
             }
             ShowCars();
         }
+        /// <summary>
+        /// Get the previous 5 show case's ids
+        /// </summary>
         public void GoPrev(object sender, RoutedEventArgs e)
         {
             Next.IsEnabled = true;
+            //add the used to next and prev to used
             if (prevId.Count > 5)
             {
                 nextId.AddRange(usedId);
@@ -85,9 +98,13 @@ namespace CarDealership.Views
             }
             ShowCars();    
         }
+        /// <summary>
+        /// Get the next 5 show case's ids
+        /// </summary>
         public void GoNext(object sender, RoutedEventArgs e)
         {
             Prev.IsEnabled = true;
+            //add the used to prev and next to used
             if (nextId.Count > 5)
             {
                 prevId.AddRange(usedId);
@@ -106,8 +123,5 @@ namespace CarDealership.Views
             ShowCars();
         }
     }
-    public class OpenCarPageEventArgs : EventArgs
-    {
-        public int id { get; set; }
-    }
+    
 }

@@ -15,7 +15,7 @@
 
   <Properties>
     <DisplayName>CarDealership</DisplayName>
-    <PublisherDisplayName>PC</PublisherDisplayName>
+    <PublisherDisplayName>Stelyo</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -45,5 +45,9 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer"/>
+    <uap:Capability Name="enterpriseAuthentication"/>
+    <uap:Capability Name="removableStorage"/>
+    <Capability Name="privateNetworkClientServer"/>
   </Capabilities>
 </Package>

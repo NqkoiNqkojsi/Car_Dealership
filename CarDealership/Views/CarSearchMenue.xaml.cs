@@ -20,11 +20,18 @@ namespace CarDealership.Views
 {
     public sealed partial class CarSearchMenue : UserControl
     {
+        /// <summary>
+        /// event that holds the action of showing the list of cars that are chosen
+        /// </summary>
         public event RoutedEventHandler InitializeSearch;
+        /// <summary>
+        /// Search Page
+        /// </summary>
         public CarSearchMenue()
         {
             this.InitializeComponent();
             buttonSearch.Click += InitializeSearch;
+            //Ready the combo boxes
             foreach(string brands in CarBrandController.GetBrands())
             ComboBox_Brand.Items.Add("All");
             foreach (string brands in CarBrandController.GetBrands())
@@ -35,13 +42,19 @@ namespace CarDealership.Views
             ComboBox_Sort.Items.Add("Price");
             ComboBox_Sort.Items.Add("Price and Year");
         }
+        /// <summary>
+        /// Get the models for the chosen brand
+        /// </summary>
         public void ComboBox_SelectionChanged_1(object sender, RoutedEventArgs e)
         {
             ComboBox_Model.Items.Add("All");
             foreach (string models in CarBrandController.GetModels(ComboBox_Brand.SelectedValue.ToString()))
                 ComboBox_Model.Items.Add(models);
         }
-        
+        /// <summary>
+        /// Get the result of the search
+        /// </summary>
+        /// <returns>ids of searche cars</returns>
         public List<int> GetResult()
         {
             //TO DO

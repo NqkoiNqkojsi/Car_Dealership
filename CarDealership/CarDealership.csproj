@@ -99,6 +99,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x64\Debug\CarDealership.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -122,7 +123,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MockUpListsController.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Data\database.cs" />
     <Compile Include="Models\CarBrand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Picture.cs" />
@@ -166,6 +166,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\10000000\1.jpeg" />
     <Content Include="Assets\AutoHub Logo small.png" />
     <Content Include="Assets\AutoHub3 Logo.png" />
     <Content Include="Assets\default_img.png" />

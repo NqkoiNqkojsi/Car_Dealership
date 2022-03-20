@@ -26,9 +26,14 @@ namespace CarDealership.Views
     {
         public int id { get; set; }
         public string ownerEmail { get; set; }
+        //variables to track the images
         public List<string> paths=new List<string>();
         public int imgCount = 0;
         public int imgAt = 0;
+        /// <summary>
+        /// Display full info
+        /// </summary>
+        /// <param name="id">cars id</param>
         private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
@@ -43,7 +48,10 @@ namespace CarDealership.Views
             textBlockPhone.Text = "Phone:"+info["sellerPhone"];
             ownerEmail = info["sellerEmail"];
         }
-
+        /// <summary>
+        /// show the selected image in the window
+        /// </summary>
+        /// <param name="addres">the image adress on the pc</param>
         public void DisplayImg(string addres)
         {
             ImageBrush uniformToFillBrush = new ImageBrush();
@@ -96,6 +104,10 @@ namespace CarDealership.Views
             }
             DisplayImg(null);
         }
+        /// <summary>
+        /// Page to show full car information
+        /// </summary>
+        /// <param name="id">car's id</param>
         public CarPage(int id)
         {
             this.InitializeComponent();
@@ -110,7 +122,9 @@ namespace CarDealership.Views
             }
 
         }
-
+        /// <summary>
+        /// Send email message to the seller
+        /// </summary>
         private void buttonSendEmail_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -121,12 +135,16 @@ namespace CarDealership.Views
                 Console.WriteLine(ex.Message);
             }
         }
-
+        /// <summary>
+        /// generate the next image
+        /// </summary>
         private void buttonNext_Click(object sender, RoutedEventArgs e)
         {
             GenerateImg(2);
         }
-
+        /// <summary>
+        /// generate the previous image
+        /// </summary>
         private void buttonPrev_Click(object sender, RoutedEventArgs e)
         {
             GenerateImg(1);

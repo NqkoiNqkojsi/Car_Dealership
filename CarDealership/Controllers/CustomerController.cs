@@ -12,11 +12,16 @@ using Microsoft.Data.SqlClient;
 
 namespace CarDealership.Controllers
 {
+    /// <summary>
+    /// Business Logic for the Customer.
+    /// </summary>
     public class CustomerController
     {
-        private static CarDealershipContext customerContext = null;
+        private static CarDealershipContext cardealershipContext = null;
 
-      
+        /// <summary>
+        /// Determines if the customer is logged in. (Is 0 if not)
+        /// </summary>
         public static int sessionID { get; set; }
 
         /// <summary>
@@ -50,11 +55,11 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Returns random jumble of letters with specified size and upper/lowercase
+        /// Creates a random jumble of letters with specified size and upper/lowercase.
         /// </summary>
         /// <param name="size"></param>
         /// <param name="lowerCase"></param>
-        /// <returns></returns>
+        /// <returns>The string of random jumble of letters.</returns>
         public static string RandomString(int size, bool lowerCase)
         {
             StringBuilder builder = new StringBuilder();
@@ -74,7 +79,7 @@ namespace CarDealership.Controllers
         /// Makes a random password out of numbers and letters
         /// </summary>
         /// <param name="size"></param>
-        /// <returns></returns>
+        /// <returns>The randomized password.</returns>
         public static string RandomPassword(int size = 0)
         {
             StringBuilder builder = new StringBuilder();
@@ -88,7 +93,7 @@ namespace CarDealership.Controllers
         /// Checks Email Validity
         /// </summary>
         /// <param name="email">potential email</param>
-        /// <returns>true or false</returns>
+        /// <returns>True or False.</returns>
         public static bool IsValidEmail(string email)
         {
             try
@@ -101,11 +106,12 @@ namespace CarDealership.Controllers
                 return false;
             }
         }
+
         /// <summary>
         /// Checks Password Validity
         /// </summary>
         /// <param name="password">potential password</param>
-        /// <returns>true or false</returns>
+        /// <returns>True or Talse</returns>
         public static bool IsValidPassword(string password)
         {
             try
@@ -139,11 +145,12 @@ namespace CarDealership.Controllers
                 return false;
             }
         }
+
         /// <summary>
-        /// Make a date from a string with 
+        /// Make a date from a string
         /// </summary>
         /// <param name="date">format=dd.M.yyy :"23.10.2003"</param>
-        /// <returns>DateTime with only moth and year</returns>
+        /// <returns>DateTime with only a month and a year.</returns>
         public static DateTime MakeBirthDate(string date)
         {
             try
@@ -173,10 +180,10 @@ namespace CarDealership.Controllers
             if (!CustomerExists)
             {
                 Customer.customers.Add(customer);
-                using (customerContext = new CarDealershipContext())
+                using (cardealershipContext = new CarDealershipContext())
                 {
-                    customerContext.customers.Add(customer);
-                    customerContext.SaveChanges();
+                    cardealershipContext.customers.Add(customer);
+                    cardealershipContext.SaveChanges();
                 }
             }
         }
@@ -194,12 +201,12 @@ namespace CarDealership.Controllers
                     {
                         Customer.customers.Where(x => x.id == id).FirstOrDefault().Password = newPass;
 
-                        using (customerContext = new CarDealershipContext())
+                        using (cardealershipContext = new CarDealershipContext())
                         {
                             if (oldPass != null)
                             {
-                                customerContext.Entry(oldPass).CurrentValues.SetValues(newPass);
-                                customerContext.SaveChanges();
+                                cardealershipContext.Entry(oldPass).CurrentValues.SetValues(newPass);
+                                cardealershipContext.SaveChanges();
                             }
                         }
                     }
@@ -217,7 +224,7 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void SendEmail(string receiver, string subject, string message)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 if (IsValidEmail(receiver))
                 {
@@ -255,41 +262,10 @@ namespace CarDealership.Controllers
         /// <param name="car"></param>
         public static void AddToFavorite(Car car)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 Customer customer = Customer.customers.Where(c=>c.id==sessionID).FirstOrDefault();
                 customer.favoritedCars.Add(car);
-
-                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Database = cardealership; Integrated Security=True";
-
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        if (conn.State == System.Data.ConnectionState.Open)
-                        {
-                            using (SqlCommand cmd = conn.CreateCommand())
-                            {
-                                cmd.CommandText = "insert into relaionFavourite (customerId,carId)" +
-                                                    "values (" + customer.id + ", " + car.id + ")";
-
-                                using (SqlDataReader reader = cmd.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        var carId = car.id;
-                                        var customerId = customer.id;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception eSql)
-                {
-                    Console.WriteLine($"Exception: {eSql.Message}");
-                }
             }
             else Console.WriteLine("Log in to perform this operation");
         }
@@ -339,10 +315,14 @@ namespace CarDealership.Controllers
                     Car car = new Car(carBrand, price, manufDateStr, horsePower, kmDriven, engineVolume, info);
                     Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
                     car.owner = customer;
-  
+                    using (cardealershipContext = new CarDealershipContext())
+                    {
+                        RelationSeller relationSeller = new RelationSeller() {carId = car.id, customerId = customer.id, car = car, customer = customer };
+                        cardealershipContext.relationSeller.Add(relationSeller);
+                    }
                     Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Add(car);
 
-                  
+                    
                     return car.id;
                 }
                 catch (Exception ex)
@@ -352,12 +332,13 @@ namespace CarDealership.Controllers
             }
             return 0;
         }
+
         /// <summary>
-        /// Method to log in a customer
+        /// Method to log in a customer.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
-        /// <returns>response message</returns>
+        /// <returns>Response message.</returns>
         public static string Login(string email, string password)
         {
             if (IsValidEmail(email))
@@ -378,13 +359,18 @@ namespace CarDealership.Controllers
             return ("Invalid email or password");
         } 
 
+        /// <summary>
+        /// remove the offer from instances: aprroved cars, favourite cars and publicOffers
+        /// </summary>
+        /// <param name="id">id of the removed offer</param>
         public static void RemoveOffer(int id)
         {
             if (sessionID != 0)
             {
-                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                //get the needed car
                 Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
-                customer.publicOffers.Remove(car);
+                Car.approvedCars.Remove(car);
+                Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
                     if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);

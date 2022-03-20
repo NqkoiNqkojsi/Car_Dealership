@@ -20,6 +20,10 @@ namespace CarDealership.Views
     public sealed partial class ErrorMessage : UserControl
     {
         public event RoutedEventHandler ClosePage;
+        /// <summary>
+        /// used for error messages in popup
+        /// </summary>
+        /// <param name="text">error message</param>
         public ErrorMessage(string text)
         {
             this.InitializeComponent();

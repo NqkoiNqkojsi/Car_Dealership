@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 
 namespace CarDealership.Controllers
 {
+    /// <summary>
+    /// Bussiness logic for Car.
+    /// </summary>
     public class CarController
     {
-        private static CarDealershipContext carContext = null;
+        private static CarDealershipContext carDealershipContext = null;
+
         /// <summary>
-        /// Make a date from a string with only month and year
+        /// Make a date from a string with only month and year.
         /// </summary>
         /// <param name="date">format=M.yyy :"10.2003"</param>
         /// <returns>DateTime with only moth and year</returns>
@@ -37,8 +41,9 @@ namespace CarDealership.Controllers
                 return DateTime.MinValue;//at error return min value
             }
         }
+
         /// <summary>
-        /// Adds cars to customer's wish list
+        /// Adds cars to customer's wish list.
         /// </summary>
         /// <param name="carId">ids of liked cars</param>
         public static void AddFavoriteCar(int carId)
@@ -51,6 +56,10 @@ namespace CarDealership.Controllers
             }
         }
 
+        /// <summary>
+        /// Removes a car from Favorite cars.
+        /// </summary>
+        /// <param name="carId">Car id.</param>
         public static void RemoveFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != 0)
@@ -59,6 +68,11 @@ namespace CarDealership.Controllers
             }
         }
 
+        /// <summary>
+        /// Checks if a car is in favorites.
+        /// </summary>
+        /// <param name="carId">Car id.</param>
+        /// <returns></returns>
         public static bool IsFavoriteCar(int carId)
         {
             if (CustomerController.sessionID != 0)
@@ -74,6 +88,7 @@ namespace CarDealership.Controllers
             }
             return false;
         }
+
         /// <summary>
         /// Show Cars in the Customer's Wishlist    
         /// </summary>
@@ -93,9 +108,9 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Show Cars in the Customer's Wishlist
+        /// Show Cars in the Customer's Wishlist.
         /// </summary>
-        /// <returns>list of ids</returns>
+        /// <returns>A list of ids.</returns>
         public static List<int> ShowOwnedCars()
         {
             if (CustomerController.sessionID != 0)
@@ -106,15 +121,16 @@ namespace CarDealership.Controllers
             Console.WriteLine("Log in to view owned cars");
             return null;
         }
+
         /// <summary>
-        /// Returns info of car
+        /// Returns info of car.
         /// </summary>
-        /// <param name="id">id of needed car</param>
-        /// <returns>dictionary of necessary info</returns>
+        /// <param name="id">Id of needed car.</param>
+        /// <returns>Dictionary of necessary info.</returns>
         public static Dictionary<string, string> IDtoCarInfo(int id)=>Car.approvedCars.First(x => x.id == id).PrintCarInfo();
 
         /// <summary>
-        /// Creates a directory that contains a car's photos
+        /// Creates a directory that contains a car's photos.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -130,10 +146,10 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Returns directory name for ease of the AddPhotoToDir method
+        /// Returns directory name for ease of the AddPhotoToDir method.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Returns the directory as a string.</returns>
         public static string ImgDirString(int id)
         {
             string toBeAdded = $"Car_Dealership\\CarDealership\\Assets\\{id}";
@@ -146,7 +162,7 @@ namespace CarDealership.Controllers
         }
 
         /// <summary>
-        /// Uploads an image to a customer's offer
+        /// Uploads an image to a customer's offer.
         /// </summary>
         /// <returns></returns>
         public static async Task<StorageFile> ImageUpload()
@@ -165,24 +181,35 @@ namespace CarDealership.Controllers
         /// <summary>
         /// Adds the image to a car's photo directory
         /// </summary>
-        /// <param name="id">offer id</param>
-        /// <param name="carPhoto">the file itself</param>
-        /// <param name="num">the number with which to be saved</param>
+        /// <param name="id">Offer id.</param>
+        /// <param name="carPhoto">The file itself.</param>
+        /// <param name="num">The number with which to be saved.</param>
         /// <returns></returns>
         public static async Task AddPhotoToDir(int id, StorageFile carPhoto, string num)
         {
             if (!Directory.Exists(ImgDirString(id))) MakeImgDir(id);                   
             var dir = await StorageFolder.GetFolderFromPathAsync(ImgDirString(id));
             await carPhoto.RenameAsync(num);
-            await carPhoto.MoveAsync(dir); 
+            await carPhoto.MoveAsync(dir);
         }
         
+        /// <summary>
+        /// Counts the number of images in a single directory.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns the count.</returns>
         public static int PhotoInDirCount(int id)
         {
             DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");
             int count = dir.GetFiles().Length;
             return count;
         }
+        
+        /// <summary>
+        /// Creates a list of all photos.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returs a list of all cars.</returns>
         public static List<string> PhotosAll(int id)
         {
             DirectoryInfo dir = new DirectoryInfo($"{ImgDirString(id)}");

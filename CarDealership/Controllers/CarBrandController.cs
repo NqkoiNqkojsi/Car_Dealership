@@ -8,10 +8,13 @@ using CarDealership.Data;
 
 namespace CarDealership.Controllers
 {
+    /// <summary>
+    /// Bussiness logic for CarBrand.
+    /// </summary>
     public class CarBrandController
     {
         public static List<CarBrand> carBrands = new List<CarBrand>();
-        private static CarDealershipContext carBrandContext = null;
+        private static CarDealershipContext cardealershipContext = null;
 
         /// <summary>
         /// Get all registered brands.
@@ -19,7 +22,7 @@ namespace CarDealership.Controllers
         /// <returns>Returns a list of all unique brands.</returns>
         public static List<string> GetBrands()
         {
-            using (carBrandContext = new CarDealershipContext())
+            using (cardealershipContext = new CarDealershipContext())
             {
                 List<string> brands = new List<string>();
                 using (CarDealershipContext carBrandContext = new CarDealershipContext())
@@ -36,19 +39,16 @@ namespace CarDealership.Controllers
             }
         }
 
-
-
-
         /// <summary>
         /// Get all the models that are in a certain brand
         /// </summary>
-        /// <returns>all models in a brand</returns>
+        /// <returns>All models in a brand.</returns>
         public static List<string> GetModelsByBrand(string brand)
         {
-            using (carBrandContext = new CarDealershipContext())
+            using (cardealershipContext = new CarDealershipContext())
             {
                 List<string> models = new List<string>();
-                foreach (CarBrand carBrand in carBrandContext.carBrands)
+                foreach (CarBrand carBrand in cardealershipContext.carBrands)
                 {
                     if (carBrand.brand == brand)
                     {

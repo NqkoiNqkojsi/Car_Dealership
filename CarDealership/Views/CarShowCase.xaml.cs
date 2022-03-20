@@ -33,7 +33,7 @@ namespace CarDealership.Views
         /// </summary>
         SolidColorBrush buttWishedBrush = new SolidColorBrush(Color.FromArgb(100, 210, 214, 144));
         /// <summary>
-        /// make the image 
+        /// get the first image and display it in the rectangle
         /// </summary>
         public void GenerateImg()
         {
@@ -60,6 +60,10 @@ namespace CarDealership.Views
             uniformToFillBrush.Stretch = Stretch.UniformToFill;
             Image.Fill = uniformToFillBrush;
         }
+        /// <summary>
+        /// Displays the preview info in the textblocks
+        /// </summary>
+        /// <param name="id">car's id</param>
         private void MakeContent(int id)
         {
             Dictionary<string, string> info = CarController.IDtoCarInfo(id);
@@ -102,6 +106,10 @@ namespace CarDealership.Views
                 return false;
             }
         }
+        /// <summary>
+        /// The cars preview
+        /// </summary>
+        /// <param name="id">car's id</param>
         public CarShowCase(int id)
         {
             this.InitializeComponent();
@@ -110,11 +118,9 @@ namespace CarDealership.Views
             IsWished();
             GenerateImg();
         }
-        public void c_OpenCarPage(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Func for wish button: wish/unwish a car and change color of button
+        /// </summary>
         private void WishCar(object sender, RoutedEventArgs e)
         {
             if (IsWished())

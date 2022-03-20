@@ -10,49 +10,79 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarDealership.Models
 {
-    
+    /// <summary>
+    /// Car entity
+    /// </summary>
     public class Car
     {
+        /// <summary>
+        /// Car id
+        /// </summary>
         [Key]
         public int id { get; set; }
 
         /// <summary>
-        /// Holds the model and brand of the car
+        /// CarBrand of the Car
         /// </summary>
         [ForeignKey("CarBrand")]
         public int carBrandId { get; set; }
-        
         public virtual CarBrand carBrand { get; set; }
 
+        /// <summary>
+        /// Owner of the car.
+        /// </summary>
         public Customer owner { get; set; }
         
+        /// <summary>
+        /// Price of the car.
+        /// </summary>
         [Required]
         public double price { get; set; }
+
+
         /// <summary>
         /// Date of manufacturing
         /// </summary>
-        
         public DateTime manufDate { get; set; }
-        /// <summary>
-        /// Date the offer is made
-        /// </summary>
 
+        /// <summary>
+        /// Horse power of the car.
+        /// </summary>
         [Required]
         public double horsePower { get; set; }
+        
+        /// <summary>
+        /// Driven kilometers on the car.
+        /// </summary>
         public double kmDriven { get; set; }
 
+        /// <summary>
+        /// Engine volume of the car.
+        /// </summary>
         public double engineVolume { get; set; }
+
         /// <summary>
         /// Additional info about the car
         /// </summary>
         public string info { get; set; }
-        private static int counter=0;
 
         /// <summary>
         /// List of all cars
         /// </summary>
-         
          public static List<Car> approvedCars = new List<Car>();
+
+        private static int counter = 0;
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="carBrand"></param>
+        /// <param name="price"></param>
+        /// <param name="manufDateStr"></param>
+        /// <param name="horsePower"></param>
+        /// <param name="kmDriven"></param>
+        /// <param name="engineVolume"></param>
+        /// <param name="info"></param>
         public Car(CarBrand carBrand, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter;
@@ -71,6 +101,18 @@ namespace CarDealership.Models
         {
 
         }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="brand"></param>
+        /// <param name="model"></param>
+        /// <param name="price"></param>
+        /// <param name="manufDateStr"></param>
+        /// <param name="horsePower"></param>
+        /// <param name="kmDriven"></param>
+        /// <param name="engineVolume"></param>
+        /// <param name="info"></param>
         public Car(string brand, string model, double price, string manufDateStr, double horsePower, double kmDriven, double engineVolume,  string info)
         {
             this.id = counter;
@@ -88,6 +130,14 @@ namespace CarDealership.Models
             approvedCars.Add(this);
             counter++;
         }
+
+        /// <summary>
+        /// Filters car's in a certain range.
+        /// </summary>
+        /// <param name="priceStart"></param>
+        /// <param name="priceEnd"></param>
+        /// <param name="cars"></param>
+        /// <returns>A list of cars.</returns>
         public static List<Car> CarsFilterPrice(double priceStart, double priceEnd, List<Car> cars)=>cars.Where(x => x.price >= priceStart && x.price <= priceEnd).ToList();
 
         /// <summary>
