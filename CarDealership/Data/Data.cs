@@ -44,7 +44,7 @@ namespace CarDealership.Data
         /// <summary>
         /// Cars Table
         /// </summary>
-        public DbSet<Customer> relationSeller { get; set; }
+        public DbSet<RelationSeller> relationSeller { get; set; }
 
         /// <summary>
         /// Connection string to Microsoft SQL Server
