@@ -49,13 +49,18 @@ namespace CarDealership.Views
             ManYear.SelectedIndex = 0;
             CarBrand.SelectedIndex = 0;
         }
+        /// <summary>
+        /// Make an offer page
+        /// </summary>
         public MakeOffer()
         {
             this.InitializeComponent();
             MakeComboBoxes();
 
         }
-
+        /// <summary>
+        /// Make the new offer
+        /// </summary>
         private async void buttonMakeOffer_Click(object sender, RoutedEventArgs e)
         {
             //Check if the fields are used

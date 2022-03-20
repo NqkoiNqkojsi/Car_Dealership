@@ -217,7 +217,7 @@ namespace CarDealership.Controllers
         /// </summary>
         public static void SendEmail(string receiver, string subject, string message)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 if (IsValidEmail(receiver))
                 {
@@ -255,7 +255,7 @@ namespace CarDealership.Controllers
         /// <param name="car"></param>
         public static void AddToFavorite(Car car)
         {
-            if (sessionID != null)
+            if (sessionID != 0)
             {
                 Customer customer = Customer.customers.Where(c=>c.id==sessionID).FirstOrDefault();
                 customer.favoritedCars.Add(car);
