@@ -3,8 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using CarDealership.Controllers;
 
 namespace CarDealership.Tests.ControllerTests
@@ -23,12 +25,12 @@ namespace CarDealership.Tests.ControllerTests
             Assert.AreEqual(date, result, "The MakeDate returns a wrong DateTime");
         }
         [TestMethod]
-        public void MakeImgDirTest()
+        public void ImgDirStringTest()
         {
 
-            string id = "1";
+            int id = 1;
             string tobetested = CarController.ImgDirString(id);
-            Assert.AreEqual("C:\\Users\\4o4o\\Source\\Repos\\Car_Dealership\\CarDealership\\Assets\\1", tobetested, "Not equal");
+            Assert.AreEqual("<C:\\Users\\PC\\Source\\Repos\\NqkoiNqkojsi\\Car_Dealership\\CarDealership\\Assets\\1", tobetested, "Not equal");
         }
 
         [TestMethod]
@@ -38,7 +40,7 @@ namespace CarDealership.Tests.ControllerTests
             List<string> Test = new List<string> {"0"};
             CustomerController.CreateCustomer("Ivan", "23.10.2003", "123", "44444", "ivan@gmail.com");
             CustomerController.AddToFavorite(car);
-            List<string> toBeTested = CarController.ShowFavoriteCars();
+            List<int> toBeTested = CarController.ShowFavoriteCars();
             Assert.AreEqual(Test, toBeTested, "Not equal"); 
         }
 
@@ -80,6 +82,36 @@ namespace CarDealership.Tests.ControllerTests
             int size2 = Customer.customers.Where(c => c.name == "Ivan").First().favoritedCars.Count();
             Assert.AreEqual(size2 + 1, size1, "Car removed unsuccessfully");
         }
+        [TestMethod]
+        public void MakeImgDirTest()
+        {
+            int id = 10000001;
+            CarController.MakeImgDir(id);
+            bool isExisting = Directory.Exists($"Car_Dealership\\CarDealership\\Assets\\{id}");
+            Assert.AreEqual(isExisting, true, "Not accurate count");
+        }
+        [TestMethod]
+        public async void AddPhotoToDirTest()
+        {
+            int id = 10000001;
+            StorageFile storageFile = await StorageFile.GetFileFromPathAsync(CarController.ImgDirString(id-1)+"\\1");
+            await CarController.AddPhotoToDir(id, storageFile, "2");
+            Assert.AreEqual(2, CarController.PhotoInDirCount(id), "Not accurate count");
+        }
+        [TestMethod]
+        public void PhotoInDirCountTest()
+        {
 
+            int id = 10000000;
+            int tobetested = CarController.PhotoInDirCount(id);
+            Assert.AreEqual(1, tobetested, "Not accurate count");
+        }
+        [TestMethod]
+        public void PhotosAllTest()
+        {
+            int id = 10000000;
+            string photo = CarController.PhotosAll(id).First();
+            Assert.AreEqual(photo, $"Car_Dealership\\CarDealership\\Assets\\{id}\\1", "Not accurate count");
+        }
     }
 }

@@ -377,14 +377,18 @@ namespace CarDealership.Controllers
             else Console.WriteLine("Invalid email or password");
             return ("Invalid email or password");
         } 
-
+        /// <summary>
+        /// remove the offer from instances: aprroved cars, favourite cars and publicOffers
+        /// </summary>
+        /// <param name="id">id of the removed offer</param>
         public static void RemoveOffer(int id)
         {
             if (sessionID != 0)
             {
-                Customer customer = Customer.customers.Where(c => c.id == sessionID).FirstOrDefault();
+                //get the needed car
                 Car car = Car.approvedCars.Where(c => c.id == id).FirstOrDefault();
-                customer.publicOffers.Remove(car);
+                Car.approvedCars.Remove(car);
+                Customer.customers.Where(c => c.id == sessionID).FirstOrDefault().publicOffers.Remove(car);
                 foreach (Customer cus in Customer.customers)
                 {
                     if(cus.favoritedCars.Contains(car)) cus.favoritedCars.Remove(car);
