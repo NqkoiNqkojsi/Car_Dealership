@@ -149,5 +149,9 @@ namespace CarDealership.Views
         {
             GenerateImg(1);
         }
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

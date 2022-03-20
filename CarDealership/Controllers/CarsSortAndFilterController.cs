@@ -54,10 +54,11 @@ namespace CarDealership.Controllers
         /// <param name="year"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static List<int> CompleteFilter(double price, string brand, int year, string model, string choice)
+
+        public static List<int> CompleteFilter(double priceMin, double priceMax, string brand, int year, string model, string choice)
         {
             List<Car> cars = Car.approvedCars;
-            if(price!=0) cars = CarsFilterPrice(cars, price);
+            if(priceMin!=0 || priceMax!=0) cars = CarsFilterPrice(cars, priceMax, priceMin);
             if (brand != null && model != null)
             {
                 CarBrand carBrand = CarBrand.carBrands.Where(cb => cb.model == model && cb.brand == brand).FirstOrDefault();

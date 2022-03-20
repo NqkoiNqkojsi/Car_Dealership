@@ -8,15 +8,15 @@
     mc:Ignorable="d" Width="1594" Height="1080">
 
     <Grid Width="1594" Height="1080">
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Search for cars" VerticalAlignment="Top" Height="111" Width="477" FontSize="72" Margin="564,10,0,0" TextDecorations="None" FontStyle="Normal" FontWeight="Normal"/>
-        <ComboBox x:Name="ComboBox_Brand" Margin="150,170,0,0" Width="542" Height="137" Header="Brand" FontSize="48" HorizontalAlignment="Left" SelectionChanged="ComboBox_SelectionChanged_1" />
-        <ComboBox x:Name="ComboBox_Year" Margin="150,550,0,0" Width="542" Height="137" Header="Year" FontSize="48" />
-        <ComboBox x:Name="ComboBox_Model" Margin="0,170,150,0" Width="542" Height="137" Header="Model" FontSize="48" HorizontalAlignment="Right" />
-        <ComboBox x:Name="ComboBox_Sort" Margin="902,550,0,0" Width="542" Height="137" Header="Sort by" FontSize="48" />
-        <Button x:Name="buttonSearch" Content="Search" Margin="0,756,0,0" VerticalAlignment="Top" CornerRadius="20" Height="194" Width="1294" HorizontalAlignment="Center" FontSize="72"/>
-        <TextBox x:Name="MinPriceText" HorizontalAlignment="Left" Margin="150,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="68" Width="542" FontSize="48"/>
-        <TextBlock x:Name="TextBlockMin"  HorizontalAlignment="Left" Margin="150,359,0,0" TextWrapping="Wrap" Text="Minimum price" VerticalAlignment="Top" Height="67" Width="506" FontSize="48"/>
-        <TextBox x:Name="MaxPriceText" HorizontalAlignment="Left" Margin="902,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="68" Width="538" FontSize="48"/>
-        <TextBlock HorizontalAlignment="Left" Margin="902,359,0,0" TextWrapping="Wrap" Text="Maximum price" VerticalAlignment="Top" Height="70" Width="534" FontSize="48"/>
+        <Rectangle RadiusX="12" RadiusY="12" Margin="100,58,59,96" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" Margin="79,34,80,120" Fill="#5B677D"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Search for cars" VerticalAlignment="Top" Height="111" Width="500" FontSize="72" Margin="0,50,0,0" TextDecorations="None" FontStyle="Normal" FontWeight="Bold"/>
+        <ComboBox x:Name="ComboBox_Brand" Margin="150,135,0,0" Width="542" Height="137" Header="Brand" FontSize="48" SelectionChanged="ComboBox_SelectionChanged_1" />
+        <ComboBox x:Name="ComboBox_Year" Margin="150,515,0,0" Width="542" Height="137" Header="Year" FontSize="48" />
+        <ComboBox x:Name="ComboBox_Model" Margin="0,135,150,0" Width="542" Height="137" Header="Model" FontSize="48" HorizontalAlignment="Right" />
+        <ComboBox x:Name="ComboBox_Sort" Margin="902,515,0,0" Width="542" Height="137" Header="Sort by" FontSize="48" />
+        <Button x:Name="buttonSearch" Content="Search" Margin="0,721,0,0" VerticalAlignment="Top" CornerRadius="20" Height="194" Width="1294" HorizontalAlignment="Center" FontSize="72"/>
+        <TextBox x:Name="MinPriceText" Header="Minimum price" HorizontalAlignment="Left" Margin="150,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="137" Width="542" FontSize="48"/>
+        <TextBox x:Name="MaxPriceText" Header="Maximum price" HorizontalAlignment="Left" Margin="902,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="137" Width="542" FontSize="48"/>
     </Grid>
 </UserControl>

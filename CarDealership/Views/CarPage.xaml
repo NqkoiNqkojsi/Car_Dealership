@@ -8,7 +8,12 @@
     mc:Ignorable="d" Width="1594" Height="1080">
 
     <Grid Width="1594" Height="1080">
-        <Rectangle x:Name="Image" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="471" Margin="71,118,0,0" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="872" Margin="876,118,0,0" VerticalAlignment="Top" Width="672" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="872" Margin="860,0,0,0" VerticalAlignment="Center" Width="672" RenderTransformOrigin="0.5,0.5" Fill="#FF5B677D" FocusVisualPrimaryBrush="{x:Null}"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="366" Margin="76,622,0,0" VerticalAlignment="Top" Width="733" RenderTransformOrigin="0.5,0.5" Fill="#FF475061"/>
+        <Rectangle RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="366" Margin="58,610,0,0" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.5,0.5" Fill="#FF5B677D"/>
+        <Rectangle x:Name="Image" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Height="471" VerticalAlignment="Top" Width="739" RenderTransformOrigin="0.32,0.5" Margin="58,104,0,0">
             <Rectangle.Fill>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/default_img.png"/>
             </Rectangle.Fill>
